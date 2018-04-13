@@ -62,13 +62,15 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          */
 
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR && elementGannaDraw != null) {
-            elementGannaDraw.setLocation(e.getX() - elementGannaDraw.getWidth() / 2, e.getY()-+ elementGannaDraw.getHeight() / 2);
-//            System.out.println(e.getX());
-//            System.out.println(e.getY());
-//            System.out.println(getLocation());
+            elementGannaDraw.setLocation(e.getX() - elementGannaDraw.getWidth() / 2, e.getY() - elementGannaDraw.getHeight() / 2);
             repaint(elementGannaDraw.getBounds());
             addElement(elementGannaDraw);
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        // TODO: Unsure judging getClickCount() == 2 is good
+        if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+
         }
     }
 

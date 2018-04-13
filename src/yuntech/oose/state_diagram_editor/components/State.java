@@ -8,21 +8,25 @@ public class State extends Element{
 
     static private int numOfInstances;
 
+    {
+        width = 75;
+        height = 75;
+        setColor(new Color(0x48AEBC));
+    }
+
     /* Override methods */
 
     @Override
     void initLabel() {
         label = new Label(this.getClass().getSimpleName() + numOfInstances);
         numOfInstances++;
-
-        System.out.println(getLocation());
-        System.out.println(label.getLocation());
     }
 
     @Override
     public void draw(Graphics g) {
-        super.draw(g);
         g.setColor(color);
         g.fillOval(x, y, width, height);
+        super.draw(g);
     }
+
 }

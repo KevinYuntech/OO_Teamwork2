@@ -11,8 +11,12 @@ public class Label extends Element{
 
     /* Constructors */
 
-    public Label(){
+    {
+        // Has no default width, height, because those depend on Graphics
         color = new Color(0);
+    }
+
+    public Label(){
     }
 
     public Label(String string) {
@@ -43,16 +47,28 @@ public class Label extends Element{
     @Override
     void initLabel() {
         text = this.getClass().getSimpleName() + numOfInstances;
-        numOfInstances++;
+
+        // Only count labels that not depend on other(s).
+//        if (text.equals(Label.class.getSimpleName()))
+            numOfInstances++;
     }
 
 
     @Override
     public void draw(Graphics g){
-        super.draw(g);
+        g.setColor(color);
         g.drawString(text, x , y);
-
-        // Set element size corresponding to it's label
 //        g.getFontMetrics().stringWidth(getText());
+    }
+
+    @Override
+    public void setLocation(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public void setLocation(Point point) {
+        setLocation(point.x, point.y);
     }
 }

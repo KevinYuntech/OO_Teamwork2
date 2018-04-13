@@ -6,6 +6,7 @@ import yuntech.oose.state_diagram_editor.Resizable;
 
 import java.awt.*;
 
+// NOTE: Gatter always return new object so outer won't have the ability to modify data of a class
 public abstract class Element implements Draggable, Resizable {
 
     /* status types */
@@ -15,24 +16,23 @@ public abstract class Element implements Draggable, Resizable {
 
     /* Fields */
 
+    // Subclass can use initializer block to set the default values
     protected int x;
     protected int y;
-    protected int width = 50;
-    protected int height = 50;
+    protected int width;    // FIXME: Subclass should have default value for it
+    protected int height;   // FIXME: Subclass should have default value for it
     protected Handle[] handles;
     protected Label label;
-    protected Color color;
+    protected Color color;  // FIXME: Subclass should have default value for it
     protected int status = NORMAL;     // 0: normal, 1:focused
 
     /* Constructors */
 
-    Element(){
+    Element() {
         // Set default text of label for an Element
         initLabel();
 //        initResizableBorder();
     }
-
-
     //    abstract void initResizableBorder();
     abstract void initLabel();
 
@@ -42,7 +42,7 @@ public abstract class Element implements Draggable, Resizable {
         width = element.width;
         height = element.height;
         label = new Label(element.getText());
-        color = new Color(element.getColor().getRGB());
+        color = element.getColor();
         handles = new Handle[handles.length];
         for (int i = 0; i < element.handles.length; i++) {
             handles[i] = new Handle(element.handles[i]);
@@ -52,16 +52,11 @@ public abstract class Element implements Draggable, Resizable {
 
     /* Public methods */
 
-    // Overriding this method should call super.draw()
+    // Overriding this method should call super.draw() lastly
     public void draw(Graphics g){
         // Draw the label of this element
-        if (!(this instanceof Label)) {
-            g.setColor(label.getColor());
-            g.drawString(label.getText(), label.getX(), label.getX());
-//            System.out.println("labelX: " + label.getX() + "labelY: " + label.getY());
-//            System.out.println("Draw label: " + label.getText());
-//            System.out.println("Label color: " + label.getColor().toString());
-        }
+        g.setColor(label.color);
+        g.drawString(label.getText(), label.getX(), label.getY());
 
         if (status == FOCUSEd) {
             drawHandles(g);
@@ -102,17 +97,20 @@ public abstract class Element implements Draggable, Resizable {
     }
 
     @Override
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+
+        // Update its label also
+        label.x = x + width / 2 - label.width / 2;
+        label.y = y + height / 2 - label.height / 2;
+    }
+
+    @Override
     public void setLocation(Point point){
         setLocation(point.x, point.y);
     }
 
-    @Override
-    public void setLocation(int x, int y){
-        this.x = x;
-        this.y = y;
-        label.x = x + width / 2 + label.x / 2;
-        label.y = y + height / 2 + label.y / 2;
-    }
     @Override
     public void setSize(int width, int height){
         this.width = width;
@@ -133,9 +131,12 @@ public abstract class Element implements Draggable, Resizable {
 
     /* Getter, Setter */
 
-
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void setLabelColor(Color color) {
+        label.color = color;
     }
 
     public void setStatus(int status) {
@@ -151,7 +152,11 @@ public abstract class Element implements Draggable, Resizable {
     }
 
     public Color getColor() {
-        return color;
+        return new Color(color.getRGB());
+    }
+
+    public Color getLabelColor() {
+        return new Color(label.color.getRGB());
     }
 
     public int getWidth() {

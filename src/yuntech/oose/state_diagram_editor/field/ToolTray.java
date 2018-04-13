@@ -103,9 +103,7 @@ public class ToolTray extends JPanel {
         btn_state.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                State state = new State();
-                state.setColor(new Color(0x48AEBC));
-                ToolTray.this.ctrl_toolTrayToCanvas.addElement(state);
+                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new State());
             }
 
             @Override
