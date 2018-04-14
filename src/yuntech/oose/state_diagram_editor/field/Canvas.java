@@ -1,6 +1,7 @@
 package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.components.Element;
+import yuntech.oose.state_diagram_editor.components.State;
 import yuntech.oose.state_diagram_editor.components.Transition;
 
 import javax.swing.*;
@@ -53,6 +54,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     }
 
 
+    // TODO: Restructure it
     @Override
     public void mouseClicked(MouseEvent e) {
         /*
@@ -61,17 +63,46 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          * So still check if elementGannaDraw isn't null
          */
 
-        if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR && elementGannaDraw != null) {
+        if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
+                elementGannaDraw != null &&
+                !(elementGannaDraw instanceof Transition)) {
             elementGannaDraw.setLocation(e.getX() - elementGannaDraw.getWidth() / 2, e.getY() - elementGannaDraw.getHeight() / 2);
             repaint(elementGannaDraw.getBounds());
             addElement(elementGannaDraw);
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            elementGannaDraw = null;
+            return;
+        }
+
+        // Placing Transition start point
+        if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
+                elementGannaDraw instanceof Transition &&
+                elementGannaDraw.getStatus() == Element.NORMAL) {
+            elementGannaDraw.setStatus(Element.FOCUSEd);
+            ((Transition) elementGannaDraw).setStart(e.getPoint());
+            ((Transition) elementGannaDraw).setEnd(e.getPoint());
+            addElement(elementGannaDraw);
+            return;
+        }
+
+        // Placing Transition end point
+        if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
+                elementGannaDraw instanceof Transition &&
+                elementGannaDraw.getStatus() == Element.FOCUSEd) {
+            elementGannaDraw.setStatus(Element.NORMAL);
+            ((Transition) elementGannaDraw).setEnd(e.getPoint());
+            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            addElement(elementGannaDraw);
+            elementGannaDraw = null;
+            return;
         }
 
         // TODO: Unsure judging getClickCount() == 2 is good
         if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
 
         }
+
+        repaint();
     }
 
     @Override
@@ -116,7 +147,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     }
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        if (elementGannaDraw instanceof Transition) {
+            ((Transition) elementGannaDraw).setEnd(e.getPoint());
+            repaint();
+        }
     }
 
     private void facilitate() {

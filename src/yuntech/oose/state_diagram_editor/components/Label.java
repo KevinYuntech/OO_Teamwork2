@@ -6,25 +6,28 @@ public class Label extends Element{
 
     /* Fields */
 
-    static private int numOfInstances;
+    static private int num;
     private String text;
+
+
+    private Font font;
 
     /* Constructors */
 
     {
         // Has no default width, height, because those depend on Graphics
         color = new Color(0);
+
     }
 
     public Label(){
+        text = Label.class.getSimpleName() + num;
+        num++;
     }
 
+    // For elements
     public Label(String string) {
         this.text = string;
-    }
-
-    public Label(Color color) {
-        this.color = color;
     }
 
     public Label(Label label) {
@@ -46,17 +49,38 @@ public class Label extends Element{
 
     @Override
     void initLabel() {
-        text = this.getClass().getSimpleName() + numOfInstances;
+        text = this.getClass().getSimpleName() + num;
 
         // Only count labels that not depend on other(s).
 //        if (text.equals(Label.class.getSimpleName()))
-            numOfInstances++;
+            num++;
     }
 
 
     @Override
+    public boolean isIntersect(Point point) {
+        // drawText() start from left bottom
+        return point.x > x &&
+                point.x < x + width &&
+                point.y < y &&
+                point.y > y - height;
+    }
+
+    @Override
     public void draw(Graphics g){
         g.setColor(color);
+
+        if (font == null) {
+            // TODO: Reference to sigleton font
+            font = new Font(g.getFont().getAttributes());
+        }
+
+        // Take a global font
+        g.setFont(font);
+
+        width = g.getFontMetrics().stringWidth(getText());
+        height = g.getFontMetrics().getHeight();
+
         g.drawString(text, x , y);
 //        g.getFontMetrics().stringWidth(getText());
     }
@@ -70,5 +94,11 @@ public class Label extends Element{
     @Override
     public void setLocation(Point point) {
         setLocation(point.x, point.y);
+    }
+
+    /* Getter, Setter */
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 }

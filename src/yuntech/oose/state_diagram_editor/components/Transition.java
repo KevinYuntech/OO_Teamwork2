@@ -14,22 +14,19 @@ import java.awt.*;
  */
 
 public class Transition extends Element{
+
+    {
+    }
+
+
     static private int numOfInstances;
     @Override
     void initLabel() {
         label = new Label(this.getClass().getSimpleName() + numOfInstances);
         numOfInstances++;
     }
+
     private Point start;
-
-    public Point getStart() {
-        return start;
-    }
-
-    public Point getEnd() {
-        return end;
-    }
-
     private Point end;
     private int wingLength = 10;
     private int wingDegree = 30;
@@ -53,15 +50,14 @@ public class Transition extends Element{
 
     @Override
     public void draw(Graphics g) {
-        super.draw(g);
         /* Draw line */
         g.setColor(color);
         g.drawLine(start.x, start.y, end.x, end.y);
 
         /* Draw wings */
-
         // Math.atan2(double y,double x) takes a vector and return the angle respect to horizontal, range in [-Math.PI, Math.PI]
         // atan --> arc tangent
+
         double angle = Math.atan2(end.y - start.y, end.x - start.x);
 
         // wing1
@@ -73,6 +69,7 @@ public class Transition extends Element{
         if (getStatus() == FOCUSEd) {
 
         }
+        super.draw(g);
     }
 
     /* Setters */
@@ -81,17 +78,18 @@ public class Transition extends Element{
         this.start = start;
     }
     public void setStart(int x, int y) {
-        this.start.x = x;
-        this.start.y = y;
+        setStart(new Point(x, y));
     }
 
     public void setEnd(Point end) {
         this.end = end;
+        if (start != null) {
+            label.setLocation(start);
+        }
     }
 
     public void setEnd(int x, int y) {
-        this.end.x = x;
-        this.end.y = y;
+        setEnd(new Point(x, y));
     }
 
     public void setWingLength(int wingLength) {
@@ -105,6 +103,15 @@ public class Transition extends Element{
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public Point getStart() {
+        return start;
+    }
+
+    public Point getEnd() {
+        return end;
+    }
+
 
     /* Private methods */
 

@@ -11,8 +11,8 @@ public abstract class Element implements Draggable, Resizable {
 
     /* status types */
 
-    protected static final int NORMAL = 0;
-    protected static final int FOCUSEd = 1;
+    public static final int NORMAL = 0;
+    public static final int FOCUSEd = 1;
 
     /* Fields */
 
@@ -56,13 +56,17 @@ public abstract class Element implements Draggable, Resizable {
     public void draw(Graphics g){
         // Draw the label of this element
         g.setColor(label.color);
-        g.drawString(label.getText(), label.getX(), label.getY());
+        label.draw(g);
 
-        if (status == FOCUSEd) {
+        // Update label location
+
+
+/*        if (status == FOCUSEd) {
             drawHandles(g);
-        }
+        }*/
     }
 
+    // TODO: Make it abstract
     public boolean isIntersect(Point point){
         return point.x > x &&
                 point.x < x + width &&
@@ -76,6 +80,10 @@ public abstract class Element implements Draggable, Resizable {
 
     public void setText(String text) {
         label.setText(text);
+    }
+
+    public void setFont(Font font){
+        label.setFont(font);
     }
 
 
@@ -101,9 +109,10 @@ public abstract class Element implements Draggable, Resizable {
         this.x = x;
         this.y = y;
 
-        // Update its label also
+        // Update its label also (to center of this)
         label.x = x + width / 2 - label.width / 2;
-        label.y = y + height / 2 - label.height / 2;
+        label.y = y + height / 2 + label.height / 2;
+        System.out.println(label.getSize());
     }
 
     @Override
