@@ -1,16 +1,24 @@
 package yuntech.oose.state_diagram_editor.components;
 
+import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
+import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
+import yuntech.oose.state_diagram_editor.singleton.StyleSingleton;
+
 import java.awt.*;
 
 public class Label extends Element{
 
     /* Fields */
 
+    // TEST
+    private FontSingleton fontSingleton = FontSingleton.getFontInstance();
+    private StyleSingleton styleSingleton = StyleSingleton.getStyleInstance();
+    private SizeSingleton sizeSingleton = SizeSingleton.getSizeInstance();
+    private Font font = new Font(fontSingleton.getFont(), styleSingleton.getStyle(), sizeSingleton.getSize());
+
     static private int num;
     private String text;
 
-
-    private Font font ;
 
     /* Constructors */
 
@@ -68,13 +76,6 @@ public class Label extends Element{
     @Override
     public void draw(Graphics g){
         g.setColor(getColor());
-
-        if (font == null) {
-            // TODO: Reference to sigleton font
-            font = new Font(g.getFont().getAttributes());
-        }
-
-        // Take a global font
         g.setFont(font);
 
         width = g.getFontMetrics().stringWidth(getText());

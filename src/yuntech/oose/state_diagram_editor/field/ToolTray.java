@@ -1,5 +1,6 @@
 package yuntech.oose.state_diagram_editor.field;
 
+import yuntech.oose.state_diagram_editor.mediator.*;
 import yuntech.oose.state_diagram_editor.components.*;
 import yuntech.oose.state_diagram_editor.components.Composite;
 import yuntech.oose.state_diagram_editor.components.Label;
@@ -9,6 +10,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class ToolTray extends JPanel {
+
+    // TEST
+    MainWindow mainWindow;
 
     CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas;
 
@@ -30,6 +34,13 @@ public class ToolTray extends JPanel {
     public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height){
         this(ctrl_toolTrayToCanvas);
         setSize(new Dimension(width, height));
+    }
+
+    // TEST
+    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height, MainWindow mainWindow){
+        this(ctrl_toolTrayToCanvas);
+        setSize(new Dimension(width, height));
+        this.mainWindow = mainWindow;
     }
 
     private void facilitate() {
@@ -120,9 +131,11 @@ public class ToolTray extends JPanel {
         im_font.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0, false), "pressed");
         im_font.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0, true), "released");
 
+        // TEST
         btn_font.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Font());
+                FontChooserDialog fontChooserDialog = new FontChooserDialog(mainWindow, "Font Selector", true);
+                fontChooserDialog.setVisible(true);
             }
         });
 
@@ -131,10 +144,10 @@ public class ToolTray extends JPanel {
         /* Arranging components */
         gl_contentPane.setVerticalGroup(gl_contentPane.createSequentialGroup().addComponent(btn_state).
                 addComponent(btn_transition).addComponent(btn_decision).addComponent(btn_start).
-                addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label));
+                addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label).addComponent(btn_font));
         gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup().addComponent(btn_state).
                 addComponent(btn_transition).addComponent(btn_decision).addComponent(btn_start).
-                addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label));
+                addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label).addComponent(btn_font));
 
         setLayout(gl_contentPane);
         setVisible(true);

@@ -18,4 +18,8 @@ public class CTRL_ToolTrayToCanvas {
         canvas.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         canvas.setElementGannaDraw(element);
     }
+
+    public void refreshCanvas(){
+        canvas.repaint();
+    }
 }

@@ -3,6 +3,9 @@ package yuntech.oose.state_diagram_editor.field;
 import yuntech.oose.state_diagram_editor.components.Element;
 import yuntech.oose.state_diagram_editor.components.State;
 import yuntech.oose.state_diagram_editor.components.Transition;
+import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
+import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
+import yuntech.oose.state_diagram_editor.singleton.StyleSingleton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,6 +52,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (Element element : elementList) {
+            element.setFont(new Font(FontSingleton.getFontInstance().getFont(), StyleSingleton.getStyleInstance().getStyle(), SizeSingleton.getSizeInstance().getSize()));
             element.draw(g);
         }
     }

@@ -10,7 +10,7 @@ public class MainWindow extends JFrame{
     private final int height = 600;
 
     private Canvas canvas = new Canvas(600, 600);
-    private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 200, 600);
+    private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 200, 600, this);
 
     public static void main(String[] args){
         SwingUtilities.invokeLater(new Runnable() {
@@ -27,6 +27,30 @@ public class MainWindow extends JFrame{
     }
 
     private void setupFrame() {
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu mnFile = new JMenu("File");
+        menuBar.add(mnFile);
+
+        JMenu mnNew = new JMenu("New");
+        mnFile.add(mnNew);
+
+        JMenu mnNewDiagram = new JMenu("New Diagram");
+        mnNew.add(mnNewDiagram);
+
+        JMenuItem mntmOpenFile = new JMenuItem("Open file");
+        mnFile.add(mntmOpenFile);
+
+        JMenuItem mntmClose = new JMenuItem("Close");
+        mnFile.add(mntmClose);
+
+        JMenu mnEdit = new JMenu("Edit");
+        menuBar.add(mnEdit);
+
+        JMenu mnHelp = new JMenu("Help");
+        menuBar.add(mnHelp);
+
         JPanel contentPane = new JPanel();
         setContentPane(contentPane);
 

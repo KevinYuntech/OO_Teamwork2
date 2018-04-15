@@ -41,29 +41,7 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(300, 100, 649, 450);
 
-        JMenuBar menuBar = new JMenuBar();
-        setJMenuBar(menuBar);
 
-        JMenu mnFile = new JMenu("File");
-        menuBar.add(mnFile);
-
-        JMenu mnNew = new JMenu("New");
-        mnFile.add(mnNew);
-
-        JMenu mnNewDiagram = new JMenu("New Diagram");
-        mnNew.add(mnNewDiagram);
-
-        JMenuItem mntmOpenFile = new JMenuItem("Open file");
-        mnFile.add(mntmOpenFile);
-
-        JMenuItem mntmClose = new JMenuItem("Close");
-        mnFile.add(mntmClose);
-
-        JMenu mnEdit = new JMenu("Edit");
-        menuBar.add(mnEdit);
-
-        JMenu mnHelp = new JMenu("Help");
-        menuBar.add(mnHelp);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
