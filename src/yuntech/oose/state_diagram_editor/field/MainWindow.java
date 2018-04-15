@@ -3,13 +3,15 @@ package yuntech.oose.state_diagram_editor.field;
 import yuntech.oose.state_diagram_editor.Draggable;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame{
     // For convenience
     private final int width = 800;
     private final int height = 600;
 
-    private Canvas canvas = new Canvas(600, 600);
+    private Canvas canvas = new Canvas(new CTRL_CanvasToMementoCaretake(), 600, 600);
     private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 200, 600, this);
 
     public static void main(String[] args){
@@ -53,6 +55,12 @@ public class MainWindow extends JFrame{
 
         JMenuItem mnUndo = new JMenuItem("Undo");
         mnEdit.add(mnUndo);
+        mnUndo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                canvas.undo();
+            }
+        });
 
         JMenu mnHelp = new JMenu("Help");
         menuBar.add(mnHelp);

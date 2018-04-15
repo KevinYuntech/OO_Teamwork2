@@ -1,8 +1,8 @@
 package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.components.Element;
-import yuntech.oose.state_diagram_editor.components.State;
 import yuntech.oose.state_diagram_editor.components.Transition;
+import yuntech.oose.state_diagram_editor.memento.Memento;
 import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
 import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
 import yuntech.oose.state_diagram_editor.singleton.StyleSingleton;
@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.EmptyStackException;
 import java.util.LinkedList;
 
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
@@ -21,6 +22,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     private Element elementGannaDraw;
     private Element lastPressedElement;
     private Point lastPressedPoint;
+    private CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake;
 
     public LinkedList<Element> elementList = new LinkedList<>();
 
@@ -35,6 +37,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         facilitate();
     }
 
+    public Canvas(CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake, int width, int height) {
+        this(width, height);
+        this.ctrl_canvasToMementoCaretake = ctrl_canvasToMementoCaretake;
+    }
+
     /* Public methods */
 
     public void addElement(Element element){
@@ -44,6 +51,18 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     public void setElementGannaDraw(Element elementGannaDraw) {
         this.elementGannaDraw = elementGannaDraw;
+    }
+
+    // TODO: Add controller to communicate
+    public void undo(){
+        try {
+            elementList = (LinkedList<Element>) ctrl_canvasToMementoCaretake.getSnapshot().getLinkedList();
+        } catch (EmptyStackException e) {
+
+        }
+
+
+        repaint();
     }
 
     /* Override methods */
@@ -66,10 +85,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          * but this may not be true in the future.
          * So still check if elementGannaDraw isn't null
          */
+        takeSanpshop();
 
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
                 elementGannaDraw != null &&
                 !(elementGannaDraw instanceof Transition)) {
+
             elementGannaDraw.setLocation(e.getX() - elementGannaDraw.getWidth() / 2, e.getY() - elementGannaDraw.getHeight() / 2);
             repaint(elementGannaDraw.getBounds());
             if (!addToComposite(e.getPoint(), elementGannaDraw)) {
@@ -77,6 +98,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             }
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             elementGannaDraw = null;
+
+
             return;
         }
 
@@ -84,6 +107,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
                 elementGannaDraw instanceof Transition &&
                 elementGannaDraw.getStatus() == Element.NORMAL) {
+
             elementGannaDraw.setStatus(Element.FOCUSEd);
             ((Transition) elementGannaDraw).setStart(e.getPoint());
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
@@ -95,6 +119,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
                 elementGannaDraw instanceof Transition &&
                 elementGannaDraw.getStatus() == Element.FOCUSEd) {
+
             elementGannaDraw.setStatus(Element.NORMAL);
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -109,6 +134,18 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         }
 
         repaint();
+    }
+
+    private void takeSanpshop() {
+
+        // Cloning
+        LinkedList<Element> list = new LinkedList<>();
+        for (Element element : elementList) {
+            list.add(element);
+        }
+
+        Memento memento = new Memento(list);
+        ctrl_canvasToMementoCaretake.snapshot(memento);
     }
 
     @Override
@@ -170,4 +207,5 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         }
         return false;
     }
+
 }

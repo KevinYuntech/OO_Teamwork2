@@ -4,10 +4,6 @@ import yuntech.oose.state_diagram_editor.Draggable;
 import yuntech.oose.state_diagram_editor.Drawing.Drawable;
 import yuntech.oose.state_diagram_editor.Handle;
 import yuntech.oose.state_diagram_editor.Resizable;
-import yuntech.oose.state_diagram_editor.singleton.ColorSingleton;
-import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
-import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
-import yuntech.oose.state_diagram_editor.singleton.StyleSingleton;
 
 import java.awt.*;
 
