@@ -1,9 +1,7 @@
 package yuntech.oose.state_diagram_editor.components;
 
-import yuntech.oose.state_diagram_editor.Drawing.RoundRectangleDrawable;
-import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
-import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
-import yuntech.oose.state_diagram_editor.singleton.StyleSingleton;
+import yuntech.oose.state_diagram_editor.drawing.RoundRectangleDrawable;
+import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -43,7 +41,7 @@ public class Composite extends Element {
         drawable.draw(this, g);
         drawable.drawLabel(this, g);
         for (Element element : elementList) {
-            element.setFont(new Font(FontSingleton.getFontInstance().getFont(), StyleSingleton.getStyleInstance().getStyle(), SizeSingleton.getSizeInstance().getSize()));
+            element.setFont(new Font(WordSingleton.getInstance().getFontName(), WordSingleton.getInstance().getFontStyle(), WordSingleton.getInstance().getFontSize()));
             element.draw(g);
         }
 

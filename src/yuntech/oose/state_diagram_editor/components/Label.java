@@ -1,8 +1,6 @@
 package yuntech.oose.state_diagram_editor.components;
 
-import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
-import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
-import yuntech.oose.state_diagram_editor.singleton.StyleSingleton;
+import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
 import java.awt.*;
 
@@ -13,10 +11,8 @@ public class Label extends Element{
     private static int num;
     private String text;
 
-    private FontSingleton fontSingleton = FontSingleton.getFontInstance();
-    private StyleSingleton styleSingleton = StyleSingleton.getStyleInstance();
-    private SizeSingleton sizeSingleton = SizeSingleton.getSizeInstance();
-    private Font font = new Font(fontSingleton.getFont(), styleSingleton.getStyle(), sizeSingleton.getSize());
+    private WordSingleton wordSingleton = WordSingleton.getInstance();
+    private Font font = new Font(wordSingleton.getFontName(), wordSingleton.getFontStyle(), wordSingleton.getFontSize());
 
 
     /* Constructors */

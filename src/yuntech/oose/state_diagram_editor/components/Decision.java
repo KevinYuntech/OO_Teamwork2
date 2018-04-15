@@ -2,7 +2,7 @@ package yuntech.oose.state_diagram_editor.components;
 
 // TODO
 
-import yuntech.oose.state_diagram_editor.Drawing.DiamondDrawable;
+import yuntech.oose.state_diagram_editor.drawing.DiamondDrawable;
 
 import java.awt.Graphics;
 

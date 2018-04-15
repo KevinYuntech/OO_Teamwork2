@@ -1,9 +1,9 @@
 package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.Draggable;
-import yuntech.oose.state_diagram_editor.Drawing.Drawable;
 import yuntech.oose.state_diagram_editor.Handle;
 import yuntech.oose.state_diagram_editor.Resizable;
+import yuntech.oose.state_diagram_editor.drawing.Drawable;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 
 import java.awt.*;

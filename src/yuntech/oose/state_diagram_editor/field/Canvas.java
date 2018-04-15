@@ -3,10 +3,9 @@ package yuntech.oose.state_diagram_editor.field;
 import yuntech.oose.state_diagram_editor.components.Element;
 import yuntech.oose.state_diagram_editor.components.Transition;
 import yuntech.oose.state_diagram_editor.controller.CTRL_CanvasToMementoCaretake;
+import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 import yuntech.oose.state_diagram_editor.memento.Memento;
-import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
-import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
-import yuntech.oose.state_diagram_editor.singleton.StyleSingleton;
+import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,7 +71,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (Element element : elementList) {
-            element.setFont(new Font(FontSingleton.getFontInstance().getFont(), StyleSingleton.getStyleInstance().getStyle(), SizeSingleton.getSizeInstance().getSize()));
+            element.setFont(new Font(WordSingleton.getInstance().getFontName(), WordSingleton.getInstance().getFontStyle(), WordSingleton.getInstance().getFontSize()));
+            element.setLabelColor(FlyweightFactory.getFlyweightFactory().getColorFlyweight(WordSingleton.getInstance().getFontColor().getRGB()).getRGB());
             element.draw(g);
         }
     }

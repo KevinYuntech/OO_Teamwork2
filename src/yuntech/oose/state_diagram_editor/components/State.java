@@ -1,7 +1,7 @@
 package yuntech.oose.state_diagram_editor.components;
 
-import yuntech.oose.state_diagram_editor.Drawing.FullRoundRectangleDrawable;
-import yuntech.oose.state_diagram_editor.Drawing.RoundRectangleDrawable;
+import yuntech.oose.state_diagram_editor.drawing.FullRoundRectangleDrawable;
+import yuntech.oose.state_diagram_editor.drawing.RoundRectangleDrawable;
 
 import java.awt.*;
 

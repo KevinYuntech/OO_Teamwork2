@@ -2,7 +2,7 @@ package yuntech.oose.state_diagram_editor.components;
 
 // TODO
 
-import yuntech.oose.state_diagram_editor.Drawing.CircleDrawable;
+import yuntech.oose.state_diagram_editor.drawing.CircleDrawable;
 
 import java.awt.Graphics;
 
