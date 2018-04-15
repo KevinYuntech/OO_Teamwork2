@@ -11,7 +11,7 @@ public class Start extends Element {
     {
         width = 50;
         height = 50;
-        setColor(new Color(0x48AEBC));
+        setColor(0x48AEBC);
     }
     
     @Override
@@ -22,8 +22,8 @@ public class Start extends Element {
     
     @Override
     public void draw(Graphics g) {
-        super.draw(g);
         g.setColor(Color.black);//unknown
         g.fillOval(x, y, width, height);
+        super.draw(g);
     }
 }

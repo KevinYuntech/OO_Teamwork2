@@ -16,6 +16,7 @@ import java.awt.*;
 public class Transition extends Element{
 
     {
+        setColor(0);
     }
 
 
@@ -51,7 +52,7 @@ public class Transition extends Element{
     @Override
     public void draw(Graphics g) {
         /* Draw line */
-        g.setColor(color);
+        g.setColor(getColor());
         g.drawLine(start.x, start.y, end.x, end.y);
 
         /* Draw wings */
@@ -106,10 +107,6 @@ public class Transition extends Element{
 
     public void setWingDegree(int wingDegree) {
         this.wingDegree = wingDegree;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public Point getStart() {

@@ -8,17 +8,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ToolTray extends JPanel implements ActionListener{
+public class ToolTray extends JPanel {
+
     CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas;
 
-    private JButton btn_transition = new JButton("Transition");
-    private JButton btn_decision = new JButton("Decision");
-    private JButton btn_state = new JButton("State");
-    private JButton btn_start = new JButton("Start");
-    private JButton btn_composite = new JButton("Composite");
-    private JButton btn_end = new JButton("End");
-    private JButton btn_label = new JButton("Label");
-    private JButton btn_font = new JButton("Font");
+    private JButton btn_transition = new JButton("Transition(T)");
+    private JButton btn_decision = new JButton("Decision(D)");
+    private JButton btn_state = new JButton("State(S)");
+    private JButton btn_start = new JButton("Start(A)");
+    private JButton btn_composite = new JButton("Composite(C)");
+    private JButton btn_end = new JButton("End(E)");
+    private JButton btn_label = new JButton("Label(L)");
+    private JButton btn_font = new JButton("Font(F)");
 
     public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas){
         this.ctrl_toolTrayToCanvas = ctrl_toolTrayToCanvas;
@@ -32,16 +33,26 @@ public class ToolTray extends JPanel implements ActionListener{
     }
 
     private void facilitate() {
-        setBackground(new Color(0x81C889));
+        setBackground(new Color(117,171,188));
     }
 
     void setup() {
+
+        InputMap im_transition = btn_transition.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_transition.put(KeyStroke.getKeyStroke(KeyEvent.VK_T, 0, false), "pressed");
+        im_transition.put(KeyStroke.getKeyStroke(KeyEvent.VK_T, 0, true), "released");
+
         btn_transition.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Transition());
             }
         });
 
+        InputMap im_decision = btn_decision.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_decision.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false), "pressed");
+        im_decision.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "released");
 
         btn_decision.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -49,6 +60,10 @@ public class ToolTray extends JPanel implements ActionListener{
             }
         });
 
+        InputMap im_state = btn_state.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_state.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false), "pressed");
+        im_state.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "released");
 
         btn_state.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -56,11 +71,21 @@ public class ToolTray extends JPanel implements ActionListener{
             }
         });
 
+        InputMap im_start = btn_start.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_start.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false), "pressed");
+        im_start.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true), "released");
+
         btn_start.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Start());
             }
         });
+
+        InputMap im_composite = btn_composite.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_composite.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, 0, false), "pressed");
+        im_composite.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, 0, true), "released");
 
         btn_composite.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -68,17 +93,32 @@ public class ToolTray extends JPanel implements ActionListener{
             }
         });
 
+        InputMap im_end = btn_end.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_end.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false), "pressed");
+        im_end.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, true), "released");
+
         btn_end.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ToolTray.this.ctrl_toolTrayToCanvas.addElement(new End());
             }
         });
 
+        InputMap im_label = btn_label.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_label.put(KeyStroke.getKeyStroke(KeyEvent.VK_L, 0, false), "pressed");
+        im_label.put(KeyStroke.getKeyStroke(KeyEvent.VK_L, 0, true), "released");
+
         btn_label.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Label());
             }
         });
+
+        InputMap im_font = btn_font.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_font.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0, false), "pressed");
+        im_font.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0, true), "released");
 
         btn_font.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -100,10 +140,4 @@ public class ToolTray extends JPanel implements ActionListener{
         setVisible(true);
 
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
-

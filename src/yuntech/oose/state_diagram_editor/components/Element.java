@@ -5,12 +5,10 @@ import yuntech.oose.state_diagram_editor.Handle;
 import yuntech.oose.state_diagram_editor.Resizable;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // NOTE: Gatter always return new object so outer won't have the ability to modify data of a class
 public abstract class Element implements Draggable, Resizable{
-
+    private FlyweightFactory factory = FlyweightFactory.getFlyweightFactory();
     /* status types */
 
     public static final int NORMAL = 0;
@@ -27,7 +25,7 @@ public abstract class Element implements Draggable, Resizable{
     protected int height;   // FIXME: Subclass should have default value for it
     protected Handle[] handles;
     protected Label label;
-    protected Color color;  // FIXME: Subclass should have default value for it
+    private Color color;  // FIXME: Subclass should have default value for it
     protected int status = NORMAL;     // 0: normal, 1:focused
 
     /* Constructors */
@@ -59,7 +57,7 @@ public abstract class Element implements Draggable, Resizable{
     // Overriding this method should call super.draw() lastly
     public void draw(Graphics g){
         // Draw the label of this element
-        g.setColor(label.color);
+        g.setColor(label.getColor());
         label.draw(g);
 
         // Update label location
@@ -154,13 +152,14 @@ public abstract class Element implements Draggable, Resizable{
 
     /* Getter, Setter */
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(int rgb) {
+        color = factory.getColorFlyweight(rgb);
     }
 
-    public void setLabelColor(Color color) {
-        label.color = color;
+    public void setLabelColor(int rgb) {
+        label.setColor(rgb);
     }
+
 
     public void setStatus(int status) {
         this.status = status;
@@ -179,7 +178,7 @@ public abstract class Element implements Draggable, Resizable{
     }
 
     public Color getLabelColor() {
-        return new Color(label.color.getRGB());
+        return new Color(label.getColor().getRGB());
     }
 
     public int getWidth() {

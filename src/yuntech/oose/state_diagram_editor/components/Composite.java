@@ -12,7 +12,7 @@ public class Composite extends Element {
     {
         width = 200;
         height = 350;
-        color = new Color(888954);
+        setColor(888954);
         label.x = x;
         label.y = y;
     }
@@ -25,7 +25,7 @@ public class Composite extends Element {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(color);
+        g.setColor(getColor());
         g.drawRoundRect(x, y, width, height, 25, 25);
         for (Element element : elementList) {
             element.draw(g);

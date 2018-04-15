@@ -11,7 +11,7 @@ public class End extends Element {
     {
         width = 50;
         height = 50;
-        color = new Color(0x48AEBC);
+        setColor(0x48AEBC);
     }
     @Override
     void initLabel() {
@@ -22,7 +22,7 @@ public class End extends Element {
     
     @Override
     public void draw(Graphics g) {
-        g.setColor(color);//unknown
+        g.setColor(getColor());//unknown
         //g.fillOval(x, y, width, height);
         g.drawArc(x, y, width, height, 0, 360);
         g.fillArc(x, y, width-5, height-5, 0, 360);

@@ -11,7 +11,7 @@ public class State extends Element{
     {
         width = 75;
         height = 75;
-        setColor(new Color(0x48AEBC));
+        setColor(0x48AEBC);
     }
 
     /* Override methods */
@@ -24,7 +24,7 @@ public class State extends Element{
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(color);
+        g.setColor(getColor());
         g.fillOval(x, y, width, height);
         super.draw(g);
     }

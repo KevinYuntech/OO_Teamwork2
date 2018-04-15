@@ -16,7 +16,7 @@ public class Label extends Element{
 
     {
         // Has no default width, height, because those depend on Graphics
-        color = new Color(0);
+        setColor(0);
 
     }
 
@@ -67,7 +67,7 @@ public class Label extends Element{
 
     @Override
     public void draw(Graphics g){
-        g.setColor(color);
+        g.setColor(getColor());
 
         if (font == null) {
             // TODO: Reference to sigleton font
