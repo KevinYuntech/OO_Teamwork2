@@ -6,7 +6,7 @@ public class State extends Element{
 
     /* Fields */
 
-    static private int numOfInstances;
+    static private int num;
 
     {
         width = 75;
@@ -18,8 +18,8 @@ public class State extends Element{
 
     @Override
     void initLabel() {
-        label = new Label(this.getClass().getSimpleName() + numOfInstances);
-        numOfInstances++;
+        label = new Label(this.getClass().getSimpleName() + num);
+        num++;
     }
 
     @Override

@@ -10,7 +10,7 @@ public class Label extends Element{
     private String text;
 
 
-    private Font font;
+    private Font font ;
 
     /* Constructors */
 
@@ -49,11 +49,10 @@ public class Label extends Element{
 
     @Override
     void initLabel() {
-        text = this.getClass().getSimpleName() + num;
+        text = this.getClass().getSimpleName();
 
         // Only count labels that not depend on other(s).
 //        if (text.equals(Label.class.getSimpleName()))
-            num++;
     }
 
 

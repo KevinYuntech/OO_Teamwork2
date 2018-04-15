@@ -19,11 +19,11 @@ public class Transition extends Element{
     }
 
 
-    static private int numOfInstances;
+    static private int num;
     @Override
     void initLabel() {
-        label = new Label(this.getClass().getSimpleName() + numOfInstances);
-        numOfInstances++;
+        label = new Label(this.getClass().getSimpleName() + num);
+        num++;
     }
 
     private Point start;
@@ -70,6 +70,14 @@ public class Transition extends Element{
 
         }
         super.draw(g);
+    }
+
+    @Override
+    public void setLocation(int x, int y) {
+    }
+
+    @Override
+    public void setLocation(Point point) {
     }
 
     /* Setters */

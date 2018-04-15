@@ -5,9 +5,11 @@ import yuntech.oose.state_diagram_editor.Handle;
 import yuntech.oose.state_diagram_editor.Resizable;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 // NOTE: Gatter always return new object so outer won't have the ability to modify data of a class
-public abstract class Element implements Draggable, Resizable {
+public abstract class Element implements Draggable, Resizable{
 
     /* status types */
 
@@ -19,6 +21,8 @@ public abstract class Element implements Draggable, Resizable {
     // Subclass can use initializer block to set the default values
     protected int x;
     protected int y;
+    protected int dx;
+    protected int dy;
     protected int width;    // FIXME: Subclass should have default value for it
     protected int height;   // FIXME: Subclass should have default value for it
     protected Handle[] handles;
@@ -64,7 +68,10 @@ public abstract class Element implements Draggable, Resizable {
 /*        if (status == FOCUSEd) {
             drawHandles(g);
         }*/
+
+
     }
+
 
     // TODO: Make it abstract
     public boolean isIntersect(Point point){
@@ -86,6 +93,13 @@ public abstract class Element implements Draggable, Resizable {
         label.setFont(font);
     }
 
+    public void add(Element element) {
+
+    }
+
+    public void remove(Element element) {
+
+    }
 
     /* Override methods */
 

@@ -68,7 +68,9 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
                 !(elementGannaDraw instanceof Transition)) {
             elementGannaDraw.setLocation(e.getX() - elementGannaDraw.getWidth() / 2, e.getY() - elementGannaDraw.getHeight() / 2);
             repaint(elementGannaDraw.getBounds());
-            addElement(elementGannaDraw);
+            if (!addToComposite(e.getPoint(), elementGannaDraw)) {
+                addElement(elementGannaDraw);
+            }
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             elementGannaDraw = null;
             return;
@@ -117,8 +119,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         }
     }
 
-
-
     @Override
     public void mouseDragged(MouseEvent e) {
         int distX = e.getX() - lastPressedPoint.x;
@@ -155,5 +155,15 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     private void facilitate() {
         setBackground(new Color(0xE7F0F3));
+    }
+
+    private boolean addToComposite(Point point, Element element){
+        for (Element e : elementList) {
+            if (e.isIntersect(point)) {
+                e.add(element);
+                return true;
+            }
+        }
+        return false;
     }
 }
