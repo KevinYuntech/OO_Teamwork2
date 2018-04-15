@@ -48,8 +48,15 @@ public class MainWindow extends JFrame{
         JMenu mnEdit = new JMenu("Edit");
         menuBar.add(mnEdit);
 
+        JMenuItem mnRedo = new JMenuItem("Redo");
+        mnEdit.add(mnRedo);
+
+        JMenuItem mnUndo = new JMenuItem("Undo");
+        mnEdit.add(mnUndo);
+
         JMenu mnHelp = new JMenu("Help");
         menuBar.add(mnHelp);
+
 
         JPanel contentPane = new JPanel();
         setContentPane(contentPane);

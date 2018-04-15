@@ -10,8 +10,8 @@ public class Start extends Element {
     static private int num;
     
     {
-        width = 50;
-        height = 50;
+        width = 35;
+        height = 35;
         setColor(0xFF70A6);
     }
     
