@@ -1,5 +1,8 @@
 package yuntech.oose.state_diagram_editor.components;
 
+import yuntech.oose.state_diagram_editor.Drawing.FullRoundRectangleDrawable;
+import yuntech.oose.state_diagram_editor.Drawing.RoundRectangleDrawable;
+
 import java.awt.*;
 
 public class State extends Element{
@@ -23,9 +26,16 @@ public class State extends Element{
     }
 
     @Override
+    void initDrawable() {
+        drawable = new FullRoundRectangleDrawable();
+    }
+
+    @Override
     public void draw(Graphics g) {
-        g.setColor(getColor());
-        g.fillRoundRect(x, y, width, height, 25, 25);
+//        g.setColor(getColor());
+//        g.fillRoundRect(x, y, width, height, 25, 25);
+        drawable.draw(this, g);
+        drawable.drawLabel(this, g);
         super.draw(g);
     }
 

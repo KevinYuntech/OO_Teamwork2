@@ -63,6 +63,11 @@ public class Label extends Element{
 //        if (text.equals(Label.class.getSimpleName()))
     }
 
+    @Override
+    void initDrawable() {
+        // No need for Drawable
+    }
+
 
     @Override
     public boolean isIntersect(Point point) {

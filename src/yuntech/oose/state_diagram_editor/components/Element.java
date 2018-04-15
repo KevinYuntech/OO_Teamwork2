@@ -1,6 +1,7 @@
 package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.Draggable;
+import yuntech.oose.state_diagram_editor.Drawing.Drawable;
 import yuntech.oose.state_diagram_editor.Handle;
 import yuntech.oose.state_diagram_editor.Resizable;
 import yuntech.oose.state_diagram_editor.singleton.ColorSingleton;
@@ -32,6 +33,7 @@ public abstract class Element implements Draggable, Resizable{
     protected Label label;
     private Color color;  // FIXME: Subclass should have default value for it
     protected int status = NORMAL;     // 0: normal, 1:focused
+    protected Drawable drawable;    // FIXME: Subclass should have default value for it
 
 
     /* Constructors */
@@ -41,9 +43,13 @@ public abstract class Element implements Draggable, Resizable{
         initLabel();
 //        initResizableBorder();
 
+        initDrawable();
+
+
     }
     //    abstract void initResizableBorder();
     abstract void initLabel();
+    abstract void initDrawable();
 
     public Element(Element element) {
         x = element.x;
@@ -194,6 +200,10 @@ public abstract class Element implements Draggable, Resizable{
 
     public int getHeight() {
         return height;
+    }
+
+    public void drawLabel(Graphics g) {
+        label.draw(g);
     }
 
 

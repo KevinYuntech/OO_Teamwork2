@@ -1,5 +1,7 @@
 package yuntech.oose.state_diagram_editor.components;
 
+import yuntech.oose.state_diagram_editor.Drawing.RoundRectangleDrawable;
+
 import java.awt.*;
 import java.util.LinkedList;
 
@@ -24,13 +26,24 @@ public class Composite extends Element {
     }
 
     @Override
+    void initDrawable() {
+        drawable = new RoundRectangleDrawable();
+    }
+
+    @Override
     public void draw(Graphics g) {
-        g.setColor(getColor());
-        g.drawRoundRect(x, y, width, height, 25, 25);
+//        g.setColor(getColor());
+//        g.drawRoundRect(x, y, width, height, 25, 25);
+//        for (Element element : elementList) {
+//            element.draw(g);
+//        }
+//        super.draw(g);
+        drawable.drawLabel(this, g);
+        drawable.draw(this, g);
         for (Element element : elementList) {
             element.draw(g);
         }
-        super.draw(g);
+
     }
 
     @Override

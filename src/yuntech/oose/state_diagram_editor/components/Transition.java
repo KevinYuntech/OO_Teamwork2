@@ -30,6 +30,11 @@ public class Transition extends Element{
 
     }
 
+    @Override
+    void initDrawable() {
+        // No need for Drawable
+    }
+
     private Point start;
     private Point end;
     private int wingLength = 10;

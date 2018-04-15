@@ -69,4 +69,8 @@ public class MainWindow extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    public void repaintCanvas(){
+        canvas.repaint();
+    }
+
 }
