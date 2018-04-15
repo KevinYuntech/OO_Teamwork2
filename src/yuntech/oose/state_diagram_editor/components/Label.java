@@ -66,6 +66,10 @@ public class Label extends Element{
         // No need for Drawable
     }
 
+    @Override
+    public void setLabelColor(int rgb) {
+        setColor(rgb);
+    }
 
     @Override
     public boolean isIntersect(Point point) {
