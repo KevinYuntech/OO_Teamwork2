@@ -9,7 +9,7 @@ public class State extends Element{
     static private int num;
 
     {
-        width = 75;
+        width = 150;
         height = 75;
         setColor(0x48AEBC);
     }
@@ -25,7 +25,7 @@ public class State extends Element{
     @Override
     public void draw(Graphics g) {
         g.setColor(getColor());
-        g.fillOval(x, y, width, height);
+        g.fillRoundRect(x, y, width, height, 25, 25);
         super.draw(g);
     }
 

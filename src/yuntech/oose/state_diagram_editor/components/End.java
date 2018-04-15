@@ -26,6 +26,5 @@ public class End extends Element {
         //g.fillOval(x, y, width, height);
         g.drawArc(x, y, width, height, 0, 360);
         g.fillArc(x, y, width-5, height-5, 0, 360);
-        super.draw(g);
     }
 }

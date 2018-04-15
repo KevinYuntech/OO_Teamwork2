@@ -17,6 +17,7 @@ public class Transition extends Element{
 
     {
         setColor(0);
+
     }
 
 
@@ -25,6 +26,8 @@ public class Transition extends Element{
     void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);
         num++;
+
+
     }
 
     private Point start;
@@ -45,6 +48,7 @@ public class Transition extends Element{
 
         // If not specify end immediately
         this.end = start;
+
     }
 
     /* Public methods */
@@ -93,7 +97,7 @@ public class Transition extends Element{
     public void setEnd(Point end) {
         this.end = end;
         if (start != null) {
-            label.setLocation(start);
+            label.setLocation(start.x + (end.x - start.x) / 2, start.y + (end.y - start.y) / 2);
         }
     }
 

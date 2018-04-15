@@ -16,6 +16,7 @@ public abstract class Element implements Draggable, Resizable{
 
     /* Fields */
 
+
     // Subclass can use initializer block to set the default values
     protected int x;
     protected int y;

@@ -2,7 +2,6 @@ package yuntech.oose.state_diagram_editor.components;
 
 // TODO
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Start extends Element {
@@ -11,7 +10,7 @@ public class Start extends Element {
     {
         width = 50;
         height = 50;
-        setColor(0x48AEBC);
+        setColor(0xFF70A6);
     }
     
     @Override
@@ -22,8 +21,7 @@ public class Start extends Element {
     
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.black);//unknown
+        g.setColor(getColor());
         g.fillOval(x, y, width, height);
-        super.draw(g);
     }
 }
