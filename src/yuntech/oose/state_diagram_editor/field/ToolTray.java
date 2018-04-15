@@ -1,9 +1,11 @@
 package yuntech.oose.state_diagram_editor.field;
 
+import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
 import yuntech.oose.state_diagram_editor.mediator.*;
 import yuntech.oose.state_diagram_editor.components.*;
 import yuntech.oose.state_diagram_editor.components.Composite;
 import yuntech.oose.state_diagram_editor.components.Label;
+import yuntech.oose.state_diagram_editor.observer.MyMouseListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +14,11 @@ import java.awt.event.*;
 public class ToolTray extends JPanel {
 
     // TEST
-    MainWindow mainWindow;
 
     CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas;
 
+
+    private MainWindow mainWindow;
     private JButton btn_transition = new JButton("Transition(T)");
     private JButton btn_decision = new JButton("Decision(D)");
     private JButton btn_state = new JButton("State(S)");
@@ -43,11 +46,46 @@ public class ToolTray extends JPanel {
         this.mainWindow = mainWindow;
     }
 
+    public MainWindow getMainWindow() {
+        return mainWindow;
+    }
+
     private void facilitate() {
         setBackground(new Color(117,171,188));
     }
 
     void setup() {
+        this.addMouseListener(new MyMouseListener(this));
+    	/*
+        InputMap im_panel = this.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_panel.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false), "pressed");
+        im_panel.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true), "released");
+	*/
+        this.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == 87) {
+                    FontChooserDialog fontChooserDialog = new FontChooserDialog(mainWindow, "Font Selector", true);
+                    fontChooserDialog.setVisible(true);
+                    System.out.println("font");
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
 
         InputMap im_transition = btn_transition.getInputMap(WHEN_IN_FOCUSED_WINDOW);
 
@@ -131,7 +169,6 @@ public class ToolTray extends JPanel {
         im_font.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0, false), "pressed");
         im_font.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0, true), "released");
 
-        // TEST
         btn_font.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 FontChooserDialog fontChooserDialog = new FontChooserDialog(mainWindow, "Font Selector", true);
@@ -148,6 +185,7 @@ public class ToolTray extends JPanel {
         gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup().addComponent(btn_state).
                 addComponent(btn_transition).addComponent(btn_decision).addComponent(btn_start).
                 addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label).addComponent(btn_font));
+
 
         setLayout(gl_contentPane);
         setVisible(true);

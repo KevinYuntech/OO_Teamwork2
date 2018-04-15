@@ -4,19 +4,18 @@ import yuntech.oose.state_diagram_editor.Draggable;
 import yuntech.oose.state_diagram_editor.Drawing.Drawable;
 import yuntech.oose.state_diagram_editor.Handle;
 import yuntech.oose.state_diagram_editor.Resizable;
+import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 
 import java.awt.*;
 
 // NOTE: Gatter always return new object so outer won't have the ability to modify data of a class
 public abstract class Element implements Draggable, Resizable{
-    private FlyweightFactory factory = FlyweightFactory.getFlyweightFactory();
     /* status types */
 
     public static final int NORMAL = 0;
     public static final int FOCUSEd = 1;
 
     /* Fields */
-
 
     // Subclass can use initializer block to set the default values
     protected int x;
@@ -30,6 +29,7 @@ public abstract class Element implements Draggable, Resizable{
     private Color color;  // FIXME: Subclass should have default value for it
     protected int status = NORMAL;     // 0: normal, 1:focused
     protected Drawable drawable;    // FIXME: Subclass should have default value for it
+    private FlyweightFactory factory = FlyweightFactory.getFlyweightFactory();
 
 
     /* Constructors */
@@ -37,15 +37,10 @@ public abstract class Element implements Draggable, Resizable{
     Element() {
         // Set default text of label for an Element
         initLabel();
-//        initResizableBorder();
-
         initDrawable();
-
-
     }
-    //    abstract void initResizableBorder();
-    abstract void initLabel();
-    abstract void initDrawable();
+    abstract void initLabel();      // Initialize protected field label
+    abstract void initDrawable();   // Initialize protected field drawable
 
     public Element(Element element) {
         x = element.x;
@@ -69,16 +64,14 @@ public abstract class Element implements Draggable, Resizable{
         g.setColor(label.getColor());
         label.draw(g);
 
-        // Update label location
-
-
-/*        if (status == FOCUSEd) {
+        /*
+        if (status == FOCUSEd) {
             drawHandles(g);
-        }*/
+        }
+        */
 
 
     }
-
 
     // TODO: Make it abstract
     public boolean isIntersect(Point point){

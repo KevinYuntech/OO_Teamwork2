@@ -10,14 +10,13 @@ public class Label extends Element{
 
     /* Fields */
 
-    // TEST
+    private static int num;
+    private String text;
+
     private FontSingleton fontSingleton = FontSingleton.getFontInstance();
     private StyleSingleton styleSingleton = StyleSingleton.getStyleInstance();
     private SizeSingleton sizeSingleton = SizeSingleton.getSizeInstance();
     private Font font = new Font(fontSingleton.getFont(), styleSingleton.getStyle(), sizeSingleton.getSize());
-
-    static private int num;
-    private String text;
 
 
     /* Constructors */
@@ -28,6 +27,7 @@ public class Label extends Element{
 
     }
 
+    // For a label who does not depend on an element
     public Label(){
         text = Label.class.getSimpleName() + num;
         num++;
@@ -42,6 +42,11 @@ public class Label extends Element{
         this.text = label.getText();
     }
 
+    /* Public methods */
+
+    public void setFont(Font font) {
+        this.font = font;
+    }
 
     /* Override methods */
 
@@ -58,9 +63,6 @@ public class Label extends Element{
     @Override
     void initLabel() {
         text = this.getClass().getSimpleName();
-
-        // Only count labels that not depend on other(s).
-//        if (text.equals(Label.class.getSimpleName()))
     }
 
     @Override
@@ -99,11 +101,5 @@ public class Label extends Element{
     @Override
     public void setLocation(Point point) {
         setLocation(point.x, point.y);
-    }
-
-    /* Getter, Setter */
-
-    public void setFont(Font font) {
-        this.font = font;
     }
 }

@@ -36,7 +36,7 @@ public class State extends Element{
 //        g.fillRoundRect(x, y, width, height, 25, 25);
         drawable.draw(this, g);
         drawable.drawLabel(this, g);
-        super.draw(g);
+//        super.draw(g);
     }
 
 }

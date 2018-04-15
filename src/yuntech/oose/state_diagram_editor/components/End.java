@@ -8,13 +8,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class End extends Element {
+
+    /* Fields */
+
     static private int num;
+
+    /* Constructors */
 
     {
         width = 35;
         height = 35;
         setColor(0x48AEBC);
     }
+
+    /* Override methods */
+
     @Override
     void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);
@@ -29,9 +37,6 @@ public class End extends Element {
 
     @Override
     public void draw(Graphics g) {
-//        g.setColor(getColor());
-//        g.drawArc(x, y, width, height, 0, 360);
-//        g.fillArc(x+3, y+3, width-6, height-6, 0, 360);
         drawable.draw(this, g);
     }
 }

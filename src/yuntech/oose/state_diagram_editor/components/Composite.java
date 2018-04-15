@@ -1,15 +1,21 @@
 package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.Drawing.RoundRectangleDrawable;
+import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
+import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
+import yuntech.oose.state_diagram_editor.singleton.StyleSingleton;
 
 import java.awt.*;
 import java.util.LinkedList;
 
 // TODO
 public class Composite extends Element {
-    static private int num;
+    /* Fields */
 
+    static private int num;
     LinkedList<Element> elementList = new LinkedList<>();
+
+    /* Constructors */
 
     {
         width = 200;
@@ -18,6 +24,8 @@ public class Composite extends Element {
         label.x = x;
         label.y = y;
     }
+
+    /* Override methods */
 
     @Override
     void initLabel() {
@@ -32,15 +40,10 @@ public class Composite extends Element {
 
     @Override
     public void draw(Graphics g) {
-//        g.setColor(getColor());
-//        g.drawRoundRect(x, y, width, height, 25, 25);
-//        for (Element element : elementList) {
-//            element.draw(g);
-//        }
-//        super.draw(g);
-        drawable.drawLabel(this, g);
         drawable.draw(this, g);
+        drawable.drawLabel(this, g);
         for (Element element : elementList) {
+            element.setFont(new Font(FontSingleton.getFontInstance().getFont(), StyleSingleton.getStyleInstance().getStyle(), SizeSingleton.getSizeInstance().getSize()));
             element.draw(g);
         }
 

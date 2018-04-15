@@ -17,7 +17,6 @@ public class Transition extends Element{
 
     {
         setColor(0);
-
     }
 
 
@@ -26,8 +25,6 @@ public class Transition extends Element{
     void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);
         num++;
-
-
     }
 
     @Override

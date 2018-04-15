@@ -2,6 +2,7 @@ package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.components.Element;
 import yuntech.oose.state_diagram_editor.components.Transition;
+import yuntech.oose.state_diagram_editor.controller.CTRL_CanvasToMementoCaretake;
 import yuntech.oose.state_diagram_editor.memento.Memento;
 import yuntech.oose.state_diagram_editor.singleton.FontSingleton;
 import yuntech.oose.state_diagram_editor.singleton.SizeSingleton;
@@ -136,18 +137,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         repaint();
     }
 
-    private void takeSanpshop() {
-
-        // Cloning
-        LinkedList<Element> list = new LinkedList<>();
-        for (Element element : elementList) {
-            list.add(element);
-        }
-
-        Memento memento = new Memento(list);
-        ctrl_canvasToMementoCaretake.snapshot(memento);
-    }
-
     @Override
     public void mousePressed(MouseEvent e) {
         lastPressedPoint = e.getPoint();
@@ -172,11 +161,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         lastPressedPoint = e.getPoint();
         repaint();
     }
+
     @Override
     public void mouseReleased(MouseEvent e) {
         lastPressedElement = null;
     }
-
     @Override
     public void mouseEntered(MouseEvent e) {
 
@@ -186,6 +175,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     public void mouseExited(MouseEvent e) {
 
     }
+
     @Override
     public void mouseMoved(MouseEvent e) {
         if (elementGannaDraw instanceof Transition) {
@@ -193,6 +183,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             repaint();
         }
     }
+
+    /* Private methods */
 
     private void facilitate() {
         setBackground(new Color(0xE7F0F3));
@@ -208,4 +200,16 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         return false;
     }
 
+
+    private void takeSanpshop() {
+
+        // Cloning
+        LinkedList<Element> list = new LinkedList<>();
+        for (Element element : elementList) {
+            list.add(element);
+        }
+
+        Memento memento = new Memento(list);
+        ctrl_canvasToMementoCaretake.snapshot(memento);
+    }
 }
