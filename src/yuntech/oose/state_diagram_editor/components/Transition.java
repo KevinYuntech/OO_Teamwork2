@@ -22,12 +22,19 @@ public class Transition extends Element {
     private int wingDegree = 30;
     private Handle[] handles = new Handle[2];
 
-    {
-        setColor(0);
-    }
     /* Constructor */
     public Transition() {
 
+    }
+
+    @Override
+    protected void initWidthHeight() {
+        // Transition has no size in this particular program
+    }
+
+    @Override
+    protected void initColor() {
+        setColor(0);
     }
 
     public Transition(Point start) {
@@ -35,17 +42,16 @@ public class Transition extends Element {
 
         // If not specify end immediately
         this.end = start;
-
     }
 
     @Override
-    void initLabel() {
+    protected void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);
         num++;
     }
 
     @Override
-    void initDrawable() {
+    protected void initDrawable() {
         // No need for Drawable
     }
 
@@ -68,19 +74,25 @@ public class Transition extends Element {
         // wing2
         g.drawLine(end.x, end.y, (int) (end.x - wingLength * Math.cos(angle + Math.toRadians(wingDegree))), (int) (end.y - wingLength * Math.sin(angle + Math.toRadians(wingDegree))));
 
+        /* Draw it's label */
+        g.setColor(label.getColor());
+        label.draw(g);
+
         // TODO: Get focused
         if (getStatus() == FOCUSEd) {
 
         }
-        super.draw(g);
     }
 
+    // TODO
     @Override
     public void setLocation(int x, int y) {
     }
 
+    // TODO
     @Override
     public void setLocation(Point point) {
+        setLocation(point.x, point.y);
     }
 
     /* Setters */

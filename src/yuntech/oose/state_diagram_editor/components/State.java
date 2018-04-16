@@ -10,32 +10,33 @@ public class State extends Element {
 
     static private int num;
 
-    {
-        width = 150;
-        height = 75;
-        setColor(0x48AEBC);
-    }
-
     /* Override methods */
 
     @Override
-    void initLabel() {
+    protected void initWidthHeight() {
+        width = 150;
+        height = 75;
+    }
+
+    @Override
+    protected void initColor() {
+        setColor(0x48AEBC);
+    }
+
+    @Override
+    protected void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);
         num++;
     }
 
     @Override
-    void initDrawable() {
+    protected void initDrawable() {
         drawable = new FullRoundRectangleDrawable();
     }
 
     @Override
     public void draw(Graphics g) {
-//        g.setColor(getColor());
-//        g.fillRoundRect(x, y, width, height, 25, 25);
         drawable.draw(this, g);
         drawable.drawLabel(this, g);
-//        super.draw(g);
     }
-
 }

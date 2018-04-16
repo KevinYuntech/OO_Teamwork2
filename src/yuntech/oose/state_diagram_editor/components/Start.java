@@ -1,7 +1,5 @@
 package yuntech.oose.state_diagram_editor.components;
 
-// TODO
-
 import yuntech.oose.state_diagram_editor.drawing.CircleDrawable;
 
 import java.awt.*;
@@ -9,27 +7,38 @@ import java.awt.*;
 public class Start extends Element {
     static private int num;
 
-    {
+    public Start(Start start) {
+    }
+
+    @Override
+    protected void initWidthHeight() {
         width = 35;
         height = 35;
+    }
+
+    @Override
+    protected void initColor() {
         setColor(0xFF70A6);
     }
 
     @Override
-    void initLabel() {
+    protected void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);
         num++;
     }
 
     @Override
-    void initDrawable() {
+    protected void initDrawable() {
         drawable = new CircleDrawable();
     }
 
     @Override
     public void draw(Graphics g) {
-//        g.setColor(getColor());
-//        g.fillOval(x, y, width, height);
         drawable.draw(this, g);
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new Start(this);
     }
 }

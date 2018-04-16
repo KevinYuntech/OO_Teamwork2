@@ -22,57 +22,72 @@ public abstract class Element implements Draggable, Resizable {
     protected int y;
     protected int dx;
     protected int dy;
-    protected int width;    // FIXME: Subclass should have default value for it
-    protected int height;   // FIXME: Subclass should have default value for it
+    protected int width;
+    protected int height;
     protected Handle[] handles;
     protected Label label;
     protected int status = NORMAL;     // 0: normal, 1:focused
-    protected Drawable drawable;    // FIXME: Subclass should have default value for it
-    private Color color;  // FIXME: Subclass should have default value for it
+    protected Drawable drawable;
+    private Color color;
     private FlyweightFactory factory = FlyweightFactory.getFlyweightFactory();
 
 
     /* Constructors */
 
+    // Called by call subclass while it was creating
     Element() {
-        // Set default text of label for an Element
+        initWidthHeight();
+        initColor();
         initLabel();
         initDrawable();
     }
 
+    protected abstract void initWidthHeight();  // Initialize fields width and height
+    protected abstract void initColor();        // Initialize field color
+    protected abstract void initLabel();        // Initialize field label
+    protected abstract void initDrawable();     // Initialize field drawable
+
+    /*
     public Element(Element element) {
         x = element.x;
         y = element.y;
+        dx = element.dx;
+        dy = element.dy;
         width = element.width;
         height = element.height;
-        label = new Label(element.getText());
-        color = element.getColor();
         handles = new Handle[handles.length];
         for (int i = 0; i < element.handles.length; i++) {
             handles[i] = new Handle(element.handles[i]);
         }
-        this.status = element.status;
+        status = element.status;
+        drawable = this.drawable.getNewInstance();
+        label = new Label(element.getText());
+        color = element.getColor();
     }
+    */
 
-    abstract void initLabel();      // Initialize protected field label
-
-    abstract void initDrawable();   // Initialize protected field drawable
 
     /* Public methods */
 
-    // Overriding this method should call super.draw() lastly
-    public void draw(Graphics g) {
-        // Draw the label of this element
-        g.setColor(label.getColor());
-        label.draw(g);
+    abstract public void draw(Graphics g);
 
-        /*
-        if (status == FOCUSEd) {
-            drawHandles(g);
+    public Element getNewInstance(Element element){
+        x = element.x;
+        y = element.y;
+        dx = element.dx;
+        dy = element.dy;
+        width = element.width;
+        height = element.height;
+        handles = new Handle[handles.length];
+        for (int i = 0; i < element.handles.length; i++) {
+            handles[i] = new Handle(element.handles[i]);
         }
-        */
+        status = element.status;
+        drawable = this.drawable.getNewInstance();
+        label = new Label(element.getText());
+        color = element.getColor();
 
-
+        return element;
     }
 
     // TODO: Make it abstract

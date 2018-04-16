@@ -11,28 +11,43 @@ public class Composite extends Element {
     /* Fields */
 
     static private int num;
-    LinkedList<Element> elementList = new LinkedList<>();
+    private LinkedList<Element> elementList = new LinkedList<>();
 
-    /* Constructors */
+    Composite(){
 
-    {
-        width = 200;
-        height = 350;
-        setColor(888954);
-        label.x = x;
-        label.y = y;
+    }
+
+    Composite(Composite composite) {
+        elementList = new LinkedList<Element>();
+        for (Element element : composite.elementList) {
+            elementList.add(element.getNewInstance());
+        }
     }
 
     /* Override methods */
 
     @Override
-    void initLabel() {
-        label = new Label(this.getClass().getSimpleName() + num);
-        num++;
+    protected void initWidthHeight() {
+        width = 200;
+        height = 350;
     }
 
     @Override
-    void initDrawable() {
+    protected void initColor() {
+        setColor(888954);
+    }
+
+    @Override
+    protected void initLabel() {
+        label = new Label(this.getClass().getSimpleName() + num);
+        num++;
+
+        label.x = x;
+        label.y = y;
+    }
+
+    @Override
+    protected void initDrawable() {
         drawable = new RoundRectangleDrawable();
     }
 
@@ -44,7 +59,12 @@ public class Composite extends Element {
             element.setFont(new Font(WordSingleton.getInstance().getFontName(), WordSingleton.getInstance().getFontStyle(), WordSingleton.getInstance().getFontSize()));
             element.draw(g);
         }
+    }
 
+    public Element getNewInstance() {
+        Composite composite = new Composite();
+        super.getNewInstance(composite);
+        return new Composite(this);
     }
 
     @Override

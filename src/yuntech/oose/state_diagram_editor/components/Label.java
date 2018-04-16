@@ -14,19 +14,20 @@ public class Label extends Element {
     private WordSingleton wordSingleton = WordSingleton.getInstance();
     private Font font = new Font(wordSingleton.getFontName(), wordSingleton.getFontStyle(), wordSingleton.getFontSize());
 
-
-    /* Constructors */
-
-    {
-        // Has no default width, height, because those depend on Graphics
-        setColor(0);
-
-    }
-
     // For a label who does not depend on an element
     public Label() {
         text = Label.class.getSimpleName() + num;
         num++;
+    }
+
+    @Override
+    protected void initWidthHeight() {
+        // Has no default width, height, because those depend on Graphics
+    }
+
+    @Override
+    protected void initColor() {
+        setColor(0);
     }
 
     // For elements
@@ -57,12 +58,12 @@ public class Label extends Element {
     }
 
     @Override
-    void initLabel() {
+    protected void initLabel() {
         text = this.getClass().getSimpleName();
     }
 
     @Override
-    void initDrawable() {
+    protected void initDrawable() {
         // No need for Drawable
     }
 
@@ -90,6 +91,11 @@ public class Label extends Element {
 
         g.drawString(text, x, y);
 //        g.getFontMetrics().stringWidth(getText());
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new Label(this);
     }
 
     @Override

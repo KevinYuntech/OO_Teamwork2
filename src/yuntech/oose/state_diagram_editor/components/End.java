@@ -12,24 +12,27 @@ public class End extends Element {
 
     static private int num;
 
-    /* Constructors */
-
-    {
-        width = 35;
-        height = 35;
-        setColor(0x48AEBC);
-    }
-
     /* Override methods */
 
     @Override
-    void initLabel() {
+    protected void initWidthHeight() {
+        width = 35;
+        height = 35;
+    }
+
+    @Override
+    protected void initColor() {
+        setColor(0x48AEBC);
+    }
+
+    @Override
+    protected void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);
         num++;
     }
 
     @Override
-    void initDrawable() {
+    protected void initDrawable() {
         drawable = new CircleInCircleDrawable();
     }
 

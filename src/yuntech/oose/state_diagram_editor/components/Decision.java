@@ -12,24 +12,31 @@ public class Decision extends Element {
 
     static private int numOfInstances;
 
-    /* Constructors */
+    public Decision(Decision decision) {
 
-    {
-        width = 50;
-        height = 50;
-        setColor(0X9BC1BC);
     }
 
     /* Override methods */
 
     @Override
-    void initLabel() {
+    protected void initWidthHeight() {
+        width = 50;
+        height = 50;
+    }
+
+    @Override
+    protected void initColor() {
+        setColor(0X9BC1BC);
+    }
+
+    @Override
+    protected void initLabel() {
         label = new Label(this.getClass().getSimpleName() + numOfInstances);
         numOfInstances++;
     }
 
     @Override
-    void initDrawable() {
+    protected void initDrawable() {
         drawable = new DiamondDrawable();
     }
 
@@ -37,5 +44,10 @@ public class Decision extends Element {
     public void draw(Graphics g) {
         drawable.draw(this, g);
         drawable.drawLabel(this, g);
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new Decision(this);
     }
 }

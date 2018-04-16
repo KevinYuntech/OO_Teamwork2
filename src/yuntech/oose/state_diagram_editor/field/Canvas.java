@@ -15,12 +15,13 @@ import java.awt.event.MouseMotionListener;
 import java.util.EmptyStackException;
 import java.util.LinkedList;
 
+// CAUTION: call repaint() instead of repaint(bount), because some Elements has no width and height
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
 
     /* Fields */
 
     // Storing Elements information
-    public LinkedList<Element> elementList = new LinkedList<>();
+    private LinkedList<Element> elementList = new LinkedList<>();
     private Element elementGannaDraw;
     private Element lastPressedElement;
     private Point lastPressedPoint;
@@ -29,14 +30,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     /* Constructors */
 
     public Canvas(int width, int height) {
+        setLayout(null);    // Don't Change This
         setSize(width, height);
         setPreferredSize(new Dimension(width, height));
-        setLayout(null);
         addMouseListener(this);
         addMouseMotionListener(this);
 
         // Default Canvas background color
-        setBackground(new Color(0xE7F0F3));
         FlyweightFactory.getFlyweightFactory().getColorFlyweight(0xE7F0F3);
     }
 
@@ -44,7 +44,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     public void addElement(Element element) {
         elementList.add(element);
-        repaint(element.getBounds());
+        repaint();
     }
 
     public void setElementGannaDraw(Element elementGannaDraw) {
@@ -58,8 +58,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         } catch (EmptyStackException e) {
             // Indicating no snapshot was stored
         }
-
-
         repaint();
     }
 
@@ -84,20 +82,34 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          * but this may not be true in the future.
          * So still check if elementGannaDraw isn't null
          */
-        takeSnapshot();
+        // We takeSnapshot for each step
 
+        // TODO
+        // TODO: Unsure judging getClickCount() == 2 is good
+        // Change label text
+        if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+            System.out.println("Double clicked");
+            for (Element element : elementList) {
+                if (element.isIntersect(e.getPoint())) {
+                    // TODO: Dialog
+                }
+            }
+        }
+
+        // Placing an Element
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
                 elementGannaDraw != null &&
                 !(elementGannaDraw instanceof Transition)) {
 
             elementGannaDraw.setLocation(e.getX() - elementGannaDraw.getWidth() / 2, e.getY() - elementGannaDraw.getHeight() / 2);
             repaint(elementGannaDraw.getBounds());
+
             if (!addToComposite(e.getPoint(), elementGannaDraw)) {
+                takeSnapshot(); // Take snapshot before add a Element
                 addElement(elementGannaDraw);
             }
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             elementGannaDraw = null;
-
 
             return;
         }
@@ -110,6 +122,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             elementGannaDraw.setStatus(Element.FOCUSEd);
             ((Transition) elementGannaDraw).setStart(e.getPoint());
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
+            takeSnapshot(); // Take snapshot before add a Element
             addElement(elementGannaDraw);
             return;
         }
@@ -125,13 +138,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             elementGannaDraw = null;
             return;
         }
-
-        // TODO: Unsure judging getClickCount() == 2 is good
-        if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-
-        }
-
-        repaint();
     }
 
     @Override
@@ -148,34 +154,36 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        int distX = e.getX() - lastPressedPoint.x;
-        int distY = e.getY() - lastPressedPoint.y;
-
         if (lastPressedElement != null) {
+            setCursor(new Cursor(Cursor.MOVE_CURSOR));
+            int distX = e.getX() - lastPressedPoint.x;
+            int distY = e.getY() - lastPressedPoint.y;
             lastPressedElement.setLocation(lastPressedElement.getX() + distX, lastPressedElement.getY() + distY);
+            repaint();
         }
-
         lastPressedPoint = e.getPoint();
-        repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (getCursor().getType() == Cursor.MOVE_CURSOR) {
+            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        // Left out pressed element, if not,
+        // dragging will be buggy
         lastPressedElement = null;
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
+    public void mouseEntered(MouseEvent e) { }
 
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+    public void mouseExited(MouseEvent e) { }
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        // Start point of Transition is defined, but defining its end point
         if (elementGannaDraw instanceof Transition) {
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
             repaint();
@@ -184,6 +192,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     /* Private methods */
 
+    // If placed Element is in a Composite, add it into the Composite
     private boolean addToComposite(Point point, Element element) {
         for (Element e : elementList) {
             if (e.isIntersect(point)) {
@@ -206,7 +215,9 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          * it cause Canvas.elementList be modify too.
          */
         LinkedList<Element> list = new LinkedList<>();
-        list.addAll(elementList);
+        for (Element element : elementList) {
+            list.add(element.getNewInstance());
+        }
 
         Memento memento = new Memento(list);
 
