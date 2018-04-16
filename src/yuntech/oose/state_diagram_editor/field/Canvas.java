@@ -37,7 +37,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         addMouseMotionListener(this);
 
         // Default Canvas background color
-        FlyweightFactory.getFlyweightFactory().getColorFlyweight(0xE7F0F3);
+        FlyweightFactory.getFlyweightFactory().getColor(0xE7F0F3);
     }
 
     /* Public methods */
@@ -68,7 +68,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         super.paintComponent(g);
         for (Element element : elementList) {
             element.setFont(new Font(WordSingleton.getInstance().getFontName(), WordSingleton.getInstance().getFontStyle(), WordSingleton.getInstance().getFontSize()));
-            element.setLabelColor(FlyweightFactory.getFlyweightFactory().getColorFlyweight(WordSingleton.getInstance().getFontColor().getRGB()).getRGB());
+            element.setLabelColor(FlyweightFactory.getFlyweightFactory().getColor(WordSingleton.getInstance().getFontColor().getRGB()).getRGB());
             element.draw(g);
         }
     }

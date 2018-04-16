@@ -66,6 +66,25 @@ public abstract class Element implements Draggable, Resizable {
     }
     */
 
+    /*
+    public Element getNewInstance() {
+        x = element.x;
+        y = element.y;
+        dx = element.dx;
+        dy = element.dy;
+        width = element.width;
+        height = element.height;
+        handles = new Handle[handles.length];
+        for (int i = 0; i < element.handles.length; i++) {
+            handles[i] = new Handle(element.handles[i]);
+        }
+        status = element.status;
+        drawable = this.drawable.getNewInstance();
+        label = new Label(label);
+        color = element.getColor();
+
+    }
+    */
 
     /* Public methods */
 
@@ -169,7 +188,7 @@ public abstract class Element implements Draggable, Resizable {
     }
 
     public void setColor(int rgb) {
-        color = factory.getColorFlyweight(rgb);
+        color = factory.getColor(rgb);
     }
 
     public Color getLabelColor() {

@@ -32,11 +32,11 @@ public class Label extends Element {
 
     // For elements
     public Label(String string) {
-        this.text = string;
+        text = string;
     }
 
     public Label(Label label) {
-        this.text = label.getText();
+        text = label.getText();
     }
 
     /* Public methods */

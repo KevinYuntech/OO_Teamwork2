@@ -75,7 +75,7 @@ public class WordSingleton {
 
     public void setFontColor(int rgb) {
 
-        fontColor = factory.getColorFlyweight(rgb);
+        fontColor = factory.getColor(rgb);
 
     }
 }
