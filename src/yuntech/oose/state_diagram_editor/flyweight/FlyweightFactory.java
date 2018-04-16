@@ -26,7 +26,7 @@ public class FlyweightFactory {
         return count;
     }
 
-    public ColorFlyweight getColor(int key) {
+    public ColorFlyweight getColorFlyweight(int key) {
         if (!map.containsKey(key)) {
             map.put(key, new ConcreteColorFlyweight(key));
             //System.out.println("new color!!");

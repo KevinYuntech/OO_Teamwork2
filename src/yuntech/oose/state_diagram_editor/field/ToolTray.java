@@ -163,13 +163,36 @@ public class ToolTray extends JPanel {
 
         GroupLayout gl_contentPane = new GroupLayout(this);
 
-        /* Arranging components */
+
+        gl_contentPane.setAutoCreateContainerGaps(true);
+        gl_contentPane.setHonorsVisibility(true);
+
+
+        gl_contentPane.setVerticalGroup(gl_contentPane.createSequentialGroup().addGap(20).addComponent(btn_state).addGap(20).
+                addComponent(btn_transition).addGap(20).addComponent(btn_decision).addGap(20).addComponent(btn_start).addGap(20).
+                addComponent(btn_composite).addGap(20).addComponent(btn_end).addGap(20).addComponent(btn_label).addGap(155).addComponent(btn_font).addGap(20));
+
+
+
+        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(btn_state, GroupLayout.PREFERRED_SIZE,
+                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).
+                addComponent(btn_transition, GroupLayout.PREFERRED_SIZE,
+                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_decision, GroupLayout.PREFERRED_SIZE,
+                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_start, GroupLayout.PREFERRED_SIZE,
+                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).
+                addComponent(btn_composite, GroupLayout.PREFERRED_SIZE,
+                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_end, GroupLayout.PREFERRED_SIZE,
+                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_label, GroupLayout.PREFERRED_SIZE,
+                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_font, GroupLayout.PREFERRED_SIZE,
+                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+
+/*        *//* Arranging components *//*
         gl_contentPane.setVerticalGroup(gl_contentPane.createSequentialGroup().addComponent(btn_state).
                 addComponent(btn_transition).addComponent(btn_decision).addComponent(btn_start).
                 addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label).addComponent(btn_font));
         gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup().addComponent(btn_state).
                 addComponent(btn_transition).addComponent(btn_decision).addComponent(btn_start).
-                addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label).addComponent(btn_font));
+                addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label).addComponent(btn_font));*/
 
 
         setLayout(gl_contentPane);

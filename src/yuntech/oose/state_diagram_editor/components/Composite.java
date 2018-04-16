@@ -13,8 +13,6 @@ public class Composite extends Element {
     static private int num;
     private LinkedList<Element> elementList = new LinkedList<>();
 
-
-
     /* Override methods */
 
     @Override

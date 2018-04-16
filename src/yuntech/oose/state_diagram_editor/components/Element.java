@@ -62,7 +62,7 @@ public abstract class Element implements Draggable, Resizable {
         status = element.status;
         drawable = this.drawable.getNewInstance();
         label = new Label(element.getText());
-        color = element.getColor();
+        color = element.getColorFlyweight();
     }
     */
 
@@ -81,7 +81,7 @@ public abstract class Element implements Draggable, Resizable {
         status = element.status;
         drawable = this.drawable.getNewInstance();
         label = new Label(label);
-        color = element.getColor();
+        color = element.getColorFlyweight();
 
     }
     */
@@ -188,7 +188,7 @@ public abstract class Element implements Draggable, Resizable {
     }
 
     public void setColor(int rgb) {
-        color = factory.getColor(rgb);
+        color = factory.getColorFlyweight(rgb);
     }
 
     public Color getLabelColor() {
@@ -207,6 +207,7 @@ public abstract class Element implements Draggable, Resizable {
         return height;
     }
 
+    //
     public void drawLabel(Graphics g) {
         label.draw(g);
     }
