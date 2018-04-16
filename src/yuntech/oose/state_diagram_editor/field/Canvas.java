@@ -22,7 +22,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     private Element elementGannaDraw;
     private Element lastPressedElement;
     private Point lastPressedPoint;
-    private CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake;
+    private CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake = new CTRL_CanvasToMementoCaretake();
 
     public LinkedList<Element> elementList = new LinkedList<>();
 
@@ -35,11 +35,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         addMouseListener(this);
         addMouseMotionListener(this);
         facilitate();
-    }
-
-    public Canvas(CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake, int width, int height) {
-        this(width, height);
-        this.ctrl_canvasToMementoCaretake = ctrl_canvasToMementoCaretake;
     }
 
     /* Public methods */
@@ -58,7 +53,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         try {
             elementList = (LinkedList<Element>) ctrl_canvasToMementoCaretake.getSnapshot().getLinkedList();
         } catch (EmptyStackException e) {
-
+            // Indicating no snapshot was stored
         }
 
 
@@ -202,7 +197,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 
     private void takeSanpshop() {
-
         // Cloning
         LinkedList<Element> list = new LinkedList<>();
         for (Element element : elementList) {
@@ -210,6 +204,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         }
 
         Memento memento = new Memento(list);
+
         ctrl_canvasToMementoCaretake.snapshot(memento);
     }
 }

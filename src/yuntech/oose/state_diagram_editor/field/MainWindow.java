@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame{
-    // For convenience
+    // Determine default MainWindow size here
     private final int width = 800;
     private final int height = 600;
 
-    private Canvas canvas = new Canvas(new CTRL_CanvasToMementoCaretake(), 600, 600);
+    private Canvas canvas = new Canvas(600, 600);
     private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 200, 600, this);
 
     public static void main(String[] args){
