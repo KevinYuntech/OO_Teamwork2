@@ -27,6 +27,8 @@ public abstract class Element implements Draggable, Resizable {
     protected Handle[] handles;
     protected Label label;
     protected int status = NORMAL;     // 0: normal, 1:focused
+
+
     protected Drawable drawable;
     private Color color;
     private FlyweightFactory factory = FlyweightFactory.getFlyweightFactory();
@@ -114,6 +116,10 @@ public abstract class Element implements Draggable, Resizable {
 
     }
 
+    public void setDrawable(Drawable _drawable) {
+        this.drawable = _drawable;
+    }
+
     public void remove(Element element) {
 
     }
@@ -148,7 +154,6 @@ public abstract class Element implements Draggable, Resizable {
         // Update its label also (to center of this)
         label.x = x + width / 2 - label.width / 2;
         label.y = y + height / 2 + label.height / 2;
-        System.out.println(label.getSize());
     }
 
     @Override

@@ -14,7 +14,7 @@ public class FontScrollPane extends JScrollPane {
     }
 
     public void initialize() {
-        this.setBorder(BorderFactory.createTitledBorder("選擇字型"));
+        this.setBorder(BorderFactory.createTitledBorder("Font"));
 
         this.setBounds(10, 10, 240, 100);
     }

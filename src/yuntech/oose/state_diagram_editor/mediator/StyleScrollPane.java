@@ -14,7 +14,7 @@ public class StyleScrollPane extends JScrollPane {
     }
 
     public void initialize() {
-        this.setBorder(BorderFactory.createTitledBorder("選擇樣式"));
+        this.setBorder(BorderFactory.createTitledBorder("Style"));
 
         this.setBounds(260, 10, 120, 100);
     }

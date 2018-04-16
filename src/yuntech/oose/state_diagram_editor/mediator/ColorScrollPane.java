@@ -14,7 +14,7 @@ public class ColorScrollPane extends JScrollPane {
     }
 
     public void initialize() {
-        this.setBorder(BorderFactory.createTitledBorder("選擇顏色"));
+        this.setBorder(BorderFactory.createTitledBorder("Color"));
 
         this.setBounds(490, 10, 100, 100);
     }

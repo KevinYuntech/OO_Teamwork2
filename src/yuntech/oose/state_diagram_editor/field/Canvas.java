@@ -1,6 +1,7 @@
 package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.components.Element;
+import yuntech.oose.state_diagram_editor.components.Label;
 import yuntech.oose.state_diagram_editor.components.Transition;
 import yuntech.oose.state_diagram_editor.controller.CTRL_CanvasToMementoCaretake;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
@@ -26,6 +27,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     private Element lastPressedElement;
     private Point lastPressedPoint;
     private CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake = new CTRL_CanvasToMementoCaretake();
+
+    private String textGannaChange = new String();
 
     /* Constructors */
 
@@ -54,7 +57,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     // TODO: Add controller to communicate
     public void undo() {
         try {
-            elementList = (LinkedList<Element>) ctrl_canvasToMementoCaretake.getSnapshot().getLinkedList();
+            elementList = (LinkedList<Element>) ctrl_canvasToMementoCaretake.getSnapshot().getObject();
         } catch (EmptyStackException e) {
             // Indicating no snapshot was stored
         }
@@ -92,6 +95,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             for (Element element : elementList) {
                 if (element.isIntersect(e.getPoint())) {
                     // TODO: Dialog
+                    String str = JOptionPane.showInputDialog(null, "Change Text", "Enter", JOptionPane.QUESTION_MESSAGE);
+                    if (str != null) {
+                        element.setText(str);
+                    }
+                    repaint();
                 }
             }
         }
@@ -119,6 +127,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
                 elementGannaDraw instanceof Transition &&
                 elementGannaDraw.getStatus() == Element.NORMAL) {
 
+            System.out.println("Transition start");
+
             elementGannaDraw.setStatus(Element.FOCUSEd);
             ((Transition) elementGannaDraw).setStart(e.getPoint());
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
@@ -131,6 +141,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
                 elementGannaDraw instanceof Transition &&
                 elementGannaDraw.getStatus() == Element.FOCUSEd) {
+
+            System.out.println("Transition end");
 
             elementGannaDraw.setStatus(Element.NORMAL);
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
@@ -166,8 +178,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
         if (getCursor().getType() == Cursor.MOVE_CURSOR) {
-            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            if (elementGannaDraw instanceof Transition) {
+                setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+            } else {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
         }
 
         // Left out pressed element, if not,
@@ -184,7 +201,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     @Override
     public void mouseMoved(MouseEvent e) {
         // Start point of Transition is defined, but defining its end point
-        if (elementGannaDraw instanceof Transition) {
+        if (elementGannaDraw instanceof Transition && elementGannaDraw.getStatus() == Element.FOCUSEd) {
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
             repaint();
         }

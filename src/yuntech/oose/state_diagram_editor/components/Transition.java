@@ -64,15 +64,18 @@ public class Transition extends Element {
         g.drawLine(start.x, start.y, end.x, end.y);
 
         /* Draw wings */
-        // Math.atan2(double y,double x) takes a vector and return the angle respect to horizontal, range in [-Math.PI, Math.PI]
+        // Math.atan2(double y,double x) takes a vector and return the angle respect to horizontal,
+        // range in [-Math.PI, Math.PI]
         // atan --> arc tangent
 
         double angle = Math.atan2(end.y - start.y, end.x - start.x);
 
         // wing1
-        g.drawLine(end.x, end.y, (int) (end.x - wingLength * Math.cos(angle - Math.toRadians(wingDegree))), (int) (end.y - wingLength * Math.sin(angle - Math.toRadians(wingDegree))));
+        g.drawLine(end.x, end.y, (int) (end.x - wingLength * Math.cos(angle - Math.toRadians(wingDegree))),
+                (int) (end.y - wingLength * Math.sin(angle - Math.toRadians(wingDegree))));
         // wing2
-        g.drawLine(end.x, end.y, (int) (end.x - wingLength * Math.cos(angle + Math.toRadians(wingDegree))), (int) (end.y - wingLength * Math.sin(angle + Math.toRadians(wingDegree))));
+        g.drawLine(end.x, end.y, (int) (end.x - wingLength * Math.cos(angle + Math.toRadians(wingDegree))),
+                (int) (end.y - wingLength * Math.sin(angle + Math.toRadians(wingDegree))));
 
         /* Draw it's label */
         g.setColor(label.getColor());
@@ -116,12 +119,12 @@ public class Transition extends Element {
         return start;
     }
 
-    public void setStart(Point start) {
-        this.start = start;
-    }
-
     public Point getEnd() {
         return end;
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
     }
 
     public void setEnd(Point end) {

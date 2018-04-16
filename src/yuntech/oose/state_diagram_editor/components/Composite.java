@@ -46,8 +46,11 @@ public class Composite extends Element {
         drawable.draw(this, g);
         drawable.drawLabel(this, g);
         for (Element element : elementList) {
-            element.setFont(new Font(WordSingleton.getInstance().getFontName(), WordSingleton.getInstance().getFontStyle(), WordSingleton.getInstance().getFontSize()));
-            element.setLabelColor(FlyweightFactory.getFlyweightFactory().getColorFlyweight(WordSingleton.getInstance().getFontColor().getRGB()).getRGB());
+            element.setFont(new Font(WordSingleton.getInstance().getFontName(),
+                    WordSingleton.getInstance().getFontStyle(),
+                    WordSingleton.getInstance().getFontSize()));
+            element.setLabelColor(FlyweightFactory.getFlyweightFactory().
+                    getColorFlyweight(WordSingleton.getInstance().getFontColor().getRGB()).getRGB());
             element.draw(g);
         }
     }

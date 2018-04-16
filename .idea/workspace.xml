@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0148a057-9a6a-4e4c-929a-2a14dd57eb32" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/state diagram editor/yuntech/oose/state_diagram_editor/components/Element.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/state diagram editor/yuntech/oose/state_diagram_editor/components/Element.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/state diagram editor/yuntech/oose/state_diagram_editor/field/Canvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/state diagram editor/yuntech/oose/state_diagram_editor/field/Canvas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Composite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Composite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Element.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Transition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Transition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/Drawable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/Drawable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/Canvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorScrollPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorScrollPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontScrollPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontScrollPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/PreviewLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/PreviewLabel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeScrollPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeScrollPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StyleScrollPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StyleScrollPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/Memento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/Memento.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Canvas.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Canvas.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/Canvas.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
-              <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+              <caret line="100" column="20" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1796#1797#0" expanded="true" />
@@ -31,75 +44,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Composite.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Composite.java">
+      <file leaf-file-name="Label.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Label.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+            <state relative-caret-position="66">
+              <caret line="77" column="28" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Element.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Element.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="209" column="6" selection-start-line="209" selection-start-column="6" selection-end-line="209" selection-end-column="6" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3415#3416#0" expanded="true" />
-                <element signature="e#3439#3440#0" expanded="true" />
-                <element signature="e#3478#3479#0" expanded="true" />
-                <element signature="e#3502#3503#0" expanded="true" />
-                <element signature="e#3550#3551#0" expanded="true" />
-                <element signature="e#3588#3589#0" expanded="true" />
-                <element signature="e#3646#3647#0" expanded="true" />
-                <element signature="e#3691#3692#0" expanded="true" />
-                <element signature="e#4175#4176#0" expanded="true" />
-                <element signature="e#4226#4227#0" expanded="true" />
-                <element signature="e#4404#4405#0" expanded="true" />
-                <element signature="e#4433#4434#0" expanded="true" />
-                <element signature="e#4474#4475#0" expanded="true" />
-                <element signature="e#4510#4511#0" expanded="true" />
-                <element signature="e#4546#4547#0" expanded="true" />
-                <element signature="e#4603#4604#0" expanded="true" />
-                <element signature="e#4634#4635#0" expanded="true" />
-                <element signature="e#4682#4683#0" expanded="true" />
-                <element signature="e#4719#4720#0" expanded="true" />
-                <element signature="e#4773#4774#0" expanded="true" />
-                <element signature="e#4809#4810#0" expanded="true" />
-                <element signature="e#4868#4869#0" expanded="true" />
-                <element signature="e#4910#4911#0" expanded="true" />
-                <element signature="e#4945#4946#0" expanded="true" />
-                <element signature="e#4974#4975#0" expanded="true" />
-                <element signature="e#5002#5003#0" expanded="true" />
-                <element signature="e#5032#5033#0" expanded="true" />
-                <element signature="e#5061#5062#0" expanded="true" />
-                <element signature="e#5102#5103#0" expanded="true" />
-                <element signature="e#5131#5132#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ToolTray.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/ToolTray.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="166" column="52" lean-forward="true" selection-start-line="166" selection-start-column="52" selection-end-line="166" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4501#4502#0" expanded="true" />
-                <element signature="e#4592#4593#0" expanded="true" />
-                <element signature="e#4962#4963#0" expanded="true" />
-                <element signature="e#5053#5054#0" expanded="true" />
-                <element signature="e#5898#5899#0" expanded="true" />
-                <element signature="e#5987#5988#0" expanded="true" />
-                <element signature="e#6357#6358#0" expanded="true" />
-                <element signature="e#6448#6449#0" expanded="true" />
+                <element signature="e#771#772#0" expanded="true" />
+                <element signature="e#798#799#0" expanded="true" />
+                <element signature="e#853#854#0" expanded="true" />
+                <element signature="e#882#883#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,11 +72,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FlyweightFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/flyweight/FlyweightFactory.java">
+      <file leaf-file-name="Memento.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/Memento.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="330">
+              <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#256#257#0" expanded="true" />
+                <element signature="e#300#301#0" expanded="true" />
+                <element signature="e#337#338#0" expanded="true" />
+                <element signature="e#370#371#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ColorScrollPane.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorScrollPane.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ColorList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CancelButton.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/CancelButton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -129,54 +118,29 @@
       <file leaf-file-name="ColorFlyweight.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/flyweight/ColorFlyweight.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="264">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConcreteColorFlyweight.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/flyweight/ConcreteColorFlyweight.java">
+      <file leaf-file-name="FontChooserDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontChooserDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="792">
+              <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Label.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Label.java">
+      <file leaf-file-name="ToolTray.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/ToolTray.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-550">
-              <caret line="38" column="22" lean-forward="true" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+            <state relative-caret-position="240">
+              <caret line="158" column="38" selection-start-line="158" selection-start-column="38" selection-end-line="158" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#771#772#0" expanded="true" />
-                <element signature="e#798#799#0" expanded="true" />
-                <element signature="e#853#854#0" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-                <element signature="e#920#921#0" expanded="true" />
-                <element signature="e#959#960#0" expanded="true" />
-                <element signature="e#1027#1028#0" expanded="true" />
-                <element signature="e#1059#1060#0" expanded="true" />
-                <element signature="e#1132#1133#0" expanded="true" />
-                <element signature="e#1164#1165#0" expanded="true" />
-                <element signature="e#1218#1219#0" expanded="true" />
-                <element signature="e#1250#1251#0" expanded="true" />
-                <element signature="e#1298#1299#0" expanded="true" />
-                <element signature="e#1352#1353#0" expanded="true" />
-                <element signature="e#1497#1498#0" expanded="true" />
-                <element signature="e#1526#1527#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DiamondDrawable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/DiamondDrawable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -219,6 +183,9 @@
       <find>dist(.)</find>
       <find>this.</find>
       <find>super.draw</find>
+      <find>System</find>
+      <find>Systemdd[</find>
+      <find>//</find>
     </findStrings>
     <replaceStrings>
       <replace>2 * thickness</replace>
@@ -247,7 +214,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/DrawStrategy.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Drawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/ConcreteCircleDrawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/Drawable.java" />
@@ -259,45 +225,46 @@
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/CircleInCircleDrawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/CTRL_CanvasToMementoCaretake.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/MementoCaretaker.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/Memento.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/singleton/observer.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/CancelButton.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorScrollPane.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorList.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontList.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontScrollPane.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/OkButton.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/PreviewLabel.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeList.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeScrollPane.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StateDiagramEditor.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StyleList.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StyleScrollPane.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/observer/MyMouseListener.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontChooserDialog.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/singleton/WordSingleton.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/controller/CTRL_ToolTrayToCanvas.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/controller/CTRL_CanvasToMementoCaretake.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/End.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/State.java" />
         <option value="$PROJECT_DIR$/code sections arrangment.txt" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/Drawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/CircleDrawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/CircleInCircleDrawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/DiamondDrawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/FullRoundRectangleDrawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/RoundRectangleDrawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Decision.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Transition.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/Canvas.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Start.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Label.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/flyweight/FlyweightFactory.java" />
-        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Element.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/ToolTray.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/MainWindow.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/Drawable.java" />
         <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Composite.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Transition.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Label.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Element.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/PreviewLabel.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeScrollPane.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StyleScrollPane.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontScrollPane.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorScrollPane.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontChooserDialog.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/Memento.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/ChangeTextDialog.java" />
+        <option value="$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/Canvas.java" />
       </list>
     </option>
   </component>
@@ -338,20 +305,6 @@
               <item name="state diagram editor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="state_diagram_editor" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="state diagram editor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="state diagram editor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="state_diagram_editor" type="462c0819:PsiDirectoryNode" />
-              <item name="drawing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="state diagram editor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="state diagram editor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="state_diagram_editor" type="462c0819:PsiDirectoryNode" />
               <item name="field" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -359,7 +312,14 @@
               <item name="state diagram editor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="state_diagram_editor" type="462c0819:PsiDirectoryNode" />
-              <item name="flyweight" type="462c0819:PsiDirectoryNode" />
+              <item name="mediator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="state diagram editor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="state diagram editor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="state_diagram_editor" type="462c0819:PsiDirectoryNode" />
+              <item name="memento" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -503,12 +463,13 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32885212" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32885212" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18548387" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18548387" />
+      <window_info anchor="bottom" id="Inspection Results" weight="0.32988626" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.327818" />
       <window_info id="Learn" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -551,7 +512,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="20" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -589,30 +550,12 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/singleton/ColorSingleton.java" />
-    <entry file="jar:///usr/local/jdk1.8.0_162/src.zip!/java/awt/Graphics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="245" column="25" selection-start-line="245" selection-start-column="25" selection-end-line="245" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/CircleDrawable.java" />
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/Drawable.java" />
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/DiamondDrawable.java" />
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/RoundRectangleDrawable.java" />
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/FullRoundRectangleDrawable.java" />
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/Drawing/CircleInCircleDrawable.java" />
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/Memento.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/MementoCaretaker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -622,62 +565,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/singleton/FontSingleton.java" />
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/singleton/observer.java" />
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="50" selection-start-column="50" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontScrollPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="50" selection-start-column="50" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/OkButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="50" selection-start-column="50" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeScrollPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StyleScrollPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/CancelButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/observer/MyMouseListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -693,20 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorScrollPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/PreviewLabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/local/jdk1.8.0_162/src.zip!/java/awt/Color.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -715,13 +588,6 @@
             <element signature="e#11984#11985#0" expanded="true" />
             <element signature="e#12024#12025#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontChooserDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2882">
-          <caret line="133" column="5" selection-start-line="133" selection-start-column="5" selection-end-line="133" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -813,28 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Transition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1031#1032#0" expanded="true" />
-            <element signature="e#1058#1059#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Start.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -854,34 +698,6 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/CircleDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/Drawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/DiamondDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/flyweight/ColorFlyweight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/flyweight/ConcreteColorFlyweight.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -896,12 +712,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Element.java">
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/Drawable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="209" column="6" selection-start-line="209" selection-start-column="6" selection-end-line="209" selection-end-column="6" />
+        <state relative-caret-position="154">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/DiamondDrawable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Transition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="125" column="8" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1031#1032#0" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Composite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/drawing/CircleDrawable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Element.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="156" selection-start-line="156" selection-end-line="156" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3344#3345#0" expanded="true" />
+            <element signature="e#3384#3385#0" expanded="true" />
             <element signature="e#3415#3416#0" expanded="true" />
             <element signature="e#3439#3440#0" expanded="true" />
             <element signature="e#3478#3479#0" expanded="true" />
@@ -936,20 +807,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StyleScrollPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/StyleList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeScrollPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/SizeList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-116">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/PreviewLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/OkButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontScrollPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorScrollPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/ColorList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/CancelButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/flyweight/ColorFlyweight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/mediator/FontChooserDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/ToolTray.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="166" column="52" lean-forward="true" selection-start-line="166" selection-start-column="52" selection-end-line="166" selection-end-column="52" />
+        <state relative-caret-position="240">
+          <caret line="158" column="38" selection-start-line="158" selection-start-column="38" selection-end-line="158" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4501#4502#0" expanded="true" />
-            <element signature="e#4592#4593#0" expanded="true" />
-            <element signature="e#4962#4963#0" expanded="true" />
-            <element signature="e#5053#5054#0" expanded="true" />
-            <element signature="e#5898#5899#0" expanded="true" />
-            <element signature="e#5987#5988#0" expanded="true" />
-            <element signature="e#6357#6358#0" expanded="true" />
-            <element signature="e#6448#6449#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -964,28 +918,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/ChangeTextDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/memento/Memento.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#256#257#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#337#338#0" expanded="true" />
+            <element signature="e#370#371#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Label.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-550">
-          <caret line="38" column="22" lean-forward="true" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+        <state relative-caret-position="66">
+          <caret line="77" column="28" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#771#772#0" expanded="true" />
             <element signature="e#798#799#0" expanded="true" />
             <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#959#960#0" expanded="true" />
-            <element signature="e#1027#1028#0" expanded="true" />
-            <element signature="e#1059#1060#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
-            <element signature="e#1164#1165#0" expanded="true" />
-            <element signature="e#1218#1219#0" expanded="true" />
-            <element signature="e#1250#1251#0" expanded="true" />
-            <element signature="e#1298#1299#0" expanded="true" />
-            <element signature="e#1352#1353#0" expanded="true" />
-            <element signature="e#1497#1498#0" expanded="true" />
-            <element signature="e#1526#1527#0" expanded="true" />
+            <element signature="e#882#883#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -993,21 +956,11 @@
     <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/field/Canvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
-          <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+          <caret line="100" column="20" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1796#1797#0" expanded="true" />
             <element signature="e#1852#1853#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/yuntech/oose/state_diagram_editor/components/Composite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

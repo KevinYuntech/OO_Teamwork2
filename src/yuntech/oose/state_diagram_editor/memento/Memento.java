@@ -7,14 +7,14 @@ import java.util.LinkedList;
 
 public class Memento {
 
-    private LinkedList<Element> linkedList;
+    private Object object;
 
-    public Memento(LinkedList linkedList) {
-        this.linkedList = linkedList;
+    public Memento(Object object) {
+        this.object = object;
     }
 
-    public Object getLinkedList() {
-        return linkedList;
+    public Object getObject() {
+        return object;
     }
 
 }

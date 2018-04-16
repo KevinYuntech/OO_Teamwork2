@@ -8,7 +8,6 @@ public abstract class Drawable {
 
     public abstract Drawable getNewInstance();
 
-
     public void drawLabel(Element element, Graphics g) {
         element.drawLabel(g);
     }

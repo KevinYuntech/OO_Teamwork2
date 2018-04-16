@@ -14,7 +14,7 @@ public class SizeScrollPane extends JScrollPane {
     }
 
     public void initialize() {
-        this.setBorder(BorderFactory.createTitledBorder("選擇大小"));
+        this.setBorder(BorderFactory.createTitledBorder("Size"));
 
         this.setBounds(390, 10, 90, 100);
     }

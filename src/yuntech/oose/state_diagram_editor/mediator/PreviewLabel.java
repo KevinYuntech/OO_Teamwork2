@@ -6,7 +6,6 @@ import java.awt.*;
 public class PreviewLabel extends JLabel {
 
     private static final long serialVersionUID = 1L;
-
     private String defaultFont;
     private int defaultStyle;
     private int defaultSize;
