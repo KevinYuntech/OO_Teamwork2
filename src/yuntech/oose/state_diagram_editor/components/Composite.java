@@ -1,6 +1,7 @@
 package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.drawing.RoundRectangleDrawable;
+import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
 import java.awt.*;
@@ -46,6 +47,7 @@ public class Composite extends Element {
         drawable.drawLabel(this, g);
         for (Element element : elementList) {
             element.setFont(new Font(WordSingleton.getInstance().getFontName(), WordSingleton.getInstance().getFontStyle(), WordSingleton.getInstance().getFontSize()));
+            element.setLabelColor(FlyweightFactory.getFlyweightFactory().getColorFlyweight(WordSingleton.getInstance().getFontColor().getRGB()).getRGB());
             element.draw(g);
         }
     }
