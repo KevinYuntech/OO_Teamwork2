@@ -2,7 +2,7 @@ package yuntech.oose.state_diagram_editor;
 
 import java.awt.*;
 
-public class Handle{
+public class Handle {
 
     private int x;
     private int y;
@@ -44,7 +44,7 @@ public class Handle{
         this.borderColor = borderColor;
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g) {
         g.setColor(borderColor);
         g.drawOval(x, y, diameter, diameter);
         g.setColor(filledColor);

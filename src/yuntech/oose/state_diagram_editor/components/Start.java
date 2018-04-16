@@ -4,17 +4,17 @@ package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.drawing.CircleDrawable;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Start extends Element {
     static private int num;
-    
+
     {
         width = 35;
         height = 35;
         setColor(0xFF70A6);
     }
-    
+
     @Override
     void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);

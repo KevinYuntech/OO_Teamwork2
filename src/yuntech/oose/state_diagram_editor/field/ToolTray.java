@@ -1,15 +1,18 @@
 package yuntech.oose.state_diagram_editor.field;
 
-import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
-import yuntech.oose.state_diagram_editor.mediator.*;
-import yuntech.oose.state_diagram_editor.components.*;
 import yuntech.oose.state_diagram_editor.components.Composite;
+import yuntech.oose.state_diagram_editor.components.*;
 import yuntech.oose.state_diagram_editor.components.Label;
+import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
+import yuntech.oose.state_diagram_editor.mediator.FontChooserDialog;
 import yuntech.oose.state_diagram_editor.observer.MyMouseListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class ToolTray extends JPanel {
 
@@ -28,19 +31,19 @@ public class ToolTray extends JPanel {
     private JButton btn_label = new JButton("Label(L)");
     private JButton btn_font = new JButton("Font(F)");
 
-    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas){
+    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas) {
         this.ctrl_toolTrayToCanvas = ctrl_toolTrayToCanvas;
         setup();
         facilitate();
     }
 
-    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height){
+    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height) {
         this(ctrl_toolTrayToCanvas);
         setSize(new Dimension(width, height));
     }
 
     // TEST
-    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height, MainWindow mainWindow){
+    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height, MainWindow mainWindow) {
         this(ctrl_toolTrayToCanvas);
         setSize(new Dimension(width, height));
         this.mainWindow = mainWindow;
@@ -51,7 +54,7 @@ public class ToolTray extends JPanel {
     }
 
     private void facilitate() {
-        setBackground(new Color(117,171,188));
+        setBackground(new Color(117, 171, 188));
     }
 
     void setup() {
@@ -72,7 +75,7 @@ public class ToolTray extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == 87) {
+                if (e.getKeyCode() == 87) {
                     FontChooserDialog fontChooserDialog = new FontChooserDialog(mainWindow, "Font Selector", true);
                     fontChooserDialog.setVisible(true);
                     System.out.println("font");

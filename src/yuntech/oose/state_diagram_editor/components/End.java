@@ -4,8 +4,7 @@ package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.drawing.CircleInCircleDrawable;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class End extends Element {
 

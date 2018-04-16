@@ -19,12 +19,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     /* Fields */
 
+    // Storing Elements information
+    public LinkedList<Element> elementList = new LinkedList<>();
     private Element elementGannaDraw;
     private Element lastPressedElement;
     private Point lastPressedPoint;
     private CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake = new CTRL_CanvasToMementoCaretake();
-
-    public LinkedList<Element> elementList = new LinkedList<>();
 
     /* Constructors */
 
@@ -34,14 +34,17 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         setLayout(null);
         addMouseListener(this);
         addMouseMotionListener(this);
-        facilitate();
+
+        // Default Canvas background color
+        setBackground(new Color(0xE7F0F3));
+        FlyweightFactory.getFlyweightFactory().getColorFlyweight(0xE7F0F3);
     }
 
     /* Public methods */
 
-    public void addElement(Element element){
+    public void addElement(Element element) {
         elementList.add(element);
-        repaint();
+        repaint(element.getBounds());
     }
 
     public void setElementGannaDraw(Element elementGannaDraw) {
@@ -49,7 +52,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     }
 
     // TODO: Add controller to communicate
-    public void undo(){
+    public void undo() {
         try {
             elementList = (LinkedList<Element>) ctrl_canvasToMementoCaretake.getSnapshot().getLinkedList();
         } catch (EmptyStackException e) {
@@ -81,7 +84,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          * but this may not be true in the future.
          * So still check if elementGannaDraw isn't null
          */
-        takeSanpshop();
+        takeSnapshot();
 
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
                 elementGannaDraw != null &&
@@ -119,7 +122,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             elementGannaDraw.setStatus(Element.NORMAL);
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            addElement(elementGannaDraw);
             elementGannaDraw = null;
             return;
         }
@@ -137,7 +139,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         lastPressedPoint = e.getPoint();
         for (Element element :
                 elementList) {
-            if(element.isIntersect(e.getPoint())){
+            if (element.isIntersect(e.getPoint())) {
                 lastPressedElement = element;
                 break;
             }
@@ -149,7 +151,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         int distX = e.getX() - lastPressedPoint.x;
         int distY = e.getY() - lastPressedPoint.y;
 
-        if(lastPressedElement != null) {
+        if (lastPressedElement != null) {
             lastPressedElement.setLocation(lastPressedElement.getX() + distX, lastPressedElement.getY() + distY);
         }
 
@@ -161,6 +163,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     public void mouseReleased(MouseEvent e) {
         lastPressedElement = null;
     }
+
     @Override
     public void mouseEntered(MouseEvent e) {
 
@@ -181,11 +184,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     /* Private methods */
 
-    private void facilitate() {
-        setBackground(new Color(0xE7F0F3));
-    }
-
-    private boolean addToComposite(Point point, Element element){
+    private boolean addToComposite(Point point, Element element) {
         for (Element e : elementList) {
             if (e.isIntersect(point)) {
                 e.add(element);
@@ -196,12 +195,18 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     }
 
 
-    private void takeSanpshop() {
-        // Cloning
+    // Store the state of Canvas.
+    private void takeSnapshot() {
+        /*
+         * NOTICE (potential bug):
+         * list takes the same Elements as in elementList, which held by Canvas.
+         * That is, a particular Element in list and a particular Element in Canvas.elementList
+         * is the same instance.
+         * If one modify list (or the memento storing this list),
+         * it cause Canvas.elementList be modify too.
+         */
         LinkedList<Element> list = new LinkedList<>();
-        for (Element element : elementList) {
-            list.add(element);
-        }
+        list.addAll(elementList);
 
         Memento memento = new Memento(list);
 

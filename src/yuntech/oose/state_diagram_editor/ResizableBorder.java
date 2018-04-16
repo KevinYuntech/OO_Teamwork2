@@ -85,7 +85,7 @@ public class ResizableBorder implements Border {
 
 
     // Hard-coded
-    public int getCursorType(MouseEvent e){
+    public int getCursorType(MouseEvent e) {
         int mX = e.getX();
         int mY = e.getY();
         // Cursor is on NW handle
@@ -159,55 +159,70 @@ public class ResizableBorder implements Border {
     private void updateHandles() {
         // NW
         handle[Location.NW].x = x;
-        handle[Location.NW].y =  y;
-        handle[Location.NW].width =  handleDimension;
-        handle[Location.NW].height =  handleDimension;
+        handle[Location.NW].y = y;
+        handle[Location.NW].width = handleDimension;
+        handle[Location.NW].height = handleDimension;
 
         // N
         handle[Location.N].x = x + width / 2 - handleDimension / 2;
-        handle[Location.N].y =  y;
-        handle[Location.N].width =  handleDimension;
-        handle[Location.N].height =  handleDimension;
+        handle[Location.N].y = y;
+        handle[Location.N].width = handleDimension;
+        handle[Location.N].height = handleDimension;
 
         // NE
         handle[Location.NE].x = x + width - handleDimension;
-        handle[Location.NE].y =  y;
-        handle[Location.NE].width =  handleDimension;
-        handle[Location.NE].height =  handleDimension;
+        handle[Location.NE].y = y;
+        handle[Location.NE].width = handleDimension;
+        handle[Location.NE].height = handleDimension;
 
         // E
         handle[Location.E].x = x + width - handleDimension;
-        handle[Location.E].y =  y + height / 2 - handleDimension / 2;
-        handle[Location.E].width =  handleDimension;
-        handle[Location.E].height =  handleDimension;
+        handle[Location.E].y = y + height / 2 - handleDimension / 2;
+        handle[Location.E].width = handleDimension;
+        handle[Location.E].height = handleDimension;
 
         // SE
         handle[Location.SE].x = x + width - handleDimension;
-        handle[Location.SE].y =  y + height - handleDimension;
-        handle[Location.SE].width =  handleDimension;
-        handle[Location.SE].height =  handleDimension;
+        handle[Location.SE].y = y + height - handleDimension;
+        handle[Location.SE].width = handleDimension;
+        handle[Location.SE].height = handleDimension;
 
         // S
         handle[Location.S].x = x + width / 2 - handleDimension / 2;
-        handle[Location.S].y =  y + height - handleDimension;
-        handle[Location.S].width =  handleDimension;
-        handle[Location.S].height =  handleDimension;
+        handle[Location.S].y = y + height - handleDimension;
+        handle[Location.S].width = handleDimension;
+        handle[Location.S].height = handleDimension;
 
         // SW
         handle[Location.SW].x = x;
-        handle[Location.SW].y =  y + height - handleDimension;
-        handle[Location.SW].width =  handleDimension;
-        handle[Location.SW].height =  handleDimension;
+        handle[Location.SW].y = y + height - handleDimension;
+        handle[Location.SW].width = handleDimension;
+        handle[Location.SW].height = handleDimension;
 
         // W
         handle[Location.W].x = x;
-        handle[Location.W].y =  y + height / 2 - handleDimension / 2;
-        handle[Location.W].width =  handleDimension;
-        handle[Location.W].height =  handleDimension;
+        handle[Location.W].y = y + height / 2 - handleDimension / 2;
+        handle[Location.W].width = handleDimension;
+        handle[Location.W].height = handleDimension;
 
 
     }
-    static private class Location{
+
+    private void updateBounds(Rectangle bounds) {
+        x = bounds.x;
+        y = bounds.y;
+        width = bounds.width;
+        height = bounds.height;
+    }
+
+    private void updateBounds(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    static private class Location {
 
         static int NW = 0;
         static int N = 1;
@@ -217,19 +232,5 @@ public class ResizableBorder implements Border {
         static int S = 5;
         static int SW = 6;
         static int W = 7;
-    }
-
-    private void updateBounds(Rectangle bounds){
-        x=  bounds.x;
-        y=  bounds.y;
-        width =  bounds.width;
-        height =  bounds.height;
-    }
-
-    private void updateBounds(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
     }
 }

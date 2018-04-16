@@ -1,13 +1,12 @@
 package yuntech.oose.state_diagram_editor.field;
 
-import yuntech.oose.state_diagram_editor.controller.CTRL_CanvasToMementoCaretake;
 import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainWindow extends JFrame{
+public class MainWindow extends JFrame {
     // Determine default MainWindow size here
     private final int width = 800;
     private final int height = 600;
@@ -15,18 +14,18 @@ public class MainWindow extends JFrame{
     private Canvas canvas = new Canvas(600, 600);
     private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 200, 600, this);
 
-    public static void main(String[] args){
+    public MainWindow() {
+        setupFrame();
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new MainWindow();
             }
         });
-    }
-
-    public MainWindow(){
-        setupFrame();
-        setVisible(true);
     }
 
     private void setupFrame() {
@@ -85,7 +84,7 @@ public class MainWindow extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    public void repaintCanvas(){
+    public void repaintCanvas() {
         canvas.repaint();
     }
 

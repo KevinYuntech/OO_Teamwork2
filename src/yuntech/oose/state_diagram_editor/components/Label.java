@@ -4,7 +4,7 @@ import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
 import java.awt.*;
 
-public class Label extends Element{
+public class Label extends Element {
 
     /* Fields */
 
@@ -24,7 +24,7 @@ public class Label extends Element{
     }
 
     // For a label who does not depend on an element
-    public Label(){
+    public Label() {
         text = Label.class.getSimpleName() + num;
         num++;
     }
@@ -47,13 +47,13 @@ public class Label extends Element{
     /* Override methods */
 
     @Override
-    public void setText(String text) {
-        this.text = text;
+    public String getText() {
+        return this.text;
     }
 
     @Override
-    public String getText() {
-        return this.text;
+    public void setText(String text) {
+        this.text = text;
     }
 
     @Override
@@ -81,14 +81,14 @@ public class Label extends Element{
     }
 
     @Override
-    public void draw(Graphics g){
+    public void draw(Graphics g) {
         g.setColor(getColor());
         g.setFont(font);
 
         width = g.getFontMetrics().stringWidth(getText());
         height = g.getFontMetrics().getHeight();
 
-        g.drawString(text, x , y);
+        g.drawString(text, x, y);
 //        g.getFontMetrics().stringWidth(getText());
     }
 

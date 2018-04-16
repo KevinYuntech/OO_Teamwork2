@@ -13,14 +13,31 @@ import java.awt.*;
  * wingLength is the length of wing; wingDegree is the angle respect to the line it attached.
  */
 
-public class Transition extends Element{
+public class Transition extends Element {
+
+    static private int num;
+    private Point start;
+    private Point end;
+    private int wingLength = 10;
+    private int wingDegree = 30;
+    private Handle[] handles = new Handle[2];
 
     {
         setColor(0);
     }
+    /* Constructor */
+    public Transition() {
 
+    }
 
-    static private int num;
+    public Transition(Point start) {
+        this.start = start;
+
+        // If not specify end immediately
+        this.end = start;
+
+    }
+
     @Override
     void initLabel() {
         label = new Label(this.getClass().getSimpleName() + num);
@@ -30,27 +47,6 @@ public class Transition extends Element{
     @Override
     void initDrawable() {
         // No need for Drawable
-    }
-
-    private Point start;
-    private Point end;
-    private int wingLength = 10;
-    private int wingDegree = 30;
-
-    private Handle[] handles = new Handle[2];
-
-    /* Constructor */
-    public Transition(){
-
-    }
-
-
-    public Transition(Point start) {
-        this.start = start;
-
-        // If not specify end immediately
-        this.end = start;
-
     }
 
     /* Public methods */
@@ -89,18 +85,8 @@ public class Transition extends Element{
 
     /* Setters */
 
-    public void setStart(Point start) {
-        this.start = start;
-    }
     public void setStart(int x, int y) {
         setStart(new Point(x, y));
-    }
-
-    public void setEnd(Point end) {
-        this.end = end;
-        if (start != null) {
-            label.setLocation(start.x + (end.x - start.x) / 2, start.y + (end.y - start.y) / 2);
-        }
     }
 
     public void setEnd(int x, int y) {
@@ -119,8 +105,19 @@ public class Transition extends Element{
         return start;
     }
 
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
     public Point getEnd() {
         return end;
+    }
+
+    public void setEnd(Point end) {
+        this.end = end;
+        if (start != null) {
+            label.setLocation(start.x + (end.x - start.x) / 2, start.y + (end.y - start.y) / 2);
+        }
     }
 
 

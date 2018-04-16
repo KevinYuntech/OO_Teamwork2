@@ -9,7 +9,7 @@ import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 import java.awt.*;
 
 // NOTE: Gatter always return new object so outer won't have the ability to modify data of a class
-public abstract class Element implements Draggable, Resizable{
+public abstract class Element implements Draggable, Resizable {
     /* status types */
 
     public static final int NORMAL = 0;
@@ -26,9 +26,9 @@ public abstract class Element implements Draggable, Resizable{
     protected int height;   // FIXME: Subclass should have default value for it
     protected Handle[] handles;
     protected Label label;
-    private Color color;  // FIXME: Subclass should have default value for it
     protected int status = NORMAL;     // 0: normal, 1:focused
     protected Drawable drawable;    // FIXME: Subclass should have default value for it
+    private Color color;  // FIXME: Subclass should have default value for it
     private FlyweightFactory factory = FlyweightFactory.getFlyweightFactory();
 
 
@@ -39,8 +39,6 @@ public abstract class Element implements Draggable, Resizable{
         initLabel();
         initDrawable();
     }
-    abstract void initLabel();      // Initialize protected field label
-    abstract void initDrawable();   // Initialize protected field drawable
 
     public Element(Element element) {
         x = element.x;
@@ -56,10 +54,14 @@ public abstract class Element implements Draggable, Resizable{
         this.status = element.status;
     }
 
+    abstract void initLabel();      // Initialize protected field label
+
+    abstract void initDrawable();   // Initialize protected field drawable
+
     /* Public methods */
 
     // Overriding this method should call super.draw() lastly
-    public void draw(Graphics g){
+    public void draw(Graphics g) {
         // Draw the label of this element
         g.setColor(label.getColor());
         label.draw(g);
@@ -74,14 +76,14 @@ public abstract class Element implements Draggable, Resizable{
     }
 
     // TODO: Make it abstract
-    public boolean isIntersect(Point point){
+    public boolean isIntersect(Point point) {
         return point.x > x &&
                 point.x < x + width &&
                 point.y > y &&
                 point.y < y + height;
     }
 
-    public String getText(){
+    public String getText() {
         return label.getText();
     }
 
@@ -89,7 +91,7 @@ public abstract class Element implements Draggable, Resizable{
         label.setText(text);
     }
 
-    public void setFont(Font font){
+    public void setFont(Font font) {
         label.setFont(font);
     }
 
@@ -119,7 +121,12 @@ public abstract class Element implements Draggable, Resizable{
     }
 
     @Override
-    public void setLocation(int x, int y){
+    public void setLocation(Point point) {
+        setLocation(point.x, point.y);
+    }
+
+    @Override
+    public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
 
@@ -130,14 +137,14 @@ public abstract class Element implements Draggable, Resizable{
     }
 
     @Override
-    public void setLocation(Point point){
-        setLocation(point.x, point.y);
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     @Override
-    public void setSize(int width, int height){
-        this.width = width;
-        this.height = height;
+    public Dimension getSize() {
+        return new Dimension(width, height);
     }
 
     @Override
@@ -146,29 +153,15 @@ public abstract class Element implements Draggable, Resizable{
         height = size.height;
     }
 
-    @Override
-    public Dimension getSize(){
-        return new Dimension(width, height);
-    }
-
 
     /* Getter, Setter */
 
-    public void setColor(int rgb) {
-        color = factory.getColorFlyweight(rgb);
+    public int getStatus() {
+        return status;
     }
-
-    public void setLabelColor(int rgb) {
-        label.setColor(rgb);
-    }
-
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getStatus() {
-        return status;
     }
 
     public Rectangle getBounds() {
@@ -179,8 +172,16 @@ public abstract class Element implements Draggable, Resizable{
         return new Color(color.getRGB());
     }
 
+    public void setColor(int rgb) {
+        color = factory.getColorFlyweight(rgb);
+    }
+
     public Color getLabelColor() {
         return new Color(label.getColor().getRGB());
+    }
+
+    public void setLabelColor(int rgb) {
+        label.setColor(rgb);
     }
 
     public int getWidth() {
@@ -199,7 +200,7 @@ public abstract class Element implements Draggable, Resizable{
     /* Private methods */
 
     private void drawHandles(Graphics g) {
-        for (Handle handle:handles) {
+        for (Handle handle : handles) {
             handle.draw(g);
         }
     }

@@ -1,11 +1,10 @@
 package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.drawing.FullRoundRectangleDrawable;
-import yuntech.oose.state_diagram_editor.drawing.RoundRectangleDrawable;
 
 import java.awt.*;
 
-public class State extends Element{
+public class State extends Element {
 
     /* Fields */
 

@@ -4,7 +4,7 @@ package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.drawing.DiamondDrawable;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Decision extends Element {
 
