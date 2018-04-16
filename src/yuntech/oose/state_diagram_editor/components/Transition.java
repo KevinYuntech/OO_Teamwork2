@@ -92,7 +92,6 @@ public class Transition extends Element {
     // TODO
     @Override
     public void setLocation(Point point) {
-        setLocation(point.x, point.y);
     }
 
     /* Setters */

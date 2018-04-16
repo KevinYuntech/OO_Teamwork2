@@ -215,9 +215,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          * it cause Canvas.elementList be modify too.
          */
         LinkedList<Element> list = new LinkedList<>();
-        for (Element element : elementList) {
-            list.add(element.getNewInstance());
-        }
+        list.addAll(elementList);
 
         Memento memento = new Memento(list);
 

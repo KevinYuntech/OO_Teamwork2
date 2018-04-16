@@ -94,11 +94,6 @@ public class Label extends Element {
     }
 
     @Override
-    public Element getNewInstance() {
-        return new Label(this);
-    }
-
-    @Override
     public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;

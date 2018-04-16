@@ -13,16 +13,7 @@ public class Composite extends Element {
     static private int num;
     private LinkedList<Element> elementList = new LinkedList<>();
 
-    Composite(){
 
-    }
-
-    Composite(Composite composite) {
-        elementList = new LinkedList<Element>();
-        for (Element element : composite.elementList) {
-            elementList.add(element.getNewInstance());
-        }
-    }
 
     /* Override methods */
 
@@ -61,11 +52,6 @@ public class Composite extends Element {
         }
     }
 
-    public Element getNewInstance() {
-        Composite composite = new Composite();
-        super.getNewInstance(composite);
-        return new Composite(this);
-    }
 
     @Override
     public void setLocation(int x, int y) {

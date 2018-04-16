@@ -71,25 +71,6 @@ public abstract class Element implements Draggable, Resizable {
 
     abstract public void draw(Graphics g);
 
-    public Element getNewInstance(Element element){
-        x = element.x;
-        y = element.y;
-        dx = element.dx;
-        dy = element.dy;
-        width = element.width;
-        height = element.height;
-        handles = new Handle[handles.length];
-        for (int i = 0; i < element.handles.length; i++) {
-            handles[i] = new Handle(element.handles[i]);
-        }
-        status = element.status;
-        drawable = this.drawable.getNewInstance();
-        label = new Label(element.getText());
-        color = element.getColor();
-
-        return element;
-    }
-
     // TODO: Make it abstract
     public boolean isIntersect(Point point) {
         return point.x > x &&
