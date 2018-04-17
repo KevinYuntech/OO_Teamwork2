@@ -24,6 +24,6 @@ public class CTRL_ToolTrayToCanvas {
     // Called by ToolTray
     public void addElement(Element element) {
         canvas.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        canvas.setElementGannaDraw(element);
+        canvas.setElementGonnaDraw(element);
     }
 }

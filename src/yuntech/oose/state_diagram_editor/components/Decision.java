@@ -10,17 +10,18 @@ public class Decision extends Element {
 
     /* Fields */
 
-    static private int numOfInstances;
+    // Number of created instances
+    static private int num;
+
+    /* Constructors */
 
     public Decision(){
 
     }
 
-    public Decision(Decision decision) {
+    private Decision(Decision decision) {
         super(decision);
     }
-
-
 
     /* Override methods */
 
@@ -37,8 +38,8 @@ public class Decision extends Element {
 
     @Override
     protected void initLabel() {
-        label = new Label(this.getClass().getSimpleName() + numOfInstances);
-        numOfInstances++;
+        label = new Label(this.getClass().getSimpleName() + num);
+        num++;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class Decision extends Element {
     }
 
     @Override
-    public Element getNewInstance() {
+    public Element getInstanceCopy() {
         return new Decision(this);
     }
 }

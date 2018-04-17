@@ -10,13 +10,16 @@ public class End extends Element {
 
     /* Fields */
 
+    // Number of created instances
     static private int num;
+
+    /* Constructors */
 
     public End(){
 
     }
 
-    public End(End end) {
+    private End(End end) {
         super(end);
     }
 
@@ -51,7 +54,7 @@ public class End extends Element {
     }
 
     @Override
-    public Element getNewInstance() {
+    public Element getInstanceCopy() {
         return new End(this);
     }
 }

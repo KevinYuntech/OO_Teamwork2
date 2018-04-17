@@ -2,5 +2,11 @@
 /* Constructors */
 /* Public methods */
 /* Override methods */
+    protected abstract void initWidthHeight();  // Initialize fields width and height
+    protected abstract void initColor();        // Initialize field color
+    protected abstract void initLabel();        // Initialize field label
+    protected abstract void initDrawable();     // Initialize field drawable
+    public void draw(Graphics g) {
+    public Element getInstanceCopy() {
 /* Getter, Setter */
 /* Private methods */

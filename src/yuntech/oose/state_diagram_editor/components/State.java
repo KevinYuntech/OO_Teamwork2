@@ -8,13 +8,16 @@ public class State extends Element {
 
     /* Fields */
 
+    // Number of created instances
     static private int num;
+
+    /* Constructors */
 
     public State(){
 
     }
 
-    public State(State state) {
+    private State(State state) {
         super(state);
     }
 
@@ -49,7 +52,7 @@ public class State extends Element {
     }
 
     @Override
-    public Element getNewInstance() {
+    public Element getInstanceCopy() {
         return new State(this);
     }
 }

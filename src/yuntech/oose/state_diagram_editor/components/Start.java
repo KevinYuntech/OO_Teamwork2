@@ -5,13 +5,17 @@ import yuntech.oose.state_diagram_editor.drawing.CircleDrawable;
 import java.awt.*;
 
 public class Start extends Element {
+
+    // Number of created instances
     static private int num;
+
+    /* Constructors */
 
     public Start(){
 
     }
 
-    public Start(Start start) {
+    private Start(Start start) {
         super(start);
     }
 
@@ -43,7 +47,7 @@ public class Start extends Element {
     }
 
     @Override
-    public Element getNewInstance() {
+    public Element getInstanceCopy() {
         return new Start(this);
     }
 

@@ -9,11 +9,15 @@ public class Label extends Element {
 
     /* Fields */
 
+    // Number of created instances
     private static int num;
     private String text;
-
     private WordSingleton wordSingleton = WordSingleton.getInstance();
-    private Font font = new Font(wordSingleton.getFontName(), wordSingleton.getFontStyle(), wordSingleton.getFontSize());
+    private Font font = new Font(
+            wordSingleton.getFontName(), wordSingleton.getFontStyle(), wordSingleton.getFontSize());
+
+
+    /* Constructors */
 
     // For a label who does not depend on an element
     public Label() {
@@ -21,22 +25,12 @@ public class Label extends Element {
         num++;
     }
 
-    @Override
-    protected void initWidthHeight() {
-        // Has no default width, height, because those depend on Graphics
-    }
-
-    @Override
-    protected void initColor() {
-        setColor(0);
-    }
-
-    // For elements
+    // For creating a Label elements
     public Label(String string) {
         text = string;
     }
 
-    public Label(Label label) {
+    private Label(Label label) {
         super(label);
         text = label.getText();
         wordSingleton = WordSingleton.getInstance();
@@ -50,6 +44,16 @@ public class Label extends Element {
     }
 
     /* Override methods */
+
+    @Override
+    protected void initWidthHeight() {
+        // Has no default width, height, because those depend on Graphics
+    }
+
+    @Override
+    protected void initColor() {
+        setColor(0);
+    }
 
     @Override
     public String getText() {
@@ -72,15 +76,42 @@ public class Label extends Element {
     }
 
     @Override
+    public void draw(Graphics g) {
+        drawable.draw(this, g);
+    }
+
+    @Override
+    public Element getInstanceCopy() {
+        return new Label(this);
+    }
+
+
+    // A Label has no Label paired with it
+    @Override
+    public void setLocation(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // A Label has no Label paired with it
+    @Override
+    public void setLocation(Point point) {
+        setLocation(point.x, point.y);
+    }
+
+    // A Label has no Label paired with it
+    @Override
+    public Color getLabelColor() {
+        return new Color(getColor().getRGB());
+    }
+
+    // A Label has no Label paired with it
+    @Override
     public void setLabelColor(int rgb) {
         setColor(rgb);
     }
 
-    @Override
-    public Element getNewInstance() {
-        return new Label(this);
-    }
-
+    // TODO
     @Override
     public boolean isIntersect(Point point) {
         // drawText() start from left bottom
@@ -90,32 +121,4 @@ public class Label extends Element {
                 point.y > y - height;
     }
 
-    @Override
-    public void draw(Graphics g) {
-        drawable.draw(this, g);
-/*        g.setColor(getColor());
-        g.setFont(font);
-
-        width = g.getFontMetrics().stringWidth(getText());
-        height = g.getFontMetrics().getHeight();
-
-        g.drawString(text, x, y);*/
-//        g.getFontMetrics().stringWidth(getText());
-    }
-
-    @Override
-    public void setLocation(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public void setLocation(Point point) {
-        setLocation(point.x, point.y);
-    }
-
-    @Override
-    public Color getLabelColor() {
-        return new Color(getColor().getRGB());
-    }
 }
