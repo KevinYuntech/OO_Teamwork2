@@ -170,7 +170,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     public void mousePressed(MouseEvent e) {
         lastPressedPoint = e.getPoint();
 
-        // Updtae lastPressedElement
+        // Update lastPressedElement
         for (Element element : elementList) {
             if (element.isIntersect(e.getPoint())) {
                 lastPressedElement = element;
@@ -234,6 +234,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         for (Element e : elementList) {
             if (e.isIntersect(point)) {
                 e.add(element);
+                takeSnapshot();
                 return true;
             }
         }
@@ -242,6 +243,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 
     // Store the state of Canvas.
+    // Do take a snapshot after an action
+    /*
+     * Actions: (reference)
+     * An element is placed to Canvas
+     * An element is placed into Composite
+     * End point of Transition is placed
+     * An Element is dragge
+     */
     private void takeSnapshot() {
         // Copy all Elements inside Canvas to list the store into memento_currentState
         LinkedList<Element> list = new LinkedList<>();
