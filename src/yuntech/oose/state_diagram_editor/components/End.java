@@ -15,7 +15,7 @@ public class End extends Element {
 
     /* Constructors */
 
-    public End(){
+    public End() {
 
     }
 

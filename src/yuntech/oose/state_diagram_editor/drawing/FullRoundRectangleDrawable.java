@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class FullRoundRectangleDrawable extends Drawable {
 
-    public FullRoundRectangleDrawable(){
+    public FullRoundRectangleDrawable() {
 
     }
 

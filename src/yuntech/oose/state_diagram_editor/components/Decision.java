@@ -15,7 +15,7 @@ public class Decision extends Element {
 
     /* Constructors */
 
-    public Decision(){
+    public Decision() {
 
     }
 

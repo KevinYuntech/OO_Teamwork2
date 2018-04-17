@@ -41,15 +41,30 @@ public class Transition extends Element {
 
     /* Public methods */
 
+    public Transition(Point start) {
+        this.start = start;
+
+        // If not specify end immediately
+        this.end = start;
+    }
+
     public int getWingLength() {
         return wingLength;
+    }
+
+    /* Override methods */
+
+    public void setWingLength(int wingLength) {
+        this.wingLength = wingLength;
     }
 
     public int getWingDegree() {
         return wingDegree;
     }
 
-    /* Override methods */
+    public void setWingDegree(int wingDegree) {
+        this.wingDegree = wingDegree;
+    }
 
     @Override
     protected void initWidthHeight() {
@@ -59,13 +74,6 @@ public class Transition extends Element {
     @Override
     protected void initColor() {
         setColor(0);
-    }
-
-    public Transition(Point start) {
-        this.start = start;
-
-        // If not specify end immediately
-        this.end = start;
     }
 
     @Override
@@ -90,6 +98,8 @@ public class Transition extends Element {
         return new Transition(this);
     }
 
+    /* Getter, Setters */
+
     // TODO
     @Override
     public void setLocation(int x, int y) {
@@ -100,18 +110,24 @@ public class Transition extends Element {
     public void setLocation(Point point) {
     }
 
-    /* Getter, Setters */
-
     public void setStart(int x, int y) {
         setStart(new Point(x, y));
+    }
+
+    public void setEnd(int x, int y) {
+        setEnd(new Point(x, y));
+    }
+
+    public Point getStart() {
+        return start;
     }
 
     public void setStart(Point start) {
         this.start = start;
     }
 
-    public void setEnd(int x, int y) {
-        setEnd(new Point(x, y));
+    public Point getEnd() {
+        return end;
     }
 
     public void setEnd(Point end) {
@@ -120,24 +136,6 @@ public class Transition extends Element {
             label.setLocation(start.x + (end.x - start.x) / 2, start.y + (end.y - start.y) / 2);
         }
     }
-
-    public void setWingLength(int wingLength) {
-        this.wingLength = wingLength;
-    }
-
-    public void setWingDegree(int wingDegree) {
-        this.wingDegree = wingDegree;
-    }
-
-    public Point getStart() {
-        return start;
-    }
-
-    public Point getEnd() {
-        return end;
-    }
-
-
 
     /* Private methods */
     // TODO

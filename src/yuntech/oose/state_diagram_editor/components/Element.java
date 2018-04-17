@@ -42,14 +42,6 @@ public abstract class Element implements Draggable, Resizable {
         initDrawable();
     }
 
-    protected abstract void initWidthHeight();  // Initialize fields width and height
-
-    protected abstract void initColor();        // Initialize field color
-
-    protected abstract void initLabel();        // Initialize field label
-
-    protected abstract void initDrawable();     // Initialize field drawable
-
     protected Element(Element element) {
         x = element.x;
         y = element.y;
@@ -68,6 +60,14 @@ public abstract class Element implements Draggable, Resizable {
         label = (Label) (element.label != null ? element.label.getInstanceCopy() : null);
         color = FlyweightFactory.getFlyweightFactory().getColorFlyweight(element.getColor().getRGB());
     }
+
+    protected abstract void initWidthHeight();  // Initialize fields width and height
+
+    protected abstract void initColor();        // Initialize field color
+
+    protected abstract void initLabel();        // Initialize field label
+
+    protected abstract void initDrawable();     // Initialize field drawable
 
     /* Public methods */
 
@@ -150,14 +150,14 @@ public abstract class Element implements Draggable, Resizable {
     }
 
     @Override
-    public void setSize(Dimension size) {
-        width = size.width;
-        height = size.height;
+    public Dimension getSize() {
+        return new Dimension(width, height);
     }
 
     @Override
-    public Dimension getSize() {
-        return new Dimension(width, height);
+    public void setSize(Dimension size) {
+        width = size.width;
+        height = size.height;
     }
 
 

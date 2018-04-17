@@ -5,8 +5,8 @@ import yuntech.oose.state_diagram_editor.components.Transition;
 
 import java.awt.*;
 
-public class ArrowDrawable extends Drawable{
-    public ArrowDrawable(){
+public class ArrowDrawable extends Drawable {
+    public ArrowDrawable() {
 
     }
 
@@ -17,7 +17,7 @@ public class ArrowDrawable extends Drawable{
 
     @Override
     public void draw(Element element, Graphics g) {
-        Transition transition= (Transition)element;
+        Transition transition = (Transition) element;
         g.setColor(element.getColor());
         g.drawLine(transition.getStart().x, transition.getStart().y, transition.getEnd().x, transition.getEnd().y);
 

@@ -5,7 +5,7 @@ import yuntech.oose.state_diagram_editor.components.Element;
 import java.awt.*;
 
 public class StringDrawable extends Drawable {
-    public StringDrawable(){
+    public StringDrawable() {
 
     }
 

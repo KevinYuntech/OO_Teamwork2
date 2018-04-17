@@ -6,7 +6,8 @@ import java.awt.*;
 
 public class DiamondDrawable extends Drawable {
 
-    public DiamondDrawable(){}
+    public DiamondDrawable() {
+    }
 
     @Override
     public Drawable getNewInstance() {

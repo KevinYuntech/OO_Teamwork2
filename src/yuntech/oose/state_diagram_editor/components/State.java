@@ -13,7 +13,7 @@ public class State extends Element {
 
     /* Constructors */
 
-    public State(){
+    public State() {
 
     }
 

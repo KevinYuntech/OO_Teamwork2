@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class CircleDrawable extends Drawable {
 
-    public CircleDrawable(){
+    public CircleDrawable() {
 
     }
 

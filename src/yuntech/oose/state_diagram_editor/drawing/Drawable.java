@@ -6,7 +6,7 @@ import java.awt.*;
 
 public abstract class Drawable {
 
-    public Drawable(){
+    public Drawable() {
 
     }
 

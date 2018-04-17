@@ -11,7 +11,7 @@ public class Start extends Element {
 
     /* Constructors */
 
-    public Start(){
+    public Start() {
 
     }
 
