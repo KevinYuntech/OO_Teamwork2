@@ -3,8 +3,10 @@ package yuntech.oose.state_diagram_editor.field;
 import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class MainWindow extends JFrame {
     // Determine default MainWindow size here
@@ -51,13 +53,19 @@ public class MainWindow extends JFrame {
         menuBar.add(mnEdit);
 
         JMenuItem mnUndo = new JMenuItem("Undo");
-        mnEdit.add(mnUndo);
+
+        KeyStroke ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask());
+
+        mnUndo.setAccelerator(ctrlZ);
+
         mnUndo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 canvas.undo();
             }
         });
+        
+        mnEdit.add(mnUndo);
 
         JMenu mnHelp = new JMenu("Help");
         menuBar.add(mnHelp);
