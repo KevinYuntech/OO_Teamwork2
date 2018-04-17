@@ -7,6 +7,14 @@ import java.awt.*;
 public class Start extends Element {
     static private int num;
 
+    public Start(){
+
+    }
+
+    public Start(Start start) {
+        super(start);
+    }
+
     @Override
     protected void initWidthHeight() {
         width = 35;
@@ -32,6 +40,11 @@ public class Start extends Element {
     @Override
     public void draw(Graphics g) {
         drawable.draw(this, g);
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new Start(this);
     }
 
 }

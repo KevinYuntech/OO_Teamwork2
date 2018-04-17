@@ -49,7 +49,6 @@ public abstract class Element implements Draggable, Resizable {
     protected abstract void initLabel();        // Initialize field label
     protected abstract void initDrawable();     // Initialize field drawable
 
-    /*
     public Element(Element element) {
         x = element.x;
         y = element.y;
@@ -57,16 +56,17 @@ public abstract class Element implements Draggable, Resizable {
         dy = element.dy;
         width = element.width;
         height = element.height;
-        handles = new Handle[handles.length];
-        for (int i = 0; i < element.handles.length; i++) {
-            handles[i] = new Handle(element.handles[i]);
-        }
+//        handles = new Handle[handles.length];   // FIXME: copy but not new
+//        for (int i = 0; i < element.handles.length; i++) {
+//            handles[i] = new Handle(element.handles[i]);
+//        }
         status = element.status;
-        drawable = this.drawable.getNewInstance();
-        label = new Label(element.getText());
-        color = element.getColorFlyweight();
+        drawable = element.drawable.getNewInstance();
+//        label = new Label(element.getText());
+        // A Label has no Label
+        label = (Label)(element.label != null ? element.label.getNewInstance() : null);
+        color = FlyweightFactory.getFlyweightFactory().getColorFlyweight(element.getColor().getRGB());
     }
-    */
 
     /*
     public Element getNewInstance() {
@@ -216,6 +216,8 @@ public abstract class Element implements Draggable, Resizable {
     public void drawLabel(Graphics g) {
         label.draw(g);
     }
+
+    abstract public Element getNewInstance();
 
 
     /* Private methods */

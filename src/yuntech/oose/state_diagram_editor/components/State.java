@@ -10,6 +10,14 @@ public class State extends Element {
 
     static private int num;
 
+    public State(){
+
+    }
+
+    public State(State state) {
+        super(state);
+    }
+
     /* Override methods */
 
     @Override
@@ -38,5 +46,10 @@ public class State extends Element {
     public void draw(Graphics g) {
         drawable.draw(this, g);
         drawable.drawLabel(this, g);
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new State(this);
     }
 }

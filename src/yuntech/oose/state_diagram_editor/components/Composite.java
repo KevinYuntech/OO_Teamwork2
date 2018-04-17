@@ -7,12 +7,22 @@ import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 import java.awt.*;
 import java.util.LinkedList;
 
-// TODO
 public class Composite extends Element {
     /* Fields */
 
     static private int num;
     private LinkedList<Element> elementList = new LinkedList<>();
+
+    public Composite(){
+
+    }
+
+    public Composite(Composite composite) {
+        super(composite);
+        for (Element element : composite.elementList) {
+            elementList.add(element.getNewInstance());
+        }
+    }
 
     /* Override methods */
 
@@ -59,6 +69,11 @@ public class Composite extends Element {
     @Override
     public void setLocation(int x, int y) {
         setLocation(new Point(x, y));
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new Composite(this);
     }
 
     @Override

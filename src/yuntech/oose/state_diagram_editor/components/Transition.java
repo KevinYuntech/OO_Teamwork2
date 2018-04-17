@@ -1,6 +1,7 @@
 package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.Handle;
+import yuntech.oose.state_diagram_editor.drawing.ArrowDrawable;
 
 import java.awt.*;
 
@@ -18,6 +19,15 @@ public class Transition extends Element {
     static private int num;
     private Point start;
     private Point end;
+
+    public int getWingLength() {
+        return wingLength;
+    }
+
+    public int getWingDegree() {
+        return wingDegree;
+    }
+
     private int wingLength = 10;
     private int wingDegree = 30;
     private Handle[] handles = new Handle[2];
@@ -25,6 +35,14 @@ public class Transition extends Element {
     /* Constructor */
     public Transition() {
 
+    }
+
+    public Transition(Transition transition) {
+        super(transition);
+        start = transition.start;
+        end = transition.end;
+        wingLength = transition.wingLength;
+        wingDegree = transition.wingDegree;
     }
 
     @Override
@@ -52,18 +70,20 @@ public class Transition extends Element {
 
     @Override
     protected void initDrawable() {
-        // No need for Drawable
+        drawable = new ArrowDrawable();
     }
 
     /* Public methods */
 
     @Override
     public void draw(Graphics g) {
+        drawable.draw(this, g);
+        drawable.drawLabel(this, g);
         /* Draw line */
-        g.setColor(getColor());
+/*        g.setColor(getColor());
         g.drawLine(start.x, start.y, end.x, end.y);
 
-        /* Draw wings */
+        *//* Draw wings *//*
         // Math.atan2(double y,double x) takes a vector and return the angle respect to horizontal,
         // range in [-Math.PI, Math.PI]
         // atan --> arc tangent
@@ -77,19 +97,24 @@ public class Transition extends Element {
         g.drawLine(end.x, end.y, (int) (end.x - wingLength * Math.cos(angle + Math.toRadians(wingDegree))),
                 (int) (end.y - wingLength * Math.sin(angle + Math.toRadians(wingDegree))));
 
-        /* Draw it's label */
+        *//* Draw it's label *//*
         g.setColor(label.getColor());
         label.draw(g);
 
         // TODO: Get focused
         if (getStatus() == FOCUSEd) {
 
-        }
+        }*/
     }
 
     // TODO
     @Override
     public void setLocation(int x, int y) {
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new Transition(this);
     }
 
     // TODO

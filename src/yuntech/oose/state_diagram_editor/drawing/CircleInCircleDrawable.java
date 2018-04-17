@@ -6,6 +6,10 @@ import java.awt.*;
 
 public class CircleInCircleDrawable extends Drawable {
 
+    public CircleInCircleDrawable(){
+
+    }
+
     @Override
     public Drawable getNewInstance() {
         return new CircleInCircleDrawable();

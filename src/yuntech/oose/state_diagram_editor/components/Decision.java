@@ -12,6 +12,14 @@ public class Decision extends Element {
 
     static private int numOfInstances;
 
+    public Decision(){
+
+    }
+
+    public Decision(Decision decision) {
+        super(decision);
+    }
+
 
 
     /* Override methods */
@@ -42,5 +50,10 @@ public class Decision extends Element {
     public void draw(Graphics g) {
         drawable.draw(this, g);
         drawable.drawLabel(this, g);
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new Decision(this);
     }
 }

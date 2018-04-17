@@ -6,11 +6,15 @@ import java.awt.*;
 
 public abstract class Drawable {
 
+    public Drawable(){
+
+    }
+
     public abstract Drawable getNewInstance();
 
     public void drawLabel(Element element, Graphics g) {
         element.drawLabel(g);
     }
 
-    public abstract void draw(Element element, Graphics g);
+    abstract public void draw(Element element, Graphics g);
 }

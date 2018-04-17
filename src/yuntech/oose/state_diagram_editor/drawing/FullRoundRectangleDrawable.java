@@ -6,6 +6,10 @@ import java.awt.*;
 
 public class FullRoundRectangleDrawable extends Drawable {
 
+    public FullRoundRectangleDrawable(){
+
+    }
+
     @Override
     public Drawable getNewInstance() {
         return new FullRoundRectangleDrawable();

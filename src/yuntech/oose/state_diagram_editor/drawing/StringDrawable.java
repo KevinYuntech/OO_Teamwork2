@@ -4,20 +4,19 @@ import yuntech.oose.state_diagram_editor.components.Element;
 
 import java.awt.*;
 
-public class RoundRectangleDrawable extends Drawable {
-
-    public RoundRectangleDrawable(){
+public class StringDrawable extends Drawable {
+    public StringDrawable(){
 
     }
 
     @Override
     public Drawable getNewInstance() {
-        return new RoundRectangleDrawable();
+        return new StringDrawable();
     }
 
     @Override
     public void draw(Element element, Graphics g) {
         g.setColor(element.getColor());
-        g.drawRoundRect(element.getX(), element.getY(), element.getWidth(), element.getHeight(), 25, 25);
+        g.drawString(element.getText(), element.getX(), element.getY());
     }
 }

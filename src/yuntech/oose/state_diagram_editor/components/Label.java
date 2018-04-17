@@ -1,5 +1,6 @@
 package yuntech.oose.state_diagram_editor.components;
 
+import yuntech.oose.state_diagram_editor.drawing.StringDrawable;
 import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
 import java.awt.*;
@@ -36,7 +37,10 @@ public class Label extends Element {
     }
 
     public Label(Label label) {
+        super(label);
         text = label.getText();
+        wordSingleton = WordSingleton.getInstance();
+        font = new Font(wordSingleton.getFontName(), wordSingleton.getFontStyle(), wordSingleton.getFontSize());
     }
 
     /* Public methods */
@@ -64,12 +68,17 @@ public class Label extends Element {
 
     @Override
     protected void initDrawable() {
-        // No need for Drawable
+        drawable = new StringDrawable();
     }
 
     @Override
     public void setLabelColor(int rgb) {
         setColor(rgb);
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new Label(this);
     }
 
     @Override
@@ -83,13 +92,14 @@ public class Label extends Element {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(getColor());
+        drawable.draw(this, g);
+/*        g.setColor(getColor());
         g.setFont(font);
 
         width = g.getFontMetrics().stringWidth(getText());
         height = g.getFontMetrics().getHeight();
 
-        g.drawString(text, x, y);
+        g.drawString(text, x, y);*/
 //        g.getFontMetrics().stringWidth(getText());
     }
 
@@ -102,5 +112,10 @@ public class Label extends Element {
     @Override
     public void setLocation(Point point) {
         setLocation(point.x, point.y);
+    }
+
+    @Override
+    public Color getLabelColor() {
+        return new Color(getColor().getRGB());
     }
 }

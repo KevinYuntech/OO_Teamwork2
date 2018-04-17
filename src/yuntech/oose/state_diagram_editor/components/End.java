@@ -12,6 +12,14 @@ public class End extends Element {
 
     static private int num;
 
+    public End(){
+
+    }
+
+    public End(End end) {
+        super(end);
+    }
+
     /* Override methods */
 
     @Override
@@ -40,5 +48,10 @@ public class End extends Element {
     @Override
     public void draw(Graphics g) {
         drawable.draw(this, g);
+    }
+
+    @Override
+    public Element getNewInstance() {
+        return new End(this);
     }
 }

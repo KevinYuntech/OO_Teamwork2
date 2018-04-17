@@ -1,7 +1,6 @@
 package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.components.Element;
-import yuntech.oose.state_diagram_editor.components.Label;
 import yuntech.oose.state_diagram_editor.components.Transition;
 import yuntech.oose.state_diagram_editor.controller.CTRL_CanvasToMementoCaretake;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
@@ -28,7 +27,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     private Point lastPressedPoint;
     private CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake = new CTRL_CanvasToMementoCaretake();
 
-    private String textGannaChange = new String();
+    private Memento memento;    // Used to store current state
 
     /* Constructors */
 
@@ -41,12 +40,18 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
         // Default Canvas background color
         FlyweightFactory.getFlyweightFactory().getColorFlyweight(0xE7F0F3);
+        takeSnapshot();
     }
 
     /* Public methods */
 
     public void addElement(Element element) {
         elementList.add(element);
+
+        if(!(element instanceof Transition)) {
+            takeSnapshot(); // Take snapshot before add a Element
+        }
+
         repaint();
     }
 
@@ -57,11 +62,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     // TODO: Add controller to communicate
     public void undo() {
         try {
+            // Canvas knows it stored a LinkedList<Element> to memento
             elementList = (LinkedList<Element>) ctrl_canvasToMementoCaretake.getSnapshot().getObject();
+            repaint();
+            memento = null;
+            takeSnapshot();
         } catch (EmptyStackException e) {
             // Indicating no snapshot was stored
         }
-        repaint();
     }
 
     /* Override methods */
@@ -87,14 +95,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          */
         // We takeSnapshot for each step
 
-        // TODO
-        // TODO: Unsure judging getClickCount() == 2 is good
         // Change label text
         if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-            System.out.println("Double clicked");
             for (Element element : elementList) {
                 if (element.isIntersect(e.getPoint())) {
-                    // TODO: Dialog
                     String str = JOptionPane.showInputDialog(null, "Change Text", "Enter", JOptionPane.QUESTION_MESSAGE);
                     if (str != null) {
                         element.setText(str);
@@ -113,7 +117,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             repaint(elementGannaDraw.getBounds());
 
             if (!addToComposite(e.getPoint(), elementGannaDraw)) {
-                takeSnapshot(); // Take snapshot before add a Element
+//                takeSnapshot(); // Take snapshot before add a Element
                 addElement(elementGannaDraw);
             }
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -126,13 +130,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
                 elementGannaDraw instanceof Transition &&
                 elementGannaDraw.getStatus() == Element.NORMAL) {
-
-            System.out.println("Transition start");
-
             elementGannaDraw.setStatus(Element.FOCUSEd);
             ((Transition) elementGannaDraw).setStart(e.getPoint());
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
-            takeSnapshot(); // Take snapshot before add a Element
+//            takeSnapshot(); // Take snapshot before add a Element
             addElement(elementGannaDraw);
             return;
         }
@@ -141,13 +142,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         if (getCursor().getType() == Cursor.CROSSHAIR_CURSOR &&
                 elementGannaDraw instanceof Transition &&
                 elementGannaDraw.getStatus() == Element.FOCUSEd) {
-
-            System.out.println("Transition end");
-
             elementGannaDraw.setStatus(Element.NORMAL);
             ((Transition) elementGannaDraw).setEnd(e.getPoint());
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             elementGannaDraw = null;
+            takeSnapshot();
             return;
         }
     }
@@ -185,6 +184,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             } else {
                 setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
+            takeSnapshot(); // Take snapshot before add a Element
         }
 
         // Left out pressed element, if not,
@@ -232,10 +232,15 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
          * it cause Canvas.elementList be modify too.
          */
         LinkedList<Element> list = new LinkedList<>();
-        list.addAll(elementList);
+        for (Element element : elementList) {
+            list.add(element.getNewInstance());
+        }
 
-        Memento memento = new Memento(list);
+        if (memento != null) {
+            ctrl_canvasToMementoCaretake.snapshot(memento);
+        }
 
-        ctrl_canvasToMementoCaretake.snapshot(memento);
+        memento = new Memento(list);
+
     }
 }
