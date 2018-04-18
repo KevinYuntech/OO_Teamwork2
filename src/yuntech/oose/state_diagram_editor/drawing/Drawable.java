@@ -13,6 +13,7 @@ public abstract class Drawable {
     public abstract Drawable getNewInstance();
 
     public void drawLabel(Element element, Graphics g) {
+        g.setFont(element.getFont());
         element.drawLabel(g);
     }
 

@@ -142,7 +142,7 @@ public class FontChooserDialog extends JDialog {
         wordSingleton.setFontSize(previewLabel.getFont().getSize());
         wordSingleton.setFontColor(previewLabel.getForeground().getRGB());
         mainWindow.repaintCanvas();
-
+        mainWindow.takeSnapshot();
     }
 
     public void cancelButtonClicked() {

@@ -67,8 +67,15 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
     public void undo() {
         try {
-            // Canvas knows it stored a LinkedList<Element> to memento_currentState
-            elementList = (LinkedList<Element>) ctrl_canvasToMementoCaretake.getSnapshot().getObject();
+            // Canvas knows it stored a DiagramState to memento_currentState
+            DiagramState diagramState = (DiagramState) ctrl_canvasToMementoCaretake.getSnapshot().getObject();
+            elementList = diagramState.list;
+            WordSingleton wordSingleton = WordSingleton.getInstance();
+            wordSingleton.setFontName(diagramState.fontName);
+            wordSingleton.setFontStyle(diagramState.fontStyle);
+            wordSingleton.setFontSize(diagramState.fontSize);
+            wordSingleton.setFontColor(diagramState.color.getRGB());
+
             repaint();
             // After undo, current state should be update as previous state.
             // The state store in memento_currentState should not be pushed, so set it to null
@@ -249,14 +256,22 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
      * An element is placed to Canvas
      * An element is placed into Composite
      * End point of Transition is placed
-     * An Element is dragge
+     * An Element is dragged
      */
-    private void takeSnapshot() {
+    public void takeSnapshot() {
         // Copy all Elements inside Canvas to list the store into memento_currentState
         LinkedList<Element> list = new LinkedList<>();
         for (Element element : elementList) {
             list.add(element.getInstanceCopy());
         }
+
+        WordSingleton wordSingleton = WordSingleton.getInstance();
+        DiagramState diagramState = new DiagramState(
+                list,
+                wordSingleton.getFontName(),
+                wordSingleton.getFontStyle(),
+                wordSingleton.getFontSize(),
+                wordSingleton.getFontColor());
 
         // Order is important
         if (memento_currentState != null) {
@@ -264,6 +279,22 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         }
 
         // Order is important
-        memento_currentState = new Memento(list);
+        memento_currentState = new Memento(diagramState);
+    }
+
+    class DiagramState {
+        LinkedList<Element> list;
+        String fontName;
+        int fontStyle;
+        int fontSize;
+        Color color;
+
+        DiagramState(LinkedList<Element> list, String fontName, int fontStyle, int fontSize, Color color) {
+            this.list = list;
+            this.fontName = fontName;
+            this.fontStyle = fontStyle;
+            this.fontSize = fontSize;
+            this.color = color;
+        }
     }
 }

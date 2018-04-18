@@ -96,6 +96,10 @@ public abstract class Element implements Draggable, Resizable {
         label.setFont(font);
     }
 
+    public Font getFont() {
+        return label.getFont();
+    }
+
     public void add(Element element) {
         // Transparency for Composite, Composite should override it!
     }

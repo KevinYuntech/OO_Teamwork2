@@ -111,6 +111,11 @@ public class Label extends Element {
         setColor(rgb);
     }
 
+    @Override
+    public Font getFont() {
+        return font;
+    }
+
     // TODO
     @Override
     public boolean isIntersect(Point point) {

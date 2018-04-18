@@ -64,7 +64,7 @@ public class MainWindow extends JFrame {
                 canvas.undo();
             }
         });
-        
+
         mnEdit.add(mnUndo);
 
         JMenu mnHelp = new JMenu("Help");
@@ -91,6 +91,10 @@ public class MainWindow extends JFrame {
 
     public void repaintCanvas() {
         canvas.repaint();
+    }
+
+    public void takeSnapshot(){
+        canvas.takeSnapshot();
     }
 
 }
