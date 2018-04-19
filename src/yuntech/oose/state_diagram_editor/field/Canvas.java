@@ -69,7 +69,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         try {
             // Canvas knows it stored a DiagramState to memento_currentState
             DiagramState diagramState = (DiagramState) ctrl_canvasToMementoCaretake.getSnapshot().getObject();
+
+            // Set back Elements
             elementList = diagramState.list;
+
+            // Set back Flyweight and Singleton
             WordSingleton wordSingleton = WordSingleton.getInstance();
             wordSingleton.setFontName(diagramState.fontName);
             wordSingleton.setFontStyle(diagramState.fontStyle);

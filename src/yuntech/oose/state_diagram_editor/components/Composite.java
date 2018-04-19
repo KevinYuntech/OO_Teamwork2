@@ -58,7 +58,7 @@ public class Composite extends Element {
 
     @Override
     public void draw(Graphics g) {
-        // Draws this Comosite
+        // Draws this Composite
         drawable.draw(this, g);
         drawable.drawLabel(this, g);
 
