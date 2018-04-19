@@ -78,6 +78,10 @@ public class Label extends Element {
     @Override
     public void draw(Graphics g) {
         drawable.draw(this, g);
+
+        // get width and height and let it has size to be focused
+        width = g.getFontMetrics().stringWidth(getText());
+        height = g.getFontMetrics().getHeight();
     }
 
     @Override

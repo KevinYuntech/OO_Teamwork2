@@ -125,7 +125,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             for (Element element : elementList) {
                 if (element.isIntersect(e.getPoint())) {
                     String str = JOptionPane.showInputDialog(
-                            null, "Change Text", "Enter", JOptionPane.QUESTION_MESSAGE);
+                            this, "Change Text", "Enter", JOptionPane.QUESTION_MESSAGE);
                     if (str != null) {
                         element.setText(str);
                     }
