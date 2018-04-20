@@ -161,6 +161,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             ((Transition) elementGonnaDraw).setStart(e.getPoint());
             ((Transition) elementGonnaDraw).setEnd(e.getPoint());
             addElement(elementGonnaDraw);
+
+            for (Element element : elementList) {
+                if (element.isIntersect(e.getPoint())) {
+                    element.addTransitionStart((Transition)elementGonnaDraw);
+                }
+            }
+
             return;
         }
 
@@ -171,6 +178,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             elementGonnaDraw.setStatus(Element.NORMAL);
             ((Transition) elementGonnaDraw).setEnd(e.getPoint());
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+            for (Element element : elementList) {
+                if (element.isIntersect(e.getPoint())) {
+                    element.addTransitionEnd((Transition)elementGonnaDraw);
+                }
+            }
+
             elementGonnaDraw = null;
             takeSnapshot();
             return;

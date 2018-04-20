@@ -110,8 +110,16 @@ public class Transition extends Element {
     public void setLocation(Point point) {
     }
 
+    @Override
+    public boolean isIntersect(Point point) {
+        return label.isIntersect(point);
+    }
+
     public void setStart(int x, int y) {
         setStart(new Point(x, y));
+        if (end != null) {
+            label.setLocation(start.x + (end.x - start.x) / 2, start.y + (end.y - start.y) / 2);
+        }
     }
 
     public void setEnd(int x, int y) {

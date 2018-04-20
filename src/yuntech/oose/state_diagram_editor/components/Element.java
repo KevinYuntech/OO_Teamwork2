@@ -7,6 +7,7 @@ import yuntech.oose.state_diagram_editor.drawing.Drawable;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 // NOTE: Gatter always return new object so outer won't have the ability to modify data of a class
 public abstract class Element implements Draggable, Resizable {
@@ -22,6 +23,10 @@ public abstract class Element implements Draggable, Resizable {
     protected int y;
     protected int dx;   // Relative location inside a Composite
     protected int dy;   // Relative location inside a Compostte
+
+    protected LinkedList<Transition> transitionStartList = new LinkedList<Transition>();
+    protected LinkedList<Transition> transitionEndList = new LinkedList<Transition>();
+
     protected int width;
     protected int height;
     protected Handle[] handles;
@@ -47,6 +52,9 @@ public abstract class Element implements Draggable, Resizable {
         y = element.y;
         dx = element.dx;
         dy = element.dy;
+
+        // FIXME: Newed Transition and Element it attached need to be linked togather
+
         width = element.width;
         height = element.height;
 //        handles = new Handle[handles.length];   // FIXME: copy but not new
@@ -55,7 +63,6 @@ public abstract class Element implements Draggable, Resizable {
 //        }
         status = element.status;
         drawable = element.drawable.getNewInstance();
-//        label = new Label(element.getText());
         // A Label has no Label
         label = (Label) (element.label != null ? element.label.getInstanceCopy() : null);
         color = FlyweightFactory.getFlyweightFactory().getColorFlyweight(element.getColor().getRGB());
@@ -114,6 +121,14 @@ public abstract class Element implements Draggable, Resizable {
 
     }
 
+    public void addTransitionStart(Transition transition){
+        transitionStartList.add(transition);
+    }
+
+    public void addTransitionEnd(Transition transition){
+        transitionEndList.add(transition);
+    }
+
     /* Override methods */
 
     @Override
@@ -139,12 +154,22 @@ public abstract class Element implements Draggable, Resizable {
 
     @Override
     public void setLocation(int x, int y) {
+        // Update Transitions
+        for (Transition transition : transitionStartList) {
+            transition.setStart(transition.getStart().x + x - this.x, transition.getStart().y + y - this.y);
+        }
+
+        for (Transition transition : transitionEndList) {
+            transition.setEnd(transition.getEnd().x + x - this.x, transition.getEnd().y + y - this.y);
+        }
+
         this.x = x;
         this.y = y;
 
         // Update its label also (to center of this)
         label.x = x + width / 2 - label.width / 2;
         label.y = y + height / 2 + label.height / 2;
+
     }
 
     @Override
