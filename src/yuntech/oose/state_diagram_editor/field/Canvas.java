@@ -2,7 +2,7 @@ package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.components.Element;
 import yuntech.oose.state_diagram_editor.components.Transition;
-import yuntech.oose.state_diagram_editor.controller.CTRL_CanvasToMementoCaretake;
+import yuntech.oose.state_diagram_editor.memento.CanvasToMementoCaretake;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 import yuntech.oose.state_diagram_editor.memento.Memento;
 import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
@@ -26,7 +26,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     private Element elementGonnaDraw;
     private Element lastPressedElement;
     private Point lastPressedPoint;
-    private CTRL_CanvasToMementoCaretake ctrl_canvasToMementoCaretake = new CTRL_CanvasToMementoCaretake();
+    private CanvasToMementoCaretake canvasToMementoCaretake = new CanvasToMementoCaretake();
     private Memento memento_currentState;    // Used to store current state
 
     /* Constructors */
@@ -68,7 +68,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     public void undo() {
         try {
             // Canvas knows it stored a DiagramState to memento_currentState
-            DiagramState diagramState = (DiagramState) ctrl_canvasToMementoCaretake.getSnapshot().getObject();
+            DiagramState diagramState = (DiagramState) canvasToMementoCaretake.getSnapshot().getObject();
 
             // Set back Elements
             elementList = diagramState.list;
@@ -162,6 +162,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             ((Transition) elementGonnaDraw).setEnd(e.getPoint());
             addElement(elementGonnaDraw);
 
+            // Placing Transition onto an Element
             for (Element element : elementList) {
                 if (element.isIntersect(e.getPoint())) {
                     element.addTransitionStart((Transition)elementGonnaDraw);
@@ -179,6 +180,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             ((Transition) elementGonnaDraw).setEnd(e.getPoint());
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
+            // Placing Transition onto an Element
             for (Element element : elementList) {
                 if (element.isIntersect(e.getPoint())) {
                     element.addTransitionEnd((Transition)elementGonnaDraw);
@@ -293,7 +295,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
         // Order is important
         if (memento_currentState != null) {
-            ctrl_canvasToMementoCaretake.snapshot(memento_currentState);
+            canvasToMementoCaretake.snapshot(memento_currentState);
         }
 
         // Order is important

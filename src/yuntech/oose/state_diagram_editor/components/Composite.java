@@ -109,5 +109,10 @@ public class Composite extends Element {
         element.dx = element.x - x;
         element.dy = element.y - y;
     }
+
+    @Override
+    public void remove(Element element) {
+        elementList.remove(element);
+    }
 }
 

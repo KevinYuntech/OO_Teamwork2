@@ -1,4 +1,4 @@
-package yuntech.oose.state_diagram_editor.controller;
+package yuntech.oose.state_diagram_editor.memento;
 
 import yuntech.oose.state_diagram_editor.memento.Memento;
 import yuntech.oose.state_diagram_editor.memento.MementoCaretaker;
@@ -7,7 +7,7 @@ import java.util.EmptyStackException;
 
 // Create by a Canvas who needs to store snapshots.
 // In this special case (this particular program), there just one Canvas
-public class CTRL_CanvasToMementoCaretake {
+public class CanvasToMementoCaretake {
     private MementoCaretaker mementoCaretaker = new MementoCaretaker();
 
     // Called by Canvas to store snapshot

@@ -112,6 +112,7 @@ public class Transition extends Element {
 
     @Override
     public boolean isIntersect(Point point) {
+        // For editing label of Transition
         return label.isIntersect(point);
     }
 
