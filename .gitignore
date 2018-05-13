@@ -1,0 +1,11 @@
+# IDE files
+/.idea/
+*.iml
+
+# Executable files
+out/
+*.class
+
+# Any hiden files except .gitignore
+.*
+!.gitignore

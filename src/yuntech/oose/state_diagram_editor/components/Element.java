@@ -22,7 +22,7 @@ public abstract class Element implements Draggable, Resizable {
     protected int x;
     protected int y;
     protected int dx;   // Relative location inside a Composite
-    protected int dy;   // Relative location inside a Compostte
+    protected int dy;   // Relative location inside a Composite
 
     protected LinkedList<Transition> transitionStartList = new LinkedList<Transition>();
     protected LinkedList<Transition> transitionEndList = new LinkedList<Transition>();
@@ -62,7 +62,8 @@ public abstract class Element implements Draggable, Resizable {
 //            handles[i] = new Handle(element.handles[i]);
 //        }
         status = element.status;
-        drawable = element.drawable.getNewInstance();
+        // Spacial case: Transition
+        drawable = element.drawable != null ? element.drawable.getNewInstance() : null;
         // A Label has no Label
         label = (Label) (element.label != null ? element.label.getInstanceCopy() : null);
         color = FlyweightFactory.getFlyweightFactory().getColorFlyweight(element.getColor().getRGB());

@@ -16,8 +16,6 @@ import java.awt.event.KeyEvent;
 
 public class ToolTray extends JPanel {
 
-    // TEST
-
     CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas;
 
 
@@ -30,6 +28,7 @@ public class ToolTray extends JPanel {
     private JButton btn_end = new JButton("End(E)");
     private JButton btn_label = new JButton("Label(L)");
     private JButton btn_font = new JButton("Font(F)");
+    private JButton btn_changeShape = new JButton("Change Shape(Q)");
 
     public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas) {
         this.ctrl_toolTrayToCanvas = ctrl_toolTrayToCanvas;
@@ -148,6 +147,17 @@ public class ToolTray extends JPanel {
             }
         });
 
+        InputMap im_changeShape = btn_changeShape.getInputMap(WHEN_IN_FOCUSED_WINDOW);
+
+        im_changeShape.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, false), "pressed");
+        im_changeShape.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, true), "released");
+
+        btn_changeShape.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ChangeShapeDialog(mainWindow);
+            }
+        });
+
         InputMap im_font = btn_font.getInputMap(WHEN_IN_FOCUSED_WINDOW);
 
         im_font.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0, false), "pressed");
@@ -169,7 +179,8 @@ public class ToolTray extends JPanel {
 
         gl_contentPane.setVerticalGroup(gl_contentPane.createSequentialGroup().addGap(20).addComponent(btn_state).addGap(20).
                 addComponent(btn_transition).addGap(20).addComponent(btn_decision).addGap(20).addComponent(btn_start).addGap(20).
-                addComponent(btn_composite).addGap(20).addComponent(btn_end).addGap(20).addComponent(btn_label).addGap(155).addComponent(btn_font).addGap(20));
+                addComponent(btn_composite).addGap(20).addComponent(btn_end).addGap(20).addComponent(btn_label).addGap(135).addComponent(btn_changeShape).
+                addGap(20).addComponent(btn_font).addGap(20));
 
 
         gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(btn_state, GroupLayout.PREFERRED_SIZE,
@@ -181,17 +192,9 @@ public class ToolTray extends JPanel {
                 addComponent(btn_composite, GroupLayout.PREFERRED_SIZE,
                         GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_end, GroupLayout.PREFERRED_SIZE,
                 GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_label, GroupLayout.PREFERRED_SIZE,
-                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_font, GroupLayout.PREFERRED_SIZE,
-                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-
-        /*        *//* Arranging components *//*
-        gl_contentPane.setVerticalGroup(gl_contentPane.createSequentialGroup().addComponent(btn_state).
-                addComponent(btn_transition).addComponent(btn_decision).addComponent(btn_start).
-                addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label).addComponent(btn_font));
-        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup().addComponent(btn_state).
-                addComponent(btn_transition).addComponent(btn_decision).addComponent(btn_start).
-                addComponent(btn_composite).addComponent(btn_end).addComponent(btn_label).addComponent(btn_font));*/
-
+                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btn_changeShape, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).
+                addComponent(btn_font, GroupLayout.PREFERRED_SIZE,
+                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         setLayout(gl_contentPane);
         setVisible(true);

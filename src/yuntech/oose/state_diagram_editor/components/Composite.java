@@ -1,6 +1,6 @@
 package yuntech.oose.state_diagram_editor.components;
 
-import yuntech.oose.state_diagram_editor.drawing.RoundRectangleDrawable;
+import yuntech.oose.state_diagram_editor.drawing.*;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
@@ -113,6 +113,26 @@ public class Composite extends Element {
     @Override
     public void remove(Element element) {
         elementList.remove(element);
+    }
+
+    public void changeShape(String whichElement, String whichDrawable) {
+        Drawable drawable = null;
+        if (whichDrawable.equals("Circle")) {
+            drawable = new CircleDrawable();
+        } else if (whichDrawable.equals("Circle in circle")) {
+            drawable = new CircleInCircleDrawable();
+        } else if (whichDrawable.equals("Diamond")) {
+            drawable = new DiamondDrawable();
+        } else if (whichDrawable.equals("Full round rectangle")) {
+            drawable = new FullRoundRectangleDrawable();
+        } else if (whichDrawable.equals("Round rectangle")) {
+            drawable = new RoundRectangleDrawable();
+        }
+        for (Element element : elementList) {
+            if (element.getClass().getSimpleName().equals(whichElement)) {
+                element.setDrawable(drawable);
+            }
+        }
     }
 }
 

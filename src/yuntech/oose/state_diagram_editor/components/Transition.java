@@ -84,13 +84,37 @@ public class Transition extends Element {
 
     @Override
     protected void initDrawable() {
-        drawable = new ArrowDrawable();
+        // Can not be part of Strategy
+        // drawable = new ArrowDrawable();
     }
 
     @Override
     public void draw(Graphics g) {
-        drawable.draw(this, g);
-        drawable.drawLabel(this, g);
+//        drawable.draw(this, g);
+//        drawable.drawLabel(this, g);
+
+        g.setColor(getColor());
+        g.drawLine(getStart().x, getStart().y, getEnd().x, getEnd().y);
+
+        /* Draw wings */
+        // Math.atan2(double y,double x) takes a vector and return the angle respect to horizontal,
+        // range in [-Math.PI, Math.PI]
+        // atan --> arc tangent
+
+        double angle = Math.atan2(getEnd().y - getStart().y, getEnd().x - getStart().x);
+
+        // wing1
+        g.drawLine(getEnd().x, getEnd().y,
+                (int) (getEnd().x - getWingLength() * Math.cos(angle - Math.toRadians(getWingDegree()))),
+                (int) (getEnd().y - getWingLength() * Math.sin(angle - Math.toRadians(getWingDegree()))));
+        // wing2
+        g.drawLine(getEnd().x, getEnd().y,
+                (int) (getEnd().x - getWingLength() * Math.cos(angle + Math.toRadians(getWingDegree()))),
+                (int) (getEnd().y - getWingLength() * Math.sin(angle + Math.toRadians(getWingDegree()))));
+
+        /* Draw it's label */
+        g.setColor(getLabelColor());
+        label.draw(g);
     }
 
     @Override

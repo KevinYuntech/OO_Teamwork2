@@ -1,6 +1,7 @@
 package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
+import yuntech.oose.state_diagram_editor.drawing.Drawable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,6 +92,10 @@ public class MainWindow extends JFrame {
 
     public void repaintCanvas() {
         canvas.repaint();
+    }
+
+    public void changeShape(String whichElement, String whichDrawable){
+        canvas.changeShape(whichElement, whichDrawable);
     }
 
     public void takeSnapshot(){

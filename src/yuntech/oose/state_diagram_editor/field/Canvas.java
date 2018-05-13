@@ -1,9 +1,11 @@
 package yuntech.oose.state_diagram_editor.field;
 
+import yuntech.oose.state_diagram_editor.components.Composite;
 import yuntech.oose.state_diagram_editor.components.Element;
 import yuntech.oose.state_diagram_editor.components.Transition;
-import yuntech.oose.state_diagram_editor.memento.CanvasToMementoCaretake;
+import yuntech.oose.state_diagram_editor.drawing.*;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
+import yuntech.oose.state_diagram_editor.memento.CanvasToMementoCaretake;
 import yuntech.oose.state_diagram_editor.memento.Memento;
 import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
@@ -165,7 +167,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             // Placing Transition onto an Element
             for (Element element : elementList) {
                 if (element.isIntersect(e.getPoint())) {
-                    element.addTransitionStart((Transition)elementGonnaDraw);
+                    element.addTransitionStart((Transition) elementGonnaDraw);
                 }
             }
 
@@ -183,7 +185,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             // Placing Transition onto an Element
             for (Element element : elementList) {
                 if (element.isIntersect(e.getPoint())) {
-                    element.addTransitionEnd((Transition)elementGonnaDraw);
+                    element.addTransitionEnd((Transition) elementGonnaDraw);
                 }
             }
 
@@ -300,6 +302,31 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
         // Order is important
         memento_currentState = new Memento(diagramState);
+    }
+
+    public void changeShape(String whichElement, String whichDrawable) {
+        Drawable drawable = null;
+        if (whichDrawable.equals("Circle")) {
+            drawable = new CircleDrawable();
+        } else if (whichDrawable.equals("Circle in circle")) {
+            drawable = new CircleInCircleDrawable();
+        } else if (whichDrawable.equals("Diamond")) {
+            drawable = new DiamondDrawable();
+        } else if (whichDrawable.equals("Full round rectangle")) {
+            drawable = new FullRoundRectangleDrawable();
+        } else if (whichDrawable.equals("Round rectangle")) {
+            drawable = new RoundRectangleDrawable();
+        }
+
+        for (Element element : elementList) {
+            if (element instanceof Composite) {
+                ((Composite) element).changeShape(whichElement, whichDrawable);
+            }
+            if (element.getClass().getSimpleName().equals(whichElement)) {
+                element.setDrawable(drawable);
+            }
+        }
+        repaint();
     }
 
     class DiagramState {
