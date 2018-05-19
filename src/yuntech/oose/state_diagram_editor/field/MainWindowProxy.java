@@ -31,7 +31,8 @@ public class MainWindowProxy implements Loadable{
 		loadingFrame.setVisible(true);
 		
 		try {
-			Thread.sleep(((long)Math.random()*10+5)*1000);
+//			Thread.sleep(((long)Math.random()*10+5)*1000);
+			Thread.sleep(0);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
