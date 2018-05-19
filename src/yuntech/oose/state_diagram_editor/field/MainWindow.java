@@ -9,27 +9,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements Loadable{
     // Determine default MainWindow size here
     private final int width = 800;
     private final int height = 600;
+    private static int a;
 
     private Canvas canvas = new Canvas(600, 600);
     private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 200, 600, this);
 
     public MainWindow() {
-        setupFrame();
-        setVisible(true);
+        
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainWindow();
-            }
-        });
-    }
+//    public void ass(String[] args) {
+//    	
+////    	Load load = new Proxy("aaa");
+////    	load.display();
+////    	load.display();
+//    	
+//    	Loadable load = new MainFrameProxy(_frame)
+//    	
+//        
+//    }
 
     private void setupFrame() {
         JMenuBar menuBar = new JMenuBar();
@@ -101,5 +103,11 @@ public class MainWindow extends JFrame {
     public void takeSnapshot(){
         canvas.takeSnapshot();
     }
+
+	@Override
+	public void load() {
+		setupFrame();
+        setVisible(true);
+	}
 
 }
