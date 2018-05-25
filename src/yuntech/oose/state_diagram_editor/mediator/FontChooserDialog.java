@@ -1,6 +1,7 @@
 package yuntech.oose.state_diagram_editor.mediator;
 
 import yuntech.oose.state_diagram_editor.field.MainWindow;
+import yuntech.oose.state_diagram_editor.proxy.protectable;
 import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
 import javax.swing.*;
@@ -8,19 +9,19 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class FontChooserDialog extends JDialog {
+public class FontChooserDialog extends JDialog implements protectable{
 
-    private static final long serialVersionUID = 1L;
-    private static WordSingleton wordSingleton;
+   // private static final long serialVersionUID = 1L;    
+    private static WordSingleton wordSingleton; 
     private MainWindow mainWindow;
     private FontList fontList;
     private FontScrollPane fontScrollPane;
-    private StyleList styleList;
-    private StyleScrollPane styleScrollPane;
-    private SizeList sizeList;
-    private SizeScrollPane sizeScrollPane;
-    private ColorList colorList;
-    private ColorScrollPane colorScrollPane;
+    private StyleList styleList;    
+    private StyleScrollPane styleScrollPane;    
+    private SizeList sizeList;    
+    private SizeScrollPane sizeScrollPane;    
+    private ColorList colorList;    
+    private ColorScrollPane colorScrollPane;    
     private OkButton okButton;
     private CancelButton cancelButton;
     private PreviewLabel previewLabel;
@@ -134,6 +135,7 @@ public class FontChooserDialog extends JDialog {
     }
 
     public void okButtonClicked() {
+    	
 
         this.setVisible(false);
 
@@ -150,5 +152,11 @@ public class FontChooserDialog extends JDialog {
         this.setVisible(false);
 
     }
+
+	@Override
+	public void displayView() {
+		// TODO 自動產生的方法 Stub
+		setVisible(true);
+	}
 }
 

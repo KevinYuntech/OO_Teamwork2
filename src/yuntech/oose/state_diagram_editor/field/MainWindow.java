@@ -1,7 +1,9 @@
 package yuntech.oose.state_diagram_editor.field;
 
+import yuntech.oose.state_diagram_editor.chain_help.Helpable;
 import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
 import yuntech.oose.state_diagram_editor.drawing.Drawable;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,20 +13,21 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class MainWindow extends JFrame implements Loadable{
+public class MainWindow extends JFrame implements Loadable, Helpable {
+
+    // Help
+    JPopupMenu popupMenu = new JPopupMenu();
+    JMenuItem menuItem = new JMenuItem("Help");
+
     // Determine default MainWindow size here
     private final int width = 800;
-    private final int height = 600;
+    private final int height = 650;
     private static int a;
 
     private Canvas canvas = new Canvas(600, 600);
-    private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 200, 600, this);
+    private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 600, 800, this);
 
     public MainWindow() {
-        
-    }
-
-
 
 //    public void ass(String[] args) {
 //    	
@@ -33,109 +36,71 @@ public class MainWindow extends JFrame implements Loadable{
 ////    	load.display();
 //    	
 //    	Loadable load = new MainFrameProxy(_frame)
-//    	
-//        
-//    }
+    }
+
+
+    JMenuBar menuBar = new JMenuBar();
+    JMenuItem mnFile = new JMenu("File");
+    JMenuItem mnNew = new JMenu("New");
+    JMenuItem mnNewDiagram = new JMenu("New Diagram");
+    JMenuItem mntmOpenFile = new JMenuItem("Open file");
+    JMenuItem mntmSaveFile = new JMenuItem("Save file");
+
+    JMenuItem mntmClose = new JMenuItem("Close");
+    JMenuItem mnEdit = new JMenu("Edit");
+    JMenuItem mnHelp = new JMenu("Help");
+    JMenuItem mnUndo = new JMenuItem("Undo");
+
+    ItemFactory mntmImportFile = new ImportFactory(canvas, this, mnFile);
+    ItemFactory mntmExportFile = new ExportFactory(canvas, mnFile);
+
+    Action action;
 
     private void setupFrame() {
-        JMenuBar menuBar = new JMenuBar();
+        // Help
+        popupMenu.add(menuItem);
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                help();
+            }
+        });
+        toolTray.setNextHelpable(this);
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
+                    popupMenu.show(MainWindow.this, mouseEvent.getX(), mouseEvent.getY());
+                }
+            }
+        });
+
         setJMenuBar(menuBar);
 
-        JMenu mnFile = new JMenu("File");
         menuBar.add(mnFile);
-
-        JMenu mnNew = new JMenu("New");
-        mnFile.add(mnNew);
-
-        JMenu mnNewDiagram = new JMenu("New Diagram");
-        mnNew.add(mnNewDiagram);
-
-        JMenuItem mntmOpenFile = new JMenuItem("Open file");
-        mnFile.add(mntmOpenFile);
-
-        mntmOpenFile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser openFile = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("Image(JPG/GIF/PNG)","JPG","JPEG","GIF","PNG");
-                openFile.setFileFilter(filter);
-                int i = openFile.showOpenDialog(getContentPane());
-                if(i == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = openFile.getSelectedFile();
-                    ImageIcon icon = new ImageIcon(selectedFile.getPath());
-
-                    JLabel picture = new JLabel();
-                    picture.setSize(200,200);
-                    picture.setLocation(30,30);
-
-                    Image img = icon.getImage();
-                    Image new_img = img.getScaledInstance(picture.getWidth(), picture.getHeight(), Image.SCALE_SMOOTH);
-
-                    ImageIcon new_icon = new ImageIcon(new_img);
-
-                    picture.setIcon(new_icon);
-
-                    canvas.add(picture);
-
-                    canvas.repaint();
-                    picture.setVisible(true);
-                }
-            }
-        });
-
-        JMenuItem mntmSaveFile = new JMenuItem("Save file");
-        mnFile.add(mntmSaveFile);
-
-        mntmSaveFile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        JMenuItem mntmExportFile = new JMenuItem("Export file");
-        mnFile.add(mntmExportFile);
-
-        mntmExportFile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BufferedImage image = new BufferedImage(canvas.getWidth(),
-                        canvas.getHeight(), BufferedImage.TYPE_INT_ARGB);
-                Graphics2D g = image.createGraphics();
-                canvas.paint(g);
-                g.dispose();
-
-                JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter pngFilter = new FileNameExtensionFilter(
-                        "Image(JPG/GIF/PNG)","JPG","JPEG","GIF","PNG");
-                fileChooser.addChoosableFileFilter(pngFilter);
-                fileChooser.setFileFilter(pngFilter);
-
-                int status = fileChooser.showSaveDialog(MainWindow.this);
-
-                if (status == JFileChooser.APPROVE_OPTION) {
-                    try {
-                        ImageIO.write(image, "png",
-                                fileChooser.getSelectedFile());
-                        JOptionPane.showMessageDialog(null, "Image saved to "
-                                + fileChooser.getSelectedFile().getName());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-
-            }
-        });
-
-        JMenuItem mntmClose = new JMenuItem("Close");
-        mnFile.add(mntmClose);
-
-        JMenu mnEdit = new JMenu("Edit");
+        menuBar.add(mnHelp);
         menuBar.add(mnEdit);
 
-        JMenuItem mnUndo = new JMenuItem("Undo");
+        mnFile.add(mnNew);
 
-        KeyStroke ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask());
+        mnNew.add(mnNewDiagram);
+
+        action = mntmImportFile.addAction();
+        action.setAction();
+
+        action = mntmExportFile.addAction();
+        action.setAction();
+
+        mnFile.add(mntmOpenFile);
+
+        mnFile.add(mntmSaveFile);
+
+        mnFile.add(mntmClose);
+
+        menuBar.add(mnEdit);
+
+
+        KeyStroke ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask());
 
         mnUndo.setAccelerator(ctrlZ);
 
@@ -174,18 +139,28 @@ public class MainWindow extends JFrame implements Loadable{
         canvas.repaint();
     }
 
-    public void changeShape(String whichElement, String whichDrawable){
+    public void changeShape(String whichElement, String whichDrawable) {
         canvas.changeShape(whichElement, whichDrawable);
     }
 
-    public void takeSnapshot(){
+    public void takeSnapshot() {
         canvas.takeSnapshot();
     }
 
-	@Override
-	public void load() {
-		setupFrame();
+    @Override
+    public void load() {
+        setupFrame();
         setVisible(true);
-	}
+    }
 
+    @Override
+    public void help() {
+        JOptionPane.showMessageDialog(this, "Helper: " + getClass().getSimpleName());
+    }
+
+    @Override
+    public void setNextHelpable(Helpable helpable) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Should not have a successor");
+    }
 }
+

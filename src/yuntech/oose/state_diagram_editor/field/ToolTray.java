@@ -1,5 +1,6 @@
 package yuntech.oose.state_diagram_editor.field;
 
+import yuntech.oose.state_diagram_editor.chain_help.Helpable;
 import yuntech.oose.state_diagram_editor.components.Composite;
 import yuntech.oose.state_diagram_editor.components.*;
 import yuntech.oose.state_diagram_editor.components.Label;
@@ -7,16 +8,18 @@ import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
 import yuntech.oose.state_diagram_editor.mediator.FontChooserDialog;
 import yuntech.oose.state_diagram_editor.observer.MyKeyListener;
 import yuntech.oose.state_diagram_editor.observer.MyMouseListener;
+import yuntech.oose.state_diagram_editor.proxy.ProtectProxy;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
-public class ToolTray extends JPanel {
+public class ToolTray extends JPanel implements Helpable {
 
     CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas;
+
+    // Help
+    private Helpable nextHelpable;
 
 
     private MainWindow mainWindow;
@@ -57,6 +60,23 @@ public class ToolTray extends JPanel {
     }
 
     void setup() {
+        // Help
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
+                    JPopupMenu popupMenu = new JPopupMenu();
+                    JMenuItem menuItem = new JMenuItem("Help");
+                    popupMenu.add(menuItem).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent actionEvent) {
+                            help();
+                        }
+                    });
+                    popupMenu.show(ToolTray.this, mouseEvent.getX(), mouseEvent.getY());
+                }
+            }
+        });
 
         MyMouseListener myMouseListener = new MyMouseListener(this);
         MyKeyListener myKeyListener = new MyKeyListener(this);
@@ -166,7 +186,10 @@ public class ToolTray extends JPanel {
         btn_font.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 FontChooserDialog fontChooserDialog = new FontChooserDialog(mainWindow, "Font Selector", true);
-                fontChooserDialog.setVisible(true);
+                // fontChooserDialog.setVisible(false);
+                ProtectProxy unPaidWindow = new ProtectProxy(mainWindow, "Do you know the password?", true,
+                        fontChooserDialog);
+                // unPaidWindow.setVisible(true);
             }
         });
 
@@ -199,5 +222,16 @@ public class ToolTray extends JPanel {
         setLayout(gl_contentPane);
         setVisible(true);
 
+    }
+
+    @Override
+    public void help() {
+        // Has no help
+        nextHelpable.help();
+    }
+
+    @Override
+    public void setNextHelpable(Helpable helpable) {
+        nextHelpable = helpable;
     }
 }

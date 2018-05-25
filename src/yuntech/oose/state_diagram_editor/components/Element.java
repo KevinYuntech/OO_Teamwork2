@@ -9,7 +9,7 @@ import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 import java.awt.*;
 import java.util.LinkedList;
 
-// NOTE: Gatter always return new object so outer won't have the ability to modify data of a class
+// NOTE: Getter always return new object so outer won't have the ability to modify data of a class
 public abstract class Element implements Draggable, Resizable {
     /* status types */
 

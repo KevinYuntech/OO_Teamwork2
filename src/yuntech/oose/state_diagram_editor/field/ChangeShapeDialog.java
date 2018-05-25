@@ -3,10 +3,14 @@ package yuntech.oose.state_diagram_editor.field;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ChangeShapeDialog extends JDialog {
+    JPopupMenu popup = new JPopupMenu();
+    JMenuItem item = new JMenuItem("Help");
 
 
     public ChangeShapeDialog(MainWindow _mainWindow) {
@@ -42,6 +46,7 @@ public class ChangeShapeDialog extends JDialog {
                 selectedDrawable[0] = shapeList.getSelectedValue();
             }
         });
+
         JScrollPane shapeScrollPane = new JScrollPane(shapeList);
         shapeScrollPane.setBounds(300, 30, 250, 100);
         add(shapeScrollPane);
