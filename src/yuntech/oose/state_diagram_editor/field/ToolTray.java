@@ -1,6 +1,7 @@
 package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.chain_help.Helpable;
+import yuntech.oose.state_diagram_editor.chain_help.Helper;
 import yuntech.oose.state_diagram_editor.components.Composite;
 import yuntech.oose.state_diagram_editor.components.*;
 import yuntech.oose.state_diagram_editor.components.Label;
@@ -15,12 +16,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class ToolTray extends JPanel implements Helpable {
+    // Helper
+    private Helper helper;
 
     CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas;
-
-    // Help
-    private Helpable nextHelpable;
-
 
     private MainWindow mainWindow;
     private JButton btn_transition = new JButton("Transition(T)");
@@ -33,10 +32,9 @@ public class ToolTray extends JPanel implements Helpable {
     private JButton btn_font = new JButton("Font(F)");
     private JButton btn_changeShape = new JButton("Change Shape(Q)");
 
+
     public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas) {
         this.ctrl_toolTrayToCanvas = ctrl_toolTrayToCanvas;
-        setup();
-        facilitate();
     }
 
     public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height) {
@@ -46,9 +44,10 @@ public class ToolTray extends JPanel implements Helpable {
 
     // TEST
     public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height, MainWindow mainWindow) {
-        this(ctrl_toolTrayToCanvas);
-        setSize(new Dimension(width, height));
         this.mainWindow = mainWindow;
+        setup();
+        facilitate();
+        setSize(new Dimension(width, height));
     }
 
     public MainWindow getMainWindow() {
@@ -60,17 +59,18 @@ public class ToolTray extends JPanel implements Helpable {
     }
 
     void setup() {
-        // Help
+        // Helper
+        helper = new Helper(this, getClass().getSimpleName(), mainWindow.getHelper());
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
                     JPopupMenu popupMenu = new JPopupMenu();
-                    JMenuItem menuItem = new JMenuItem("Help");
+                    JMenuItem menuItem = new JMenuItem("Helper");
                     popupMenu.add(menuItem).addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent actionEvent) {
-                            help();
+                            helper.help();
                         }
                     });
                     popupMenu.show(ToolTray.this, mouseEvent.getX(), mouseEvent.getY());
@@ -187,8 +187,7 @@ public class ToolTray extends JPanel implements Helpable {
             public void actionPerformed(ActionEvent e) {
                 FontChooserDialog fontChooserDialog = new FontChooserDialog(mainWindow, "Font Selector", true);
                 // fontChooserDialog.setVisible(false);
-                ProtectProxy unPaidWindow = new ProtectProxy(mainWindow, "Do you know the password?", true,
-                        fontChooserDialog);
+                ProtectProxy unPaidWindow = new ProtectProxy(mainWindow, "Do you know the password?", true, fontChooserDialog);
                 // unPaidWindow.setVisible(true);
             }
         });
@@ -225,13 +224,7 @@ public class ToolTray extends JPanel implements Helpable {
     }
 
     @Override
-    public void help() {
-        // Has no help
-        nextHelpable.help();
-    }
-
-    @Override
-    public void setNextHelpable(Helpable helpable) {
-        nextHelpable = helpable;
+    public Helper getHelper() {
+        return helper;
     }
 }

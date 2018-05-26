@@ -12,18 +12,21 @@ import javax.swing.JTextField;
 import yuntech.oose.state_diagram_editor.field.MainWindow;
 import yuntech.oose.state_diagram_editor.mediator.FontChooserDialog;
 
-public class ProtectProxy extends JDialog implements protectable {
+public class ProtectProxy extends JDialog implements Protectable {
 
+	private MainWindow mainWindow;
 	private JLabel label;
 	private JTextField textField;
 	private JButton buttonhadpaid;
 	private FontChooserDialog fontchooserdialog;
 
-	public ProtectProxy(MainWindow mainWindow, String _title, boolean _flag, FontChooserDialog _fontChooserDialog) {
+	public ProtectProxy(MainWindow _mainWindow, String _title, boolean _flag, FontChooserDialog _fontchooserdialog) {
 
-		super(mainWindow, _title, _flag);
+		super(_mainWindow, _title, _flag);
 
-		fontchooserdialog = _fontChooserDialog;
+		mainWindow = _mainWindow;
+		
+		fontchooserdialog = _fontchooserdialog;
 		label = new JLabel();
 
 		textField = new JTextField();
@@ -72,7 +75,10 @@ public class ProtectProxy extends JDialog implements protectable {
 				if (textField.getText().equals("5")) {
 					ProtectProxy.this.setVisible(false);
 
+					//FontChooserDialog fd = new FontChooserDialog(mainWindow, "Font Selector", true);
+					//fd.setVisible(true);
 					fontchooserdialog.setVisible(true);
+
 
 				} else {
 					label.setText("Let me pass OO then you will know");
@@ -90,7 +96,10 @@ public class ProtectProxy extends JDialog implements protectable {
 					if (textField.getText().equals("5")) {
 						ProtectProxy.this.setVisible(false);
 
+						//FontChooserDialog fd = new FontChooserDialog(mainWindow, "Font Selector", true);
+						//fd.setVisible(true);
 						fontchooserdialog.setVisible(true);
+
 
 					} else {
 						label.setText("Let me pass OO then you will know");

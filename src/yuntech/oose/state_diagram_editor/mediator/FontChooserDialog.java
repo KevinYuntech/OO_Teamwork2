@@ -1,36 +1,41 @@
 package yuntech.oose.state_diagram_editor.mediator;
 
+import yuntech.oose.state_diagram_editor.chain_help.Helpable;
+import yuntech.oose.state_diagram_editor.chain_help.Helper;
 import yuntech.oose.state_diagram_editor.field.MainWindow;
-import yuntech.oose.state_diagram_editor.proxy.protectable;
+import yuntech.oose.state_diagram_editor.field.ToolTray;
+import yuntech.oose.state_diagram_editor.proxy.Protectable;
 import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
-public class FontChooserDialog extends JDialog implements protectable{
+public class FontChooserDialog extends JDialog implements Protectable, Helpable {
 
-   // private static final long serialVersionUID = 1L;    
-    private static WordSingleton wordSingleton; 
+    // private static final long serialVersionUID = 1L;
+    private static WordSingleton wordSingleton;
     private MainWindow mainWindow;
     private FontList fontList;
     private FontScrollPane fontScrollPane;
-    private StyleList styleList;    
-    private StyleScrollPane styleScrollPane;    
-    private SizeList sizeList;    
-    private SizeScrollPane sizeScrollPane;    
-    private ColorList colorList;    
-    private ColorScrollPane colorScrollPane;    
+    private StyleList styleList;
+    private StyleScrollPane styleScrollPane;
+    private SizeList sizeList;
+    private SizeScrollPane sizeScrollPane;
+    private ColorList colorList;
+    private ColorScrollPane colorScrollPane;
     private OkButton okButton;
     private CancelButton cancelButton;
     private PreviewLabel previewLabel;
     private Color[] colorName = {Color.BLACK, Color.BLUE, Color.CYAN, Color.DARK_GRAY, Color.GRAY, Color.GREEN, Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, Color.WHITE, Color.YELLOW};
 
+    private Helper helper;
+
     public FontChooserDialog(MainWindow _mainWindow, String _title, Boolean _flag) {
         super(_mainWindow, _title, _flag);
 
         mainWindow = _mainWindow;
+        helper = new Helper(this, getClass().getSimpleName(), mainWindow.getHelper());
 
         setting();
 
@@ -39,6 +44,23 @@ public class FontChooserDialog extends JDialog implements protectable{
         buildComponents();
 
         monitorEvent();
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
+                    JPopupMenu popupMenu = new JPopupMenu();
+                    JMenuItem menuItem = new JMenuItem("Helper");
+                    popupMenu.add(menuItem).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent actionEvent) {
+                            helper.help();
+                        }
+                    });
+                    popupMenu.show(FontChooserDialog.this, mouseEvent.getX(), mouseEvent.getY());
+                }
+            }
+        });
     }
 
     private static void staticInitalize() {
@@ -135,7 +157,7 @@ public class FontChooserDialog extends JDialog implements protectable{
     }
 
     public void okButtonClicked() {
-    	
+
 
         this.setVisible(false);
 
@@ -153,10 +175,15 @@ public class FontChooserDialog extends JDialog implements protectable{
 
     }
 
-	@Override
-	public void displayView() {
-		// TODO 自動產生的方法 Stub
-		setVisible(true);
-	}
+    @Override
+    public void displayView() {
+        // TODO 自動產生的方法 Stub
+        setVisible(true);
+    }
+
+    @Override
+    public Helper getHelper() {
+        return null;
+    }
 }
 

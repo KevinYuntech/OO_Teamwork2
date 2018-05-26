@@ -1,6 +1,6 @@
 package yuntech.oose.state_diagram_editor.proxy;
 
-public interface protectable{
+public interface Protectable {
 	
 	void displayView();
 

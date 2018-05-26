@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 
 public class ChangeShapeDialog extends JDialog {
     JPopupMenu popup = new JPopupMenu();
-    JMenuItem item = new JMenuItem("Help");
+    JMenuItem item = new JMenuItem("Helper");
 
 
     public ChangeShapeDialog(MainWindow _mainWindow) {

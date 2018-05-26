@@ -1,6 +1,8 @@
 package yuntech.oose.state_diagram_editor.field;
 
 import yuntech.oose.state_diagram_editor.chain_help.Helpable;
+import yuntech.oose.state_diagram_editor.chain_help.Helper;
+import yuntech.oose.state_diagram_editor.chain_help.MainWindowHelper;
 import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
 import yuntech.oose.state_diagram_editor.drawing.Drawable;
 
@@ -15,29 +17,19 @@ import java.io.File;
 
 public class MainWindow extends JFrame implements Loadable, Helpable {
 
-    // Help
-    JPopupMenu popupMenu = new JPopupMenu();
-    JMenuItem menuItem = new JMenuItem("Help");
+    // Helper
+    MainWindowHelper helper = new MainWindowHelper(this, getClass().getSimpleName(), null);
 
     // Determine default MainWindow size here
     private final int width = 800;
     private final int height = 650;
-    private static int a;
 
     private Canvas canvas = new Canvas(600, 600);
     private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 600, 800, this);
 
     public MainWindow() {
 
-//    public void ass(String[] args) {
-//    	
-////    	Load load = new Proxy("aaa");
-////    	load.display();
-////    	load.display();
-//    	
-//    	Loadable load = new MainFrameProxy(_frame)
     }
-
 
     JMenuBar menuBar = new JMenuBar();
     JMenuItem mnFile = new JMenu("File");
@@ -50,6 +42,7 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
     JMenuItem mnEdit = new JMenu("Edit");
     JMenuItem mnHelp = new JMenu("Help");
     JMenuItem mnUndo = new JMenuItem("Undo");
+    JMenuItem mntmHelp = new JMenuItem("Help");
 
     ItemFactory mntmImportFile = new ImportFactory(canvas, this, mnFile);
     ItemFactory mntmExportFile = new ExportFactory(canvas, mnFile);
@@ -57,15 +50,16 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
     Action action;
 
     private void setupFrame() {
-        // Help
+        // Helper
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem menuItem = new JMenuItem("Help");
         popupMenu.add(menuItem);
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                help();
+                helper.help();
             }
         });
-        toolTray.setNextHelpable(this);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
@@ -78,8 +72,16 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
         setJMenuBar(menuBar);
 
         menuBar.add(mnFile);
-        menuBar.add(mnHelp);
         menuBar.add(mnEdit);
+        menuBar.add(mnHelp);
+
+        mnHelp.add(mntmHelp);
+        mntmHelp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JOptionPane.showMessageDialog(MainWindow.this, "Kevin: 0939814988");
+            }
+        });
 
         mnFile.add(mnNew);
 
@@ -97,9 +99,6 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
 
         mnFile.add(mntmClose);
 
-        menuBar.add(mnEdit);
-
-
         KeyStroke ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask());
 
         mnUndo.setAccelerator(ctrlZ);
@@ -113,8 +112,6 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
 
         mnEdit.add(mnUndo);
 
-        JMenu mnHelp = new JMenu("Help");
-        menuBar.add(mnHelp);
 
 
         JPanel contentPane = new JPanel();
@@ -154,13 +151,8 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
     }
 
     @Override
-    public void help() {
-        JOptionPane.showMessageDialog(this, "Helper: " + getClass().getSimpleName());
-    }
-
-    @Override
-    public void setNextHelpable(Helpable helpable) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Should not have a successor");
+    public Helper getHelper() {
+        return helper;
     }
 }
 
