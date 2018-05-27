@@ -32,19 +32,10 @@ public class ToolTray extends JPanel implements Helpable {
     private JButton btn_font = new JButton("Font(F)");
     private JButton btn_changeShape = new JButton("Change Shape(Q)");
 
-
-    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas) {
-        this.ctrl_toolTrayToCanvas = ctrl_toolTrayToCanvas;
-    }
-
-    public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height) {
-        this(ctrl_toolTrayToCanvas);
-        setSize(new Dimension(width, height));
-    }
-
     // TEST
     public ToolTray(CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas, int width, int height, MainWindow mainWindow) {
         this.mainWindow = mainWindow;
+        this.ctrl_toolTrayToCanvas = ctrl_toolTrayToCanvas;
         setup();
         facilitate();
         setSize(new Dimension(width, height));
