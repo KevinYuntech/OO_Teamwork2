@@ -9,8 +9,8 @@ public class MainWindowProxy implements Loadable{
 	private JLabel label;
 	private MainWindow frame;
 	
-	public MainWindowProxy(MainWindow _frame) {
-		frame = _frame;
+	public MainWindowProxy() {
+		frame = new MainWindow();
 	}
 
 	public void load() {

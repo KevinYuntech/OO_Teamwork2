@@ -6,7 +6,7 @@ public class Main {
 		
 		MainWindow mainWindow = new MainWindow();
 		
-		Loadable mainWindowProxy = new MainWindowProxy(mainWindow);
+		Loadable mainWindowProxy = new MainWindowProxy();
 		
 		mainWindowProxy.load();
 
