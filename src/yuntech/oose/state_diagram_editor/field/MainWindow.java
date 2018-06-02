@@ -1,53 +1,52 @@
 package yuntech.oose.state_diagram_editor.field;
 
+import yuntech.oose.state_diagram_editor.Builder.LifeChooseExampleBuilder;
+import yuntech.oose.state_diagram_editor.Builder.OOExampleBuilder;
+import yuntech.oose.state_diagram_editor.Builder.SAExampleBuilder;
 import yuntech.oose.state_diagram_editor.chain_help.Helpable;
 import yuntech.oose.state_diagram_editor.chain_help.Helper;
 import yuntech.oose.state_diagram_editor.chain_help.MainWindowHelper;
 import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
-import yuntech.oose.state_diagram_editor.drawing.Drawable;
 
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class MainWindow extends JFrame implements Loadable, Helpable {
-
-    // Helper
-    MainWindowHelper helper = new MainWindowHelper(this, getClass().getSimpleName(), null);
 
     // Determine default MainWindow size here
     private final int width = 800;
     private final int height = 650;
-
-    private Canvas canvas = new Canvas(600, 600);
-    private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 600, 800, this);
-
-    public MainWindow() {
-
-    }
-
+    // Helper
+    MainWindowHelper helper = new MainWindowHelper(this,
+            "Hi,I am MainWindow Helper, appreciate to help you. \n" +
+                    "I provide you to edit the state diagram, and something smart way," +
+                    " function that other company don’t provide. GoodLuck! ",
+            null);
     JMenuBar menuBar = new JMenuBar();
     JMenuItem mnFile = new JMenu("File");
     JMenuItem mnNew = new JMenu("New");
-    JMenuItem mnNewDiagram = new JMenu("New Diagram");
-    JMenuItem mntmOpenFile = new JMenuItem("Open file");
-    JMenuItem mntmSaveFile = new JMenuItem("Save file");
-
+    JMenuItem mnNewDiagram = new JMenuItem("New Diagram");
+    JMenuItem mntmSave = new JMenuItem("Save");
+    JMenuItem mntmOpen = new JMenuItem("Open");
     JMenuItem mntmClose = new JMenuItem("Close");
     JMenuItem mnEdit = new JMenu("Edit");
     JMenuItem mnHelp = new JMenu("Help");
     JMenuItem mnUndo = new JMenuItem("Undo");
     JMenuItem mntmHelp = new JMenuItem("Help");
-
+    JMenuItem mntmExample1 = new JMenuItem("SAPassExample");
+    JMenuItem mntmExample2 = new JMenuItem("OOPassExample");
+    JMenuItem mntmExample3 = new JMenuItem(" LifeChooseExample");
+    JMenu mnExample = new JMenu("Example");
+    Action action;
+    private Canvas canvas = new Canvas(600, 600);
     ItemFactory mntmImportFile = new ImportFactory(canvas, this, mnFile);
     ItemFactory mntmExportFile = new ExportFactory(canvas, mnFile);
+    private ToolTray toolTray = new ToolTray(new CTRL_ToolTrayToCanvas(canvas), 600, 800, this);
 
-    Action action;
+    public MainWindow() {
+
+    }
 
     private void setupFrame() {
         // Helper
@@ -71,11 +70,17 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
 
         setJMenuBar(menuBar);
 
-        menuBar.add(mnFile);
-        menuBar.add(mnEdit);
-        menuBar.add(mnHelp);
 
+        menuBar.add(mnFile);
+        mnFile.add(mnNew);
+        mnFile.add(mntmSave);
+        mnFile.add(mntmOpen);
+        mnNew.add(mnNewDiagram);
+        menuBar.add(mnEdit);
+        menuBar.add(mnExample);
+        menuBar.add(mnHelp);
         mnHelp.add(mntmHelp);
+
         mntmHelp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -83,9 +88,13 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
             }
         });
 
-        mnFile.add(mnNew);
 
-        mnNew.add(mnNewDiagram);
+        mnNewDiagram.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                canvas.clean();
+            }
+        });
 
         action = mntmImportFile.addAction();
         action.setAction();
@@ -93,11 +102,13 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
         action = mntmExportFile.addAction();
         action.setAction();
 
-        mnFile.add(mntmOpenFile);
 
-        mnFile.add(mntmSaveFile);
-
-        mnFile.add(mntmClose);
+        mntmClose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                MainWindow.this.dispose();
+            }
+        });
 
         KeyStroke ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask());
 
@@ -113,7 +124,34 @@ public class MainWindow extends JFrame implements Loadable, Helpable {
         mnEdit.add(mnUndo);
 
 
+        // Examples
+        mnExample.add(mntmExample1);
+        mntmExample1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                canvas.paintExample(canvas.getGraphics(), new SAExampleBuilder());
+            }
+        });
 
+        mnExample.add(mntmExample2);
+        mntmExample2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                canvas.paintExample(canvas.getGraphics(), new OOExampleBuilder());
+            }
+        });
+
+        mnExample.add(mntmExample3);
+        mntmExample3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                canvas.paintExample(canvas.getGraphics(), new LifeChooseExampleBuilder());
+            }
+        });
+
+        mnFile.add(mntmClose);
+
+        // Arrange GUI
         JPanel contentPane = new JPanel();
         setContentPane(contentPane);
 

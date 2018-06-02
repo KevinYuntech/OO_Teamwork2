@@ -1,5 +1,8 @@
 package yuntech.oose.state_diagram_editor.field;
 
+import yuntech.oose.state_diagram_editor.Builder.DiagramExample;
+import yuntech.oose.state_diagram_editor.Builder.DiagramExampleBuilder;
+import yuntech.oose.state_diagram_editor.Builder.DiagramExampleDirector;
 import yuntech.oose.state_diagram_editor.components.Composite;
 import yuntech.oose.state_diagram_editor.components.Element;
 import yuntech.oose.state_diagram_editor.components.Transition;
@@ -112,6 +115,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         }
     }
 
+    /*@author Kevin 0528*/
+    public void paintExample(Graphics g, DiagramExampleBuilder builder) {
+        DiagramExampleDirector director = new DiagramExampleDirector();//new a DiagramExampleDirector
+        director.setBulider(builder);//set the builder passed by the parameter into the DiagramExampleDirector
+        director.create();//call DiagramExampleDirector to create the example
+        DiagramExample example = director.getDiagramExample();//get the example from the DiagramExampleDirector
+        example.paint(this);//call the example to paint the canvas 
+    }
 
     // TODO: Restructure it
     @Override
@@ -327,6 +338,19 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             }
         }
         repaint();
+    }
+
+    public void clean() {
+        elementList.clear();
+        repaint();
+    }
+
+    public void saveDiagram(){
+
+    }
+
+    public void openDiagram(){
+
     }
 
     class DiagramState {

@@ -1,8 +1,5 @@
 package yuntech.oose.state_diagram_editor.memento;
 
-import yuntech.oose.state_diagram_editor.memento.Memento;
-import yuntech.oose.state_diagram_editor.memento.MementoCaretaker;
-
 import java.util.EmptyStackException;
 
 // Create by a Canvas who needs to store snapshots.

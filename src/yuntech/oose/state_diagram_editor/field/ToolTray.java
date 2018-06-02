@@ -1,11 +1,10 @@
 package yuntech.oose.state_diagram_editor.field;
 
+import yuntech.oose.state_diagram_editor.Adapter.StateButtonActionListener;
 import yuntech.oose.state_diagram_editor.chain_help.Helpable;
 import yuntech.oose.state_diagram_editor.chain_help.Helper;
-import yuntech.oose.state_diagram_editor.components.Composite;
-import yuntech.oose.state_diagram_editor.components.*;
-import yuntech.oose.state_diagram_editor.components.Label;
 import yuntech.oose.state_diagram_editor.controller.CTRL_ToolTrayToCanvas;
+import yuntech.oose.state_diagram_editor.factory.*;
 import yuntech.oose.state_diagram_editor.mediator.FontChooserDialog;
 import yuntech.oose.state_diagram_editor.observer.MyKeyListener;
 import yuntech.oose.state_diagram_editor.observer.MyMouseListener;
@@ -16,11 +15,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class ToolTray extends JPanel implements Helpable {
+    CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas;
+    ElementFactory elementFactory;
     // Helper
     private Helper helper;
-
-    CTRL_ToolTrayToCanvas ctrl_toolTrayToCanvas;
-
     private MainWindow mainWindow;
     private JButton btn_transition = new JButton("Transition(T)");
     private JButton btn_decision = new JButton("Decision(D)");
@@ -51,7 +49,12 @@ public class ToolTray extends JPanel implements Helpable {
 
     void setup() {
         // Helper
-        helper = new Helper(this, getClass().getSimpleName(), mainWindow.getHelper());
+        helper = new Helper(this,
+                "Hi,I am ToolTray Helper, appreciate to help you. \n" +
+                        "I provide you to select the state, transition," +
+                        " end button .etc to put the element on the canvas," +
+                        " After pressing it, then press canvas, the element will display on the canvas.",
+                mainWindow.getHelper());
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
@@ -88,7 +91,8 @@ public class ToolTray extends JPanel implements Helpable {
 
         btn_transition.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Transition());
+                elementFactory = new TransitionFactory();
+                ToolTray.this.ctrl_toolTrayToCanvas.addElementByFactory(elementFactory);
             }
         });
 
@@ -99,7 +103,8 @@ public class ToolTray extends JPanel implements Helpable {
 
         btn_decision.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Decision());
+                elementFactory = new DecisionFactory();
+                ToolTray.this.ctrl_toolTrayToCanvas.addElementByFactory(elementFactory);
             }
         });
 
@@ -110,10 +115,17 @@ public class ToolTray extends JPanel implements Helpable {
 
         btn_state.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new State());
+                elementFactory = new StateFactory();
+                ToolTray.this.ctrl_toolTrayToCanvas.addElementByFactory(elementFactory);
             }
         });
 
+        /*@author Kevin 0528*/
+        /*To let btn_state can be clicked to perform action,we need to add a listener
+        to listen its event, in this example, we new a StateButtonActionListener which
+        is a listener and also a adapter, and add it to the addActionListener() to listen event.
+        */
+        btn_state.addActionListener(new StateButtonActionListener(ctrl_toolTrayToCanvas));
         InputMap im_start = btn_start.getInputMap(WHEN_IN_FOCUSED_WINDOW);
 
         im_start.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false), "pressed");
@@ -121,7 +133,8 @@ public class ToolTray extends JPanel implements Helpable {
 
         btn_start.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Start());
+                elementFactory = new StartFactory();
+                ToolTray.this.ctrl_toolTrayToCanvas.addElementByFactory(elementFactory);
             }
         });
 
@@ -132,7 +145,8 @@ public class ToolTray extends JPanel implements Helpable {
 
         btn_composite.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Composite());
+                elementFactory = new CompositeFactory();
+                ToolTray.this.ctrl_toolTrayToCanvas.addElementByFactory(elementFactory);
             }
         });
 
@@ -143,7 +157,8 @@ public class ToolTray extends JPanel implements Helpable {
 
         btn_end.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new End());
+                elementFactory = new EndFactory();
+                ToolTray.this.ctrl_toolTrayToCanvas.addElementByFactory(elementFactory);
             }
         });
 
@@ -154,7 +169,8 @@ public class ToolTray extends JPanel implements Helpable {
 
         btn_label.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ToolTray.this.ctrl_toolTrayToCanvas.addElement(new Label());
+                elementFactory = new LabelFactory();
+                ToolTray.this.ctrl_toolTrayToCanvas.addElementByFactory(elementFactory);
             }
         });
 
@@ -176,9 +192,8 @@ public class ToolTray extends JPanel implements Helpable {
 
         btn_font.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                FontChooserDialog fontChooserDialog = new FontChooserDialog(mainWindow, "Font Selector", true);
                 // fontChooserDialog.setVisible(false);
-                ProtectProxy unPaidWindow = new ProtectProxy(mainWindow, "Do you know the password?", true, fontChooserDialog);
+                ProtectProxy unPaidWindow = new ProtectProxy(mainWindow, "Do you know the password?", true );
                 // unPaidWindow.setVisible(true);
             }
         });
@@ -213,6 +228,9 @@ public class ToolTray extends JPanel implements Helpable {
         setVisible(true);
 
     }
+    
+   
+
 
     @Override
     public Helper getHelper() {

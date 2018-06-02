@@ -1,6 +1,6 @@
 package yuntech.oose.state_diagram_editor.controller;
 
-import yuntech.oose.state_diagram_editor.components.Element;
+import yuntech.oose.state_diagram_editor.factory.ElementFactory;
 import yuntech.oose.state_diagram_editor.field.Canvas;
 
 import java.awt.*;
@@ -22,8 +22,8 @@ public class CTRL_ToolTrayToCanvas {
     }
 
     // Called by ToolTray
-    public void addElement(Element element) {
+    public void addElementByFactory(ElementFactory elementFactory) {
         canvas.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        canvas.setElementGonnaDraw(element);
+        canvas.setElementGonnaDraw(elementFactory.createElement());
     }
 }

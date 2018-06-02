@@ -3,7 +3,6 @@ package yuntech.oose.state_diagram_editor.mediator;
 import yuntech.oose.state_diagram_editor.chain_help.Helpable;
 import yuntech.oose.state_diagram_editor.chain_help.Helper;
 import yuntech.oose.state_diagram_editor.field.MainWindow;
-import yuntech.oose.state_diagram_editor.field.ToolTray;
 import yuntech.oose.state_diagram_editor.proxy.Protectable;
 import yuntech.oose.state_diagram_editor.singleton.WordSingleton;
 
@@ -35,7 +34,11 @@ public class FontChooserDialog extends JDialog implements Protectable, Helpable 
         super(_mainWindow, _title, _flag);
 
         mainWindow = _mainWindow;
-        helper = new Helper(this, getClass().getSimpleName(), mainWindow.getHelper());
+        helper = new Helper(this,
+                "Hi,I am FontChooserDialog Helper, appreciate to help you. \n" +
+                        "I provide you to select the font, size, color, style, after press enter , " +
+                        "it will change the original Lable button.",
+                mainWindow.getHelper());
 
         setting();
 
@@ -183,7 +186,7 @@ public class FontChooserDialog extends JDialog implements Protectable, Helpable 
 
     @Override
     public Helper getHelper() {
-        return null;
+        return helper;
     }
 }
 

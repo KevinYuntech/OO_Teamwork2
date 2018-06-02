@@ -1,7 +1,6 @@
 package yuntech.oose.state_diagram_editor.components;
 
 import yuntech.oose.state_diagram_editor.Handle;
-import yuntech.oose.state_diagram_editor.drawing.ArrowDrawable;
 
 import java.awt.*;
 

@@ -39,7 +39,8 @@ public abstract class Element implements Draggable, Resizable {
 
     /* Constructors */
 
-    // Called by call subclass while it was creating
+    // Called by subclass while it was creating
+    // Subclass calls default constructor is called by default
     Element() {
         initWidthHeight();
         initColor();
@@ -100,12 +101,12 @@ public abstract class Element implements Draggable, Resizable {
         label.setText(text);
     }
 
-    public void setFont(Font font) {
-        label.setFont(font);
-    }
-
     public Font getFont() {
         return label.getFont();
+    }
+
+    public void setFont(Font font) {
+        label.setFont(font);
     }
 
     public void add(Element element) {
@@ -122,11 +123,11 @@ public abstract class Element implements Draggable, Resizable {
 
     }
 
-    public void addTransitionStart(Transition transition){
+    public void addTransitionStart(Transition transition) {
         transitionStartList.add(transition);
     }
 
-    public void addTransitionEnd(Transition transition){
+    public void addTransitionEnd(Transition transition) {
         transitionEndList.add(transition);
     }
 

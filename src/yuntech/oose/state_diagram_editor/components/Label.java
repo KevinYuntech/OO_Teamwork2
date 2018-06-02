@@ -39,16 +39,12 @@ public class Label extends Element {
 
     /* Public methods */
 
-    public void setFont(Font font) {
-        this.font = font;
-    }
-
-    /* Override methods */
-
     @Override
     protected void initWidthHeight() {
         // Has no default width, height, because those depend on Graphics
     }
+
+    /* Override methods */
 
     @Override
     protected void initColor() {
@@ -89,7 +85,6 @@ public class Label extends Element {
         return new Label(this);
     }
 
-
     // A Label has no Label paired with it
     @Override
     public void setLocation(int x, int y) {
@@ -118,6 +113,10 @@ public class Label extends Element {
     @Override
     public Font getFont() {
         return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 
     // TODO
