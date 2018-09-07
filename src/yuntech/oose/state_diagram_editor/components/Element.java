@@ -7,10 +7,11 @@ import yuntech.oose.state_diagram_editor.drawing.Drawable;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 // NOTE: Getter always return new object so outer won't have the ability to modify data of a class
-public abstract class Element implements Draggable, Resizable {
+public abstract class Element implements Draggable, Resizable, Serializable {
     /* status types */
 
     public static final int NORMAL = 0;

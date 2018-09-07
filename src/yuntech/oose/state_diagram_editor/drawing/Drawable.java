@@ -3,8 +3,9 @@ package yuntech.oose.state_diagram_editor.drawing;
 import yuntech.oose.state_diagram_editor.components.Element;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public abstract class Drawable {
+public abstract class Drawable implements Serializable {
 
     public Drawable() {
 

@@ -3,8 +3,9 @@ package yuntech.oose.state_diagram_editor.singleton;
 import yuntech.oose.state_diagram_editor.flyweight.FlyweightFactory;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class WordSingleton {
+public class WordSingleton implements Serializable {
     private static WordSingleton wordSingleton = null;
 
     private String fontName;

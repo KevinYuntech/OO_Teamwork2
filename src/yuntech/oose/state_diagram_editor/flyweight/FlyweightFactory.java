@@ -5,12 +5,13 @@
  */
 package yuntech.oose.state_diagram_editor.flyweight;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * @author user
  */
-public class FlyweightFactory {
+public class FlyweightFactory implements Serializable {
     private static final FlyweightFactory flyweightFactory = new FlyweightFactory();
     public static int count = 0;
     private HashMap<Integer, ColorFlyweight> map = new HashMap<>();

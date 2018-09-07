@@ -345,12 +345,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         repaint();
     }
 
-    public void saveDiagram(){
-
+    public LinkedList<Element> getElementList() {
+        return elementList;
     }
 
-    public void openDiagram(){
-
+    public void setElementList(LinkedList<Element> list) {
+        elementList = list;
+        repaint();
     }
 
     class DiagramState {

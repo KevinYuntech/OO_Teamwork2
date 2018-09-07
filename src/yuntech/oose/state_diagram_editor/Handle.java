@@ -1,8 +1,9 @@
 package yuntech.oose.state_diagram_editor;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Handle {
+public class Handle implements Serializable {
 
     private int x;
     private int y;
